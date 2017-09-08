@@ -45,5 +45,5 @@ This work was made possible by a Aide à la Formation Recherche grant (AFR) to A
 
 PaCER is packaged with some free external toolboxes and scripts for convenience. Please see the "toolboxes" folder and the respective LICENSE files for details.
 
-
+![Logo LCSB / Uni.lu](unilcsb.png){:height="50px"} ![Logo CHL](CHL.png){:height="50px"} 
 
