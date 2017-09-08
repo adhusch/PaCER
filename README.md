@@ -30,7 +30,7 @@ PaCER directory and all its subdirectories to your MATLAB path first. This can b
 archived by running the file SETUP_PACER.m in MATLAB (once). The examples include a call
 to SETUP_PACER.
 
-#### Example Datase
+#### Example Dataset
 The following examples require only a post op CT dataset - they should work out of the box for most CT scan protocols as long as the slice thickness is not toooo bad :-) Easy conversion from DICOM to NIFTI is possible dcm2nii which is included in [MRIcron](https://www.nitrc.org/projects/mricron/).
 Advanced example demonstrating further use-cases (e.g. visualisation of segmentations and atlas data, simple volume of tissue activated model etc.) can be found in the examples/advanced/ directory. However these examples require appropriate co-registered image modalities (e.g. atlases, segmentation). We are in the process to provide a full example dataset in the future.
 
@@ -49,7 +49,7 @@ This work was made possible by a Aide à la Formation Recherche grant (AFR) to A
 
 
 PaCER is packaged with some free external software libraries for convenience. Please see the "toolboxes" folder and the respective LICENSE files for details.
-We feel grateful to the authors of this toolboxes and scripts:
+We are grateful to the authors of the following toolboxes and scripts:
  * [Tools for NIfTI and ANALYZE image](https://de.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nifti-and-analyze-image) by Jimmy Shen
  * [RGB triple of color name, version 2](https://de.mathworks.com/matlabcentral/fileexchange/24497-rgb-triple-of-color-name--version-2) by Kristjan Jonasson
  * [GUI Layout Toolbox](https://de.mathworks.com/matlabcentral/fileexchange/47982-gui-layout-toolbox) by David Sampson and Ben Tordoff
