@@ -46,7 +46,7 @@ Feel free to open an issue at [https://github.com/adhusch/PaCER](https://github.
 A paper describing the algorithmic details of PaCER as well as reporting detailled accuracy analysis results on phantom and simulated data is currently in revision. It will be linked here after publication.
 
 ### Acknowledgement
-This work was made possible by a Aide à la Formation Recherche grant (AFR) to Andreas Husch by the Luxembourg National Research (FNR).
+This work was made possible by a Aide à la Formation Recherche grant (AFR) to Andreas Husch by the Luxembourg National Research Fund (FNR).
 
 
 PaCER is packaged with some free external software libraries for convenience. Please see the "toolboxes" folder and the respective LICENSE files for details.
