@@ -9,7 +9,7 @@ GNU Affero General Public License for more details.
 Copyright (C) 2017  Andreas Husch, 
 					Centre Hospitalier de Luxembourg, National Department of Neurosurgery and
 				    University of Luxembourg, Luxembourg Centre for Systems Biomedicine
-
+![Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.](PaCER.png)
 ### Requirements
 The requirements to use PaCER are 
  *  a working **MATLAB installation**  
@@ -38,9 +38,12 @@ to SETUP_PACER.
    * **EXAMPLE_5_1.m** - Continues EXAMPLE_5 by **integrating MRTrix fibertracking results** and plotting corticospinal tract streamlines along with electrodes and subcortical atlas segmentations.
 
 ### Questions
-Feel free to drop a note to mail@andreashusch.de
+Feel free to drop a note to https://github.com/adhusch/
 
 ### Acknowledgement
-PaCER is packaged with some external toolboxes for convenience. Please see the "toolboxes" folder and the respective LICENSE files for details.
+This work was made possible by a Aide à la Formation Recherche grant (AFR) to Andreas Husch by the Luxembourg National Research (FNR).
+
+PaCER is packaged with some free external toolboxes and scripts for convenience. Please see the "toolboxes" folder and the respective LICENSE files for details.
+
 
 
