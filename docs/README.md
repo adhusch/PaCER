@@ -35,7 +35,7 @@ to SETUP_PACER.
 Note: We can currently not provide public examples using native space imaging data due to missing clearing to publicly share native data. The present examples are based on synthesised data in an atlas space. We would be happy for any data donations of anoymized raw Post OP data with the necessary clearing. However we strongly recommend to use PaCER on native space data and subseuqnetly tranform the resulting electrode objects if needed. Using native space data ensures best signal-to-noise ratio and thus detection accuracy.
 
 ### Questions
-Feel free to drop a note to [https://github.com/adhusch/](https://github.com/adhusch/)
+Feel free to open an issue at [https://github.com/adhusch/PaCER](https://github.com/adhusch/PaCER) or drop a note to mail (at) andreashusch.de
 
 ### Literature
 A paper describing the algorithmic details of PaCER as well as reporting detailled accuracy analysis results on phantom and simulated data is currently in revision. It will be linked here after publication.
