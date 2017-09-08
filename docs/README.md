@@ -4,18 +4,22 @@ Please note that PaCER is a research tool **NOT** intended for clinical use.
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
+**GNU Affero General Public License** for more details.
 
-Copyright (C) 2017  Andreas Husch, 
+Copyright (C) 2016-2017  Andreas Husch, 
 					Centre Hospitalier de Luxembourg, National Department of Neurosurgery and
 				    University of Luxembourg, Luxembourg Centre for Systems Biomedicine
 ![Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.](PaCER.png)
+### Background 
+The PaCER Toolbox is a MATLAB implementation of a robust method to fully automatically reconstruct deep brain stimulation trajectories from post operative CT imaging data. PaCER is able to fully preserving electrode bending (e.g. caused by brainshift). Further is able to detect individual contacts on high-resolution data. 
+The PaCER toolbox is provided with means to easily visualize electrodes as well as imaging data within the MATLAB environment
+. 
 ### Requirements
 The requirements to use PaCER are 
- *  a working **MATLAB installation**  
- *  **post-operative CT image** in **nifti** file format. 
+ *  **MATLAB**  
+ *  a **post-operative CT image** in **nifti** file format. 
  
-A CT slice-thickness <= 1 mm is recommend, however PaCER will
+A **CT slice-thickness <= 1 mm** is recommend, however PaCER will
 work on lower resolution data too by falling back to a less sophisticated contact detection 
 method (yielding lower accuracy). Nifti input files are supported in compressed form (.nii.gz) as
 well as non-compressed (.nii).
@@ -26,13 +30,13 @@ PaCER directory and all its subdirectories to your MATLAB path first. This can b
 archived by running the file SETUP_PACER.m in MATLAB (once). The examples include a call
 to SETUP_PACER.
 
+#### Example Datase
+The following examples require only a post op CT dataset - they should work out of the box for most CT scan protocols as long as the slice thickness is not toooo bad :-) Easy conversion from DICOM to NIFTI is possible dcm2nii which is included in [MRIcron](https://www.nitrc.org/projects/mricron/).
+Advanced example demonstrating further use-cases (e.g. visualisation of segmentations and atlas data, simple volume of tissue activated model etc.) can be found in the examples/advanced/ directory. However these examples require appropriate co-registered image modalities (e.g. atlases, segmentation). We are in the process to provide a full example dataset in the future.
+
 #### The Examples
  * **EXAMPLE_1.m** - Basic PaCER call and electrode plot. Start here!
      * **EXAMPLE_1_1.m** - Continues EXAMPLE_1 by adding an **MPR view** of the CT image and demonstrating some **plot customisations**
- * **EXAMPLE_2_1.m** - Continues EXAMPLE_1 by adding a **simplified VTA model** (Mädler/Coenen) (cf. Use-Case C)
- * **EXAMPLE_4.m** - Demonstrates PaCER operating in atlas space. Post OP CT and T1 linearly pre-registered to the template and electrodes plotted together with subcortical atlas segmentations. (cf. Use-Case D)
-
-Note: We can currently not provide public examples using native space imaging data due to missing clearing to publicly share native data. The present examples are based on synthesised data in an atlas space. We would be happy for any data donations of anoymized raw Post OP data with the necessary clearing. However we strongly recommend to use PaCER on native space data and subseuqnetly tranform the resulting electrode objects if needed. Using native space data ensures best signal-to-noise ratio and thus detection accuracy.
 
 ### Questions
 Feel free to open an issue at [https://github.com/adhusch/PaCER](https://github.com/adhusch/PaCER) or drop a note to mail (at) andreashusch.de
@@ -42,6 +46,7 @@ A paper describing the algorithmic details of PaCER as well as reporting detaill
 
 ### Acknowledgement
 This work was made possible by a Aide à la Formation Recherche grant (AFR) to Andreas Husch by the Luxembourg National Research (FNR).
+
 
 PaCER is packaged with some free external software libraries for convenience. Please see the "toolboxes" folder and the respective LICENSE files for details.
 We feel grateful to the authors of this toolboxes and scripts:
