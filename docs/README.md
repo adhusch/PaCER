@@ -28,19 +28,11 @@ to SETUP_PACER.
 
 #### The Examples
  * **EXAMPLE_1.m** - Basic PaCER call and electrode plot. Start here!
-    * **EXAMPLE_1_1.m** - Continues EXAMPLE_1 by adding an **MPR view** of the CT image and demonstrating some **plot customisations**
-<!--   * **EXAMPLE_1_2.m** - Continues EXAMPLE_1 by adding **transformation of the electrode object to native T1 space** and loading MPR view of the native T1 image. This transformation is achieved by applying a FSL FLIRT transformation (from CT to T1 space) to the electrode model using the methods provided by the PaCER electrode objects.
- * **EXAMPLE_2.m** - Demonstrates the electrodes reconstruction from **longitudinal datasets** (immediate post-op, later post-op) as well as **visualisation of co-registered MRI images** (T1) as well as **visualisation of STN segmentations**. (cf. Use-Case A, Use-Case C).
--->
- 	* **EXAMPLE_2_1.m** - Continues EXAMPLE_2 by adding a **simplified VTA model** (Mädler/Coenen) (cf. Use-Case C)
-<!-- 
-	* **EXAMPLE_3.m** - Demonstrates plan/outcome comparisons by loading and displaying Medtronic(R) Framelink (TM) stereotactic plan with a PaCER electrode reconstructions (cf. Use-Case B).
---> 
+ 	* **EXAMPLE_1_1.m** - Continues EXAMPLE_1 by adding an **MPR view** of the CT image and demonstrating some **plot customisations**
+ * **EXAMPLE_2_1.m** - Continues EXAMPLE_1 by adding a **simplified VTA model** (Mädler/Coenen) (cf. Use-Case C)
  * **EXAMPLE_4.m** - Demonstrates PaCER operating in atlas space. Post OP CT and T1 linearly pre-registered to the template and electrodes plotted together with subcortical atlas segmentations. (cf. Use-Case D)
-<!--
- * **EXAMPLE_5.m** - Demonstrates electrode reconstruction in **native** space with subsequent **transformation of the electrode objects to T1 space** (see example_1_2). The subcortical atlas from example 4 is now nonlinearly transformed and plotted with electrodes in T1 space. (cf. Use-Case D)
-   * **EXAMPLE_5_1.m** - Continues EXAMPLE_5 by **integrating MRTrix fibertracking results** and plotting corticospinal tract streamlines along with electrodes and subcortical atlas segmentations.
--->
+Note: We can currently not provide public examples using native space imaging data due to missing clearing to publicly share native data. The present examples are based on synthesised data in an atlas space. We would be happy for any data donations of anoymized raw Post OP data with the necessary clearing.
+
 ### Questions
 Feel free to drop a note to [https://github.com/adhusch/](https://github.com/adhusch/)
 
@@ -49,5 +41,5 @@ This work was made possible by a Aide à la Formation Recherche grant (AFR) to A
 
 PaCER is packaged with some free external toolboxes and scripts for convenience. Please see the "toolboxes" folder and the respective LICENSE files for details.
 
-![Logo LCSB / Uni.lu](unilcsb.png){:height="50px"}            ![Logo CHL](CHL.png){:height="50px"} 
+![Logo LCSB / Uni.lu](unilcsb.png){:height="50px"}          ![Logo LCSB / Uni.lu](fnr.gif){:height="50px"}           ![Logo CHL](CHL.png){:height="50px"} 
 
