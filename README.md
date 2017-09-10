@@ -57,7 +57,3 @@ We feel grateful to the authors of this toolboxes and scripts:
  * [Cylinder Between 2 Points](https://de.mathworks.com/matlabcentral/fileexchange/5468-cylinder-between-2-points) by Per Sundqvist
  * MPR View, by Florian Bernard
 
-
-
-![Logo LCSB / Uni.lu](docs/unilcsb.png){:height="50px"}          ![Logo LCSB / Uni.lu](docs/fnr.gif){:height="50px"}           ![Logo CHL](docs/CHL.png){:height="50px"} 
-
