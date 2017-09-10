@@ -9,7 +9,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 Copyright (C) 2016-2017  Andreas Husch, 
 					Centre Hospitalier de Luxembourg, National Department of Neurosurgery and
 				    University of Luxembourg, Luxembourg Centre for Systems Biomedicine
-![Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.](PaCER.png)
+![Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.](docs/PaCER.png)
 ### Background 
 The PaCER Toolbox is a MATLAB implementation of a robust method to fully automatically reconstruct deep brain stimulation trajectories from post operative CT imaging data. PaCER is able to fully preserving electrode bending (e.g. caused by brainshift). Further is able to detect individual contacts on high-resolution data. 
 The PaCER toolbox is provided with means to easily visualize electrodes as well as imaging data within the MATLAB environment
@@ -59,5 +59,5 @@ We feel grateful to the authors of this toolboxes and scripts:
 
 
 
-![Logo LCSB / Uni.lu](unilcsb.png){:height="50px"}          ![Logo LCSB / Uni.lu](fnr.gif){:height="50px"}           ![Logo CHL](CHL.png){:height="50px"} 
+![Logo LCSB / Uni.lu](docs/unilcsb.png){:height="50px"}          ![Logo LCSB / Uni.lu](docs/fnr.gif){:height="50px"}           ![Logo CHL](docs/CHL.png){:height="50px"} 
 
