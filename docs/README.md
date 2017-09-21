@@ -43,7 +43,7 @@ Advanced examples demonstrating further use-cases (e.g. visualisation of segment
 Feel free to open an issue at [https://github.com/adhusch/PaCER](https://github.com/adhusch/PaCER) or drop a note to mail (at) andreashusch.de
 
 ### Literature
-A paper describing the algorithmic details of PaCER as well as reporting detailled accuracy analysis results on phantom and simulated data is currently in revision. It will be linked here after publication.
+A paper describing the algorithmic details of PaCER as well as reporting detailled accuracy analysis results on phantom and simulated data is accepted for publication in NeuroImage:Clinical. It is going to appear soon.
 
 ### Acknowledgement
 This work was made possible by a Aide à la Formation Recherche grant (AFR) to Andreas Husch by the Luxembourg National Research Fund (FNR).
