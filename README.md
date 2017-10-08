@@ -43,7 +43,7 @@ Advanced examples demonstrating further use-cases (e.g. visualisation of segment
 Feel free to open an issue at [https://github.com/adhusch/PaCER](https://github.com/adhusch/PaCER) or drop a note to mail (at) andreashusch.de
 
 ### Literature
-A paper describing the algorithmic details of PaCER as well as reporting detailled accuracy analysis results on phantom and simulated data is accepted for publication in NeuroImage:Clinical. It is going to appear soon.
+See A. Husch, M. V. Petersen, P. Gemmar, J. Goncalves, F. Hertel: PaCER - A fully automated method for electrode trajectory and contact reconstruction in deep brain stimulation, NeuroImage: Clinical, Available online 6 October 2017, ISSN 2213-1582, https://doi.org/10.1016/j.nicl.2017.10.004. [Article is open access and available at Elsevier ScienceDirect](http://www.sciencedirect.com/science/article/pii/S2213158217302450)
 
 ### Acknowledgement
 This work was made possible by a Aide à la Formation Recherche grant (AFR) to Andreas Husch by the Luxembourg National Research Fund (FNR).
