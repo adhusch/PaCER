@@ -83,16 +83,14 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
     nElecs = length(elecIdxs);
     disp(['Guessing that ' num2str(nElecs) ' of them are Electrodes...']);
     
-    if(nElecs==0)
+    if(nElecs==0 && METAL_THRESHOLD > 200 )
         disp('Somehing is weird with your CT data...  Trying again with lower metal threshold. ')
         [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT, 'brainMask', args.brainMask, 'metalThreshold', METAL_THRESHOLD * 0.8, 'medtronicXMLPlan', args.medtronicXMLPlan);
         return;
-    end
-    
-    %% If we didn't find an object that looks like an electrode, notify the user and quit
-    if(nElecs == 0)
-        fprintf(['NO electrode artifact found within brain mask. Did you supply a post-op brain CT image? \nTry the ''no mask'' parameter for phantom scans without brain (and thus without the potential of creating a proper brain mask ;-))\n']); %#ok<NBRAK>
-        return
+    else
+        %% We tried hard but  didn't find an object that looks like an electrode in a reasonalbe HU range, notify the user and quit
+        fprintf(['NO electrode artifact found within brain mask. Did you supply a post-op brain CT image? \nTry the ''no mask'' parameter in case of phantom scans without brain (and thus without the potential of creating a proper brain mask ;-)) \n Try providing an externally create brain mask using the "brainMask" parameter.']); %#ok<NBRAK>
+        return;
     end
     
     %% if we have an xmlElectrodeDefinition, try to find the electrodes
