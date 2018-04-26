@@ -93,8 +93,7 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
             return;
         else
             %% We tried hard but  didn't find an object that looks like an electrode in a reasonalbe HU range, notify the user and quit
-            fprintf(['NO electrode artifact found within brain mask. Did you supply a post-op brain CT image? \n Try the ''no mask'' parameter in case of phantom scans without brain. \n Try providing an externally created brain mask using the "brainMask" parameter in other cases.']); %#ok<NBRAK>
-            return;
+            error(['NO electrode artifact found within brain mask. Did you supply a post-op brain CT image? \n Try the ''no mask'' parameter in case of phantom scans without brain. \n Try providing an externally created brain mask using the "brainMask" parameter in other cases.']); %#ok<NBRAK>
         end
     end
     %% if we have an xmlElectrodeDefinition, try to find the electrodes
