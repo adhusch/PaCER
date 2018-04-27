@@ -29,7 +29,8 @@ end
 ctIso = niiCT.img; % = downsampleImage(niiCT.img, niiCT.voxsize, niiCT.voxdim);
 
 % threshold
-threImg = (ctIso > LOWER_CT_BRAIN_THRESHOLD & ctIso < UPPER_CT_BRAIN_THRESHOLD);
+ctIsoMedFilt =  medfilt3(ctIso);
+threImg = (ctIsoMedFilt > LOWER_CT_BRAIN_THRESHOLD & ctIsoMedFilt < UPPER_CT_BRAIN_THRESHOLD);
 %threImg = reshape(threImg,niiCT.voxdim');
  [xx,yy,zz] = ndgrid(-2:2);
 structEle = sqrt(xx.^2 + yy.^2 + zz.^2) <= 2.5 / sqrt(max(niiCT.voxsize));
@@ -38,10 +39,12 @@ structEleSmall = sqrt(xx.^2 + yy.^2 + zz.^2) <= 1; %  CHECK THIS! (000)
 %G = gpuArray(structure); % if we have CUDA..
 
 % morphology
+%threImg = medfilt3(threImg);
 morphImg = imopen(threImg,structEle);
 morphFaction = sum(morphImg(:)) / numel(morphImg);
-if(morphFaction < 0.05 || morphFaction > 0.3)
+if(morphFaction < 0.06 || morphFaction > 0.3)
     warning('Uncommon fraction of CT data in threshold range (15-60 HU). Trying to compensate. Make sure to use "soft tissue" reconstruction filters for the CT (e.g. J30 kernel) if this fails. ')
+    threImg = medfilt3(threImg);
     morphImg = imclose(threImg,structEle); %maybe we have a super noise brain tissue image, thus to CLOSE instead of open first
     morphImg = imerode(morphImg,structEle); % due to the closing all masks will enlarge, i.e. the brain mask might cover the ckull, thus we have to shrink it at the very end again
 end 
@@ -63,7 +66,7 @@ clear morphImg;
 convHullBrainMask = false(size(roughBrainMask));
 maskedCT = ctIso;
 maskedCT(~roughBrainMask) = NaN; %threshold the roughBrainMask again to make sure no skull is contained due to morphology
-roughBrainMask = (maskedCT > LOWER_CT_BRAIN_THRESHOLD & maskedCT < UPPER_CT_BRAIN_THRESHOLD);
+roughBrainMask = (maskedCT > LOWER_CT_BRAIN_THRESHOLD & maskedCT < UPPER_CT_BRAIN_THRESHOLD); %TODO check if removable
 for i=1:size(roughBrainMask,3)
     convHullBrainMask(:,:,i) = bwconvhull(roughBrainMask(:,:,i));
     roughBrainMask(:,:,i) = imfill(roughBrainMask(:,:,i), 'holes');

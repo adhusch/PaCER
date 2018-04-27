@@ -8,7 +8,7 @@
 
 function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT, varargin)
     % CONSTANTS
-    LAMBDA_1 = 30; % 
+    LAMBDA_1 = 25;  % elec latent space length [mm]
 
     %% Optional Arguments and Default Values
     argParser = inputParser();
