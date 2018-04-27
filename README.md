@@ -17,6 +17,7 @@ The PaCER toolbox is provided with means to easily visualize electrodes as well 
 ### Requirements
 The requirements to use PaCER are 
  *  **MATLAB**  
+ 	*  Including the Image Processing Toolbox
  *  a **post-operative CT image** in **nifti** file format. 
  
 A **CT slice-thickness <= 1 mm** is recommend, however PaCER will
