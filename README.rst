@@ -1,5 +1,9 @@
-Welcome to PaCER - Precise and Convenient Electrode Reconstruction for DBS
---------------------------------------------------------------------------
+PaCER - Precise and Convenient Electrode Reconstruction for DBS
+---------------------------------------------------------------
+
+.. raw:: html
+
+   <a href="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/"><img src="https://prince.lcsb.uni.lu/jenkins/view/PaCER/job/PaCER-branches-auto-linux/badge/icon"></a><br>
 
 Please note that PaCER is a research tool **NOT** intended for clinical use.
 
