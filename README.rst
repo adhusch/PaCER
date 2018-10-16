@@ -33,7 +33,6 @@ The requirements to use PaCER are:
 
 - **MATLAB**
       + Including the Image Processing Toolbox
-
 - **post-operative CT image** in **nifti** file format.
 
 A **CT slice-thickness <= 1 mm** is recommend, however PaCER will work
