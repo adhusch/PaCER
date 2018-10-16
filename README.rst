@@ -135,12 +135,12 @@ convenience. Please see the “toolboxes” folder and the respective
 LICENSE files for details. We feel grateful to the authors of this
 toolboxes and scripts:
 
-   - `Tools for NIfTI and ANALYZE image <https://de.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nifti-and-analyze-image>`__ by Jimmy Shen
-   - `RGB triple of color name, version 2 <https://de.mathworks.com/matlabcentral/fileexchange/24497-rgb-triple-of-color-name--version-2>`__ by Kristjan Jonasson
-   - `GUI Layout Toolbox <https://de.mathworks.com/matlabcentral/fileexchange/47982-gui-layout-toolbox>`__ by David Sampson and Ben Tordoff
-   - `in_polyhedron <https://de.mathworks.com/matlabcentral/fileexchange/48041-in-polyhedron>`__ by Jaroslaw Tuszynski
-   - `Cylinder Between 2 Points <https://de.mathworks.com/matlabcentral/fileexchange/5468-cylinder-between-2-points>`__ by Per Sundqvist
-   - `MPR View` by Florian Bernard
+- `Tools for NIfTI and ANALYZE image <https://de.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nifti-and-analyze-image>`__ by Jimmy Shen
+- `RGB triple of color name, version 2 <https://de.mathworks.com/matlabcentral/fileexchange/24497-rgb-triple-of-color-name--version-2>`__ by Kristjan Jonasson
+- `GUI Layout Toolbox <https://de.mathworks.com/matlabcentral/fileexchange/47982-gui-layout-toolbox>`__ by David Sampson and Ben Tordoff
+- `in_polyhedron <https://de.mathworks.com/matlabcentral/fileexchange/48041-in-polyhedron>`__ by Jaroslaw Tuszynski
+- `Cylinder Between 2 Points <https://de.mathworks.com/matlabcentral/fileexchange/5468-cylinder-between-2-points>`__ by Per Sundqvist
+- `MPR View` by Florian Bernard
 
 .. |Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.| image:: docs/PaCER.png
 
