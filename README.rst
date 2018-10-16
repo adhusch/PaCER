@@ -5,16 +5,18 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
 
    <a href="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/"><img src="https://prince.lcsb.uni.lu/jenkins/view/PaCER/job/PaCER-branches-auto-linux/badge/icon"></a><br>
 
-*Please note that PaCER is a research tool **NOT** intended for clinical use.
+..
 
-This program is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the **GNU
-Affero General Public License** for more details.
+    Please note that PaCER is a research tool **NOT** intended for clinical use.
 
-Copyright (C) 2016-2017 Andreas Husch, Centre Hospitalier de
-Luxembourg, National Department of Neurosurgery and University of
-Luxembourg, Luxembourg Centre for Systems Biomedicine.*
+    This program is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the **GNU
+    Affero General Public License** for more details.
+
+    Copyright (C) 2016-2017 Andreas Husch, Centre Hospitalier de
+    Luxembourg, National Department of Neurosurgery and University of
+    Luxembourg, Luxembourg Centre for Systems Biomedicine.
 
 |Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.|
 
