@@ -1,4 +1,4 @@
-PaCER - Precise and Convenient Electrode Reconstruction for DBS
+PaCER |br| recise and Convenient Electrode Reconstruction for DBS
 ---------------------------------------------------------------
 
 .. raw:: html
@@ -146,3 +146,6 @@ by Per Sundqvist \* MPR View, by Florian Bernard
 
 .. |Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.| image:: docs/PaCER.png
 
+.. |br| raw:: html
+
+   <br>
