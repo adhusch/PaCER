@@ -24,15 +24,17 @@ data. PaCER is able to fully preserving electrode bending (e.g. caused
 by brainshift). Further is able to detect individual contacts on
 high-resolution data. The PaCER toolbox is provided with means to
 easily visualize electrodes as well as imaging data within the MATLAB
-environment .
+environment.
 
 Requirements
 ~~~~~~~~~~~~
 
 The requirements to use PaCER are:
-**MATLAB**
-      - Including the Image Processing Toolbox
-**post-operative CT image** in **nifti** file format.
+
+- **MATLAB**
+      + Including the Image Processing Toolbox
+
+- **post-operative CT image** in **nifti** file format.
 
 A **CT slice-thickness <= 1 mm** is recommend, however PaCER will work
 on lower resolution data too by falling back to a less sophisticated
@@ -63,8 +65,8 @@ in the examples/advanced/ directory. However these examples require
 appropriate co-registered image modalities (e.g. atlases, segmentation).
 We are in the process to provide a full example dataset in the future.
 
-The Examples
-^^^^^^^^^^^^
+Examples
+^^^^^^^^
 
 -  **EXAMPLE_1.m** - Basic PaCER call and electrode plot. Start here!
 
