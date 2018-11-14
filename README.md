@@ -44,8 +44,22 @@ Feel free to open an issue at [https://github.com/adhusch/PaCER](https://github.
 
 ### Literature
 
-A. Husch, M. V. Petersen, P. Gemmar, J. Goncalves, F. Hertel: PaCER - A fully automated method for electrode trajectory and contact reconstruction in deep brain stimulation, NeuroImage: Clinical, Available online 6 October 2017, ISSN 2213-1582, https://doi.org/10.1016/j.nicl.2017.10.004. 
-[Article is open access and available at Elsevier ScienceDirect](http://www.sciencedirect.com/science/article/pii/S2213158217302450).
+## The PaCER algorithm is described in:
+
+A. Husch, M. V. Petersen, P. Gemmar, J. Goncalves, F. Hertel: PaCER – A fully automated method for electrode trajectory and contact reconstruction in deep brain stimulation, NeuroImage: Clinical, Volume 17, 2018, Pages 80-89, Available online 6 October 2017, ISSN 2213-1582, https://doi.org/10.1016/j.nicl.2017.10.004., [Open access fulltext].
+
+## For people interested in even more technical details, the preprocessing pipeline is described in more details here:
+
+A. Husch, P. Gemmar, J. Lohscheller, F. Bernard, F. Hertel: Assessment of Electrode Displacement and Deformation with Respect to Pre-Operative Planning in Deep Brain Stimulation. Bildverarbeitung für die Medizin 2015, Springer Berlin Heidelberg, 2015.[ORBilu repository with fulltext request form]
+
+## An example of using PaCER within an automatic image-registration pipeline for DBS assessment is described in:
+
+A. Husch, M. V. Petersen, P. Gemmar, J. Goncalves, N. Sunde, F. Hertel: Post-operative deep brain stimulation assessment: Automatic data integration and report generation, Brain Stimulation, Available online 1 February 2018. [Open access fulltext]
+
+Please acknowledge the respective papers when using the algorithm in your work.
+
+### Help?
+If you need help our have trouble processing local data you are invited to open a GitHub issue. Any feedback to further improve the performance on varing datasets is very welcome.
 
 ### Acknowledgement
 This work was made possible by a Aide à la Formation Recherche grant (AFR) to Andreas Husch by the Luxembourg National Research Fund (FNR).
