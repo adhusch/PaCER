@@ -44,15 +44,15 @@ Feel free to open an issue at [https://github.com/adhusch/PaCER](https://github.
 
 ### Literature
 
-## The PaCER algorithm is described in:
+##### The PaCER algorithm is described in:
 
 A. Husch, M. V. Petersen, P. Gemmar, J. Goncalves, F. Hertel: PaCER – A fully automated method for electrode trajectory and contact reconstruction in deep brain stimulation, NeuroImage: Clinical, Volume 17, 2018, Pages 80-89, Available online 6 October 2017, ISSN 2213-1582, https://doi.org/10.1016/j.nicl.2017.10.004., [Open access fulltext].
 
-## For people interested in even more technical details, the preprocessing pipeline is described in more details here:
+##### For people interested in even more technical details, the preprocessing pipeline is described in more details here:
 
 A. Husch, P. Gemmar, J. Lohscheller, F. Bernard, F. Hertel: Assessment of Electrode Displacement and Deformation with Respect to Pre-Operative Planning in Deep Brain Stimulation. Bildverarbeitung für die Medizin 2015, Springer Berlin Heidelberg, 2015.[ORBilu repository with fulltext request form]
 
-## An example of using PaCER within an automatic image-registration pipeline for DBS assessment is described in:
+##### An example of using PaCER within an automatic image-registration pipeline for DBS assessment is described in:
 
 A. Husch, M. V. Petersen, P. Gemmar, J. Goncalves, N. Sunde, F. Hertel: Post-operative deep brain stimulation assessment: Automatic data integration and report generation, Brain Stimulation, Available online 1 February 2018. [Open access fulltext]
 
