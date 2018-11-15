@@ -116,29 +116,10 @@ classdef NiftiMod < id & configurable
                 orientation)
             trans = this.transformationMatrix;
             
-            if ( ~exist('orientation', 'var') )
-                if(det(trans) < 0)
-                    orientation = 'right-handed';
-                else
-                    orientation = 'left-handed';
-                end
-            end
-            
             if ( size(voxelIdxList,1) ~= 3)
                 error('voxelIdxList needs to be a 3 x N matrix');
             end
-            
-%             switch orientation
-%                 case {'left-handed'} %nii.h left-handed coordinate system
-%                     % nothing to do
-%                 case {'right-handed'} % right-handed coordinate system
-%                     disp('NiftiMod: Altering transformation hopefully yielding LPI- coordinates. Validate slice orientation.');
-%                     trans(1,1) = -trans(1,1);
-%                     trans(1,4) = -((this.voxdim(1)-1) * this.voxsize(1)- trans(1,4));
-%                     % transformation matrix transfroms from voxel to RPI- world,
-%                     % however, we want LPI- world
-%                     % coordinates
-%             end
+
             worldCoordinates = trans*[voxelIdxList-1; ones(1, size(voxelIdxList,2))]; % not the -1 for the matlab indexing!
             worldCoordinates = worldCoordinates(1:3,:);
         end
@@ -147,31 +128,11 @@ classdef NiftiMod < id & configurable
                 getMatlabIdxFromNiftiWorldCoordinates(this, worldCoordList,...
                 orientation)
             trans = this.transformationMatrix;
-            if ( ~exist('orientation', 'var') )
-                if(det(trans) < 0)
-                    orientation = 'right-handed';
-                else
-                    orientation = 'left-handed';
-                end
-            end
             
             if ( ~isempty(worldCoordList) && size(worldCoordList,1) ~= 3)
                 error('worldCoordList needs to be a 3 x N matrix');
             end
-%             switch orientation
-%                 case {'left-handed'} % left-handed coordinate system
-%                     % nothing to do
-%                 case {'right-handed'} % right-handed coordinate system
-%                     % transformation matrix transfroms from voxel to RPI-
-%                     % world, however, but we want LPI- world
-%                     % coordinates
-%                     trans(1,1) = -trans(1,1); 
-%                     trans(1,4) = -((this.voxdim(1)-1) * this.voxsize(1)- trans(1,4));         
-%             end
-%             
-% 			voxelIdxList = trans\[worldCoordList; ones(1, size(worldCoordList,2))];
-%             voxelIdxList = voxelIdxList(1:3,:)+1;
-			
+
 			Imatlab = eye(4);
 			Imatlab(1:3,end) = -1;
 			voxelToNiftiWorldMatrix = trans*Imatlab; % matlab index starts with 1, not 0
