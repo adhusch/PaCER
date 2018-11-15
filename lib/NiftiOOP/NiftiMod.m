@@ -1,13 +1,15 @@
 %% NiftiyMod -  Base class for all Nifti Objects. Wrapping the nifti Toolbox,
-% no frills version of the more powerful NiftiModality Class
+% rewritten no frills version of the more powerful NiftiModality Class
 %
-% Andreas Husch, Florian Bernard
+% Andreas Husch
 % Centre Hospitalier de Luxembourg, Dep. of Neurosurgery /
 % University of Luxembourg - Luxembourg Centre for Systems Biomedicne
-% 2016 - 2017
-% mail@andreashusch.de, fbernardpi@gmail.com
+% 2016 - 2018
+% mail@andreashusch.de
+%
+% Original NiftiModiality in collaboration Florian Bernard.
 
-classdef NiftiMod <  id & configurable
+classdef NiftiMod < id & configurable
     properties (Access = protected) %references to data objects    
         header = [];         % the nifti header (real data) 
         data = [];      % raw nifti data isLoaded in ram as matlab matrix�
@@ -16,7 +18,10 @@ classdef NiftiMod <  id & configurable
     properties (SetAccess = protected, GetAccess = public) %references to data objects
         voxdim = NaN(3,1); % voxel dimensions, P,L,I
         voxsize = NaN(3,1); % voxel size, P,L,I in mm
-        transformationMatrix = NaN(4,4); % matrix that transforms voxel indices to world coordinates in mm
+        transformationMatrix = NaN(4,4); % matrix that transforms voxel indices to world coordinates in mm, as a default this is set to the qform
+        sform = NaN(4,4); % sform matrix that transforms voxel indices to world coordinates in mm
+        qform = NaN(4,4); % qform (dervied) matrix that transforms voxel indices to world coordinates in mm
+
         isLoaded;  % true = in memory, false = on disk    
         argParser = []; 
         
@@ -48,29 +53,24 @@ classdef NiftiMod <  id & configurable
             this = this@id();                     % call superclass constructor to get an ID 
             
             this.isLoaded = false;
-            lhdr = load_untouch_header_only(niftiFilepathObject.filepath); % make sure to load header on object conostruction
-            this.voxdim = lhdr.dime.dim(2:4)';
-            this.voxsize= lhdr.dime.pixdim(2:4)';
-            this.transformationMatrix = [lhdr.hist.srow_x;...
-                lhdr.hist.srow_y;...
-                lhdr.hist.srow_z;...
-                [0 0 0 1]];
-            if(trace(this.transformationMatrix(1:3,1:3)) == 0) % workaround defective nifti headers
-                this.transformationMatrix(1,1) = lhdr.dime.pixdim(2);
-                this.transformationMatrix(2,2) = lhdr.dime.pixdim(3);
-                this.transformationMatrix(3,3) = lhdr.dime.pixdim(4);       
-                this.transformationMatrix(1,4) = lhdr.hist.qoffset_x; 
-                this.transformationMatrix(2,4) = lhdr.hist.qoffset_y;
-                this.transformationMatrix(3,4) = lhdr.hist.qoffset_z;
-            end
             this.data = [];
             this.niftiFilepathObject = niftiFilepathObject;
+            
+            %% Load hdr from disk
+            this.header = load_untouch_header_only(niftiFilepathObject.filepath);
+            
+            %% Assign Header Fields (tranformationMatrix, voxdim, voxsize etc.)
+            this.assignHeaderFields();
+            
+            %% Check
+            checkNiftiHdr(this);
+            
+            %% argParser
             this.argParser = inputParser();
             this.argParser.KeepUnmatched = true;
             this.argParser.addOptional('isToBeCached', true);
             this.argParser.parse(varargin{:});
             args = this.argParser.Results;
-
             this.isToBeCached = args.isToBeCached;
         end
         
@@ -84,24 +84,16 @@ classdef NiftiMod <  id & configurable
         
         function [image, header] = load(this)
             if( ~this.isLoaded && ~strcmp(this.filepath,'')) % it is not already isLoaded and we were not called with empty string (by Matlab callingn our get functions without command after initiating!)
-                 disp(['Loading ' this.filepath ' from disk...']);
-                nifti = load_nii(this.filepath, [], [], [], [], [], 0.1, []); % load with 0.1 tolerance
+                disp(['Loading ' this.filepath ' from disk...']);
+                % nifti = load_nii(this.filepath, [], [], [], [], [], 0.1, 'q'); % load with 0.1 tolerance, prefer the q-form over the sform!
+                nifti = load_untouch_nii(this.filepath); % load with 0.1 tolerance, prefer the q-form over the sform!
                 
-                this.voxdim = nifti.hdr.dime.dim(2:4)';
-                this.voxsize= nifti.hdr.dime.pixdim(2:4)';
-                this.header = nifti.hdr; % header should maybe kept all the time ..
-                this.transformationMatrix = [nifti.hdr.hist.srow_x;...
-                    nifti.hdr.hist.srow_y;...
-                    nifti.hdr.hist.srow_z;...
-                    [0 0 0 1]];
-                if(trace(this.transformationMatrix(1:3,1:3)) == 0) % workaround defective nifti headers
-                    this.transformationMatrix(1,1) = nifti.hdr.dime.pixdim(2);
-                    this.transformationMatrix(2,2) = nifti.hdr.dime.pixdim(3);
-                    this.transformationMatrix(3,3) = nifti.hdr.dime.pixdim(4);
-                    this.transformationMatrix(1,4) = nifti.hdr.hist.qoffset_x; %
-                    this.transformationMatrix(2,4) = nifti.hdr.hist.qoffset_y;
-                    this.transformationMatrix(3,4) = nifti.hdr.hist.qoffset_z;
-                end
+                this.header  = nifti.hdr; % header should maybe kept all the time ..
+                
+                %% Assigning Header Fields (tranformationMatrix, voxdim, voxsize etc.)
+                this.assignHeaderFields();
+
+                %% caching
                 if(this.isToBeCached) % keep data in attributes if caching is enabled
                     disp('Caching is enabeld.');
                     
@@ -113,6 +105,8 @@ classdef NiftiMod <  id & configurable
                     this.isLoaded = false;
                 end
                 header = nifti.hdr; % return data all the time
+                
+                %% precision
                 image = single(nifti.img);
             end
         end
@@ -134,18 +128,18 @@ classdef NiftiMod <  id & configurable
                 error('voxelIdxList needs to be a 3 x N matrix');
             end
             
-            switch orientation
-                case {'left-handed'} % left-handed coordinate system
-                    % nothing to do
-                case {'right-handed'} % right-handed coordinate system
-                    disp('NiftiMod: Altering transformation hopefully yielding LPI- coordinates. Validate slice orientation.');
-                    trans(1,1) = -trans(1,1);
-                    trans(1,4) = -((this.voxdim(1)-1) * this.voxsize(1)- trans(1,4));
-                    % transformation matrix transfroms from voxel to RPI- world,
-                    % however, we want LPI- world
-                   % coordinates
-            end
-            worldCoordinates = trans*[voxelIdxList-1; ones(1, size(voxelIdxList,2))];
+%             switch orientation
+%                 case {'left-handed'} %nii.h left-handed coordinate system
+%                     % nothing to do
+%                 case {'right-handed'} % right-handed coordinate system
+%                     disp('NiftiMod: Altering transformation hopefully yielding LPI- coordinates. Validate slice orientation.');
+%                     trans(1,1) = -trans(1,1);
+%                     trans(1,4) = -((this.voxdim(1)-1) * this.voxsize(1)- trans(1,4));
+%                     % transformation matrix transfroms from voxel to RPI- world,
+%                     % however, we want LPI- world
+%                     % coordinates
+%             end
+            worldCoordinates = trans*[voxelIdxList-1; ones(1, size(voxelIdxList,2))]; % not the -1 for the matlab indexing!
             worldCoordinates = worldCoordinates(1:3,:);
         end
         
@@ -164,17 +158,17 @@ classdef NiftiMod <  id & configurable
             if ( ~isempty(worldCoordList) && size(worldCoordList,1) ~= 3)
                 error('worldCoordList needs to be a 3 x N matrix');
             end
-            switch orientation
-                case {'left-handed'} % left-handed coordinate system
-                    % nothing to do
-                case {'right-handed'} % right-handed coordinate system
-                    % transformation matrix transfroms from voxel to RPI-
-                    % world, however, but we want LPI- world
-                    % coordinates
-                    trans(1,1) = -trans(1,1); 
-                    trans(1,4) = -((this.voxdim(1)-1) * this.voxsize(1)- trans(1,4));         
-            end
-            
+%             switch orientation
+%                 case {'left-handed'} % left-handed coordinate system
+%                     % nothing to do
+%                 case {'right-handed'} % right-handed coordinate system
+%                     % transformation matrix transfroms from voxel to RPI-
+%                     % world, however, but we want LPI- world
+%                     % coordinates
+%                     trans(1,1) = -trans(1,1); 
+%                     trans(1,4) = -((this.voxdim(1)-1) * this.voxsize(1)- trans(1,4));         
+%             end
+%             
 % 			voxelIdxList = trans\[worldCoordList; ones(1, size(worldCoordList,2))];
 %             voxelIdxList = voxelIdxList(1:3,:)+1;
 			
@@ -206,7 +200,7 @@ classdef NiftiMod <  id & configurable
         end
         
         function save(this, newFilepath, newImg, isSegmentation, forceFloat)
-             % this.hdr has been changed during load_nii call (in contrast to
+            % this.hdr has been changed during load_nii call (in contrast to
             % load_untouch_nii function). however, here we need exactly the
             % original header, therefore it is loaded again
             nii.hdr = load_untouch_header_only(this.niftiFilepathObject.filepath);
@@ -235,47 +229,62 @@ classdef NiftiMod <  id & configurable
             elseif(isequal(ext,'.gz'))
                 newFilepath = [pathstr filesep filename];
             elseif(~isequal(ext,'.nii'))
-                 error('NiftiModality:save:WrongFileending','Current Fileending is unkown');
+                error('NiftiModality:save:WrongFileending','Current Fileending is unkown');
             end
             
-            save_untouch_nii(nii, newFilepath); 
+            save_untouch_nii(nii, newFilepath);
             
-
+            
             % save zipped file
             gzip(newFilepath); %TODO make this configurable
             delete(newFilepath);
-%             this.filepath = newFilepath;
-%             newFilepath = [newFilepath, '.gz'];
-%             this.niftiFilepathObject = NiftiFilepath(newFilepath);
-
+            %             this.filepath = newFilepath;
+            %             newFilepath = [newFilepath, '.gz'];
+            %             this.niftiFilepathObject = NiftiFilepath(newFilepath);
+            
         end
         
         function header = get.hdr(this)
             if(isempty(this.header))  % load nifti from disk when needed
-                [~, header] = this.load(); 
-               
-%                 as the header is transformed during load it is not possible
-%                 to load the header only as done below (leads to equal header
-%                 as returned by load_untouch_nii()
-%                 [this.header] = load_nii_hdr(this.filepath);
-%                 
-%                 this.voxdim = this.header.dime.dim(2:4);
-%                 this.voxsize= this.header.dime.pixdim(2:4);   
-%                 header = this.header;
+                %  [~, header] = this.load();
+                
+                %                 as the header is transformed during load it is not possible
+                %                 to load the header only as done below (leads to equal header
+                %                 as returned by load_untouch_nii()
+                this.header = load_untouch_header_only(this.filepath);
+                
+                %% Assign Header Fields (tranformationMatrix, voxdim, voxsize etc.)
+                this.assignHeaderFields();
+                
+                header = this.header;
             else
                 header = this.header;
             end
-        end              
+        end
     end
-end
-
-function test() %#ok<DEFNU>
-%%
-niiFile = '/Users/fb/cnm/svn/resources/directions_mni.nii.gz';
-nii = NiftiModality(NiftiFilepath(niiFile));
-nii.load();
-
-idx = [1 1 1; 10 10 10; 12 17 99]';
-nii.getItkWorldCoordinatesFromMatlabIdx(idx)
-%%
+    methods (Access = private)
+        function assignHeaderFields(this)
+            this.voxdim  = this.hdr.dime.dim(2:4)';
+            this.voxsize = this.hdr.dime.pixdim(2:4)';
+            
+            %% getting sform
+            this.sform = [this.hdr.hist.srow_x;...
+                this.hdr.hist.srow_y;...
+                this.hdr.hist.srow_z;...
+                [0 0 0 1]];
+            
+            if(trace(this.sform(1:3,1:3)) == 0)
+                disp('Notice: NiftiMod: nifti sform is empty');
+            end
+            
+            %% getting qform by transforming the quaternion data to homogenous matrix
+            h = this.hdr.hist;
+            h.pixdim = this.hdr.dime.pixdim;
+            
+            this.qform = cbiQuaternionToHomogeneous(h);
+            
+            %% setting transformationMatrix to the qform
+            this.transformationMatrix = this.qform;
+        end
+    end
 end
