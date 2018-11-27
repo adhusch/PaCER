@@ -1,3 +1,9 @@
+.. raw:: html
+
+   <p align="center">
+     <img class="readme_logo" src="https://prince.lcsb.uni.lu/img/logos/logo_pacer.png" height="160px"/>
+   </p>
+
 PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
 ---------------------------------------------------------------
 
