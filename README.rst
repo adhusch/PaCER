@@ -26,6 +26,10 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
    </table>
    <br>
 
+
+System Requirements
+-------------------
+
 ..
 
     Please note that PaCER is a research tool **NOT** intended for clinical use.
@@ -42,7 +46,7 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
 |Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.|
 
 Background
-~~~~~~~~~~
+-------------------
 
 The PaCER Toolbox is a MATLAB
 implementation of a robust method to fully automatically reconstruct
@@ -54,7 +58,7 @@ easily visualize electrodes as well as imaging data within the MATLAB
 environment.
 
 Requirements
-~~~~~~~~~~~~
+-------------------
 
 The requirements to use PaCER are:
 
@@ -68,7 +72,7 @@ are supported in compressed form (.nii.gz) as well as non-compressed
 (.nii).
 
 Getting Started
-~~~~~~~~~~~~~~~
+----------------
 
 The easiest way to learn about PaCER is to run the example files. We
 recommend to add the PaCER directory and all its subdirectories to your
@@ -77,7 +81,7 @@ SETUP_PACER.m in MATLAB (once). The examples include a call to
 SETUP_PACER.
 
 Example Dataset
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
 The following examples require only a post op CT dataset - they should
 work out of the box for most CT scan protocols as long as the slice
@@ -91,7 +95,7 @@ appropriate co-registered image modalities (e.g. atlases, segmentation).
 We are in the process to provide a full example dataset in the future.
 
 Examples
-^^^^^^^^
+~~~~~~~~
 
 -  **EXAMPLE_1.m** - Basic PaCER call and electrode plot. Start here!
 
@@ -99,16 +103,16 @@ Examples
       of the CT image and demonstrating some **plot customisations**
 
 Questions
-~~~~~~~~~
+-------------------
 
 Feel free to open an issue at https://github.com/adhusch/PaCER or drop a
 note to mail (at) andreashusch.de
 
 Literature
-~~~~~~~~~~
+-------------------
 
 The PaCER algorithm is described in:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A. Husch, M. V. Petersen, P. Gemmar, J. Goncalves, F. Hertel: *PaCER – A
 fully automated method for electrode trajectory and contact
@@ -118,7 +122,7 @@ https://doi.org/10.1016/j.nicl.2017.10.004., `[Open access
 fulltext] <http://orbilu.uni.lu/bitstream/10993/33063/1/1-s2.0-S2213158217302450-main.pdf>`__.
 
 For people interested in even more technical details, the preprocessing pipeline is described in more details here:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A. Husch, P. Gemmar, J. Lohscheller, F. Bernard, F. Hertel: *Assessment
 of Electrode Displacement and Deformation with Respect to Pre-Operative
@@ -127,7 +131,7 @@ Planning in Deep Brain Stimulation*. Bildverarbeitung für die Medizin
 fulltext request form] <http://orbilu.uni.lu/handle/10993/20817>`__
 
 An example of using PaCER within an automatic image-registration pipeline for DBS assessment is described in:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A. Husch, M. V. Petersen, P. Gemmar, J. Goncalves, N. Sunde, F. Hertel:
 *Post-operative deep brain stimulation assessment: Automatic data
@@ -139,14 +143,14 @@ Please acknowledge the respective papers when using the algorithm in
 your work.
 
 Help?
-~~~~~
+-----
 
 If you need help our have trouble processing local data you are invited
 to open a GitHub issue. Any feedback to further improve the performance
 on varing datasets is very welcome.
 
 Acknowledgement
-~~~~~~~~~~~~~~~
+-------------------
 
 This work was made possible by a Aide à la Formation Recherche grant
 (AFR) to Andreas Husch by the Luxembourg National Research (FNR).
