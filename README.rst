@@ -39,7 +39,12 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
     Luxembourg, National Department of Neurosurgery and University of
     Luxembourg, Luxembourg Centre for Systems Biomedicine.
 
-|Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.|
+.. raw:: html
+
+   <p align="center">
+     <img alt="Image of a PaCER electrode reconstruction at two different time points of resolving brain shift." class="readme_logo" src="https://prince.lcsb.uni.lu/userContent/mainPacer.png" height="260px"/>
+   </p>
+
 
 Background
 ----------
@@ -162,8 +167,6 @@ toolboxes and scripts:
 - `in_polyhedron <https://de.mathworks.com/matlabcentral/fileexchange/48041-in-polyhedron>`__ by Jaroslaw Tuszynski
 - `Cylinder Between 2 Points <https://de.mathworks.com/matlabcentral/fileexchange/5468-cylinder-between-2-points>`__ by Per Sundqvist
 - `MPR View` by Florian Bernard
-
-.. |Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.| image:: https://prince.lcsb.uni.lu/userContent/mainPacer.png
 
 .. |br| raw:: html
 
