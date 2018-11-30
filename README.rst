@@ -1,11 +1,11 @@
 .. raw:: html
 
    <p align="center">
-     <img class="readme_logo" src="https://prince.lcsb.uni.lu/img/logos/logo_pacer.png" height="160px"/>
+     <img class="readme_logo" src="https://prince.lcsb.uni.lu/img/logos/logo_pacer.png" height="260px"/>
    </p>
 
 
-The COBRA Toolbox |br| COnstraint-Based Reconstruction and Analysis Toolbox
+PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
 ---------------------------------------------------------------------------
 
 .. raw:: html
