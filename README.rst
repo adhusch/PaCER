@@ -163,7 +163,7 @@ toolboxes and scripts:
 - `Cylinder Between 2 Points <https://de.mathworks.com/matlabcentral/fileexchange/5468-cylinder-between-2-points>`__ by Per Sundqvist
 - `MPR View` by Florian Bernard
 
-.. |Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.| image:: docs/PaCER.png
+.. |Image of a PaCER electrode reconstruction at two different time points of resolving brain shift.| image:: https://prince.lcsb.uni.lu/userContent/mainPacer.png
 
 .. |br| raw:: html
 
