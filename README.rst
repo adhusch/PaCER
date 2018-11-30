@@ -27,36 +27,8 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
    <br>
 
 
-System Requirements and Solver Installation
--------------------------------------------
-
-.. raw:: html
-
-   <p align="center">
-     <img src="https://prince.lcsb.uni.lu/img/logos/logo_pacer.png" height="260px"/>
-   </p>
-
-
-PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
-------------------------------------------------------------------
-
-.. raw:: html
-
-   <table>
-     <tr>
-     <td><div align="center"><a href="https://opencobra.github.io/cobratoolbox/latest/tutorials/index.html"><img src="https://img.shields.io/badge/PaCER-tutorials-blue.svg?maxAge=0"></a>
-       <a href="https://opencobra.github.io/cobratoolbox/latest"><img src="https://img.shields.io/badge/PaCER-docs-blue.svg?maxAge=0"></a>
-       </div></td>
-       <td><div align="center"><a href="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/"><img src="https://prince.lcsb.uni.lu/badges/linux-cobratoolbox.svg"></a>
-       <a href="https://prince.lcsb.uni.lu/jenkins/job/COBRAToolbox-branches-auto-macOS/"><img src="https://prince.lcsb.uni.lu/badges/macOS-cobratoolbox.svg"></a>
-       <a href="https://prince.lcsb.uni.lu/jenkins/job/COBRAToolbox-branches-auto-windows7/"><img src="https://prince.lcsb.uni.lu/badges/windows-cobratoolbox.svg"></a>
-       <a href="http://opencobra.github.io/cobratoolbox/docs/builds.html"><img src="http://concordion.org/img/benefit-links.png?maxAge=0" height="20px" alt="All continuous integration builds"></a>
-       </div></td>
-       <td><div align="center"><img src="https://prince.lcsb.uni.lu/badges/codegrade.svg" alt="Ratio of the number of inefficient code lines and the total number of lines of code (in percent). A: 0-3%, B: 3-6%, C: 6-9%, D: 9-12%, E: 12-15%, F: > 15%.">
-       <a href="https://codecov.io/gh/opencobra/cobratoolbox/branch/master"><img src="https://codecov.io/gh/opencobra/cobratoolbox/branch/master/graph/badge.svg?maxAge=0"></a></div></td>
-     </tr>
-   </table>
-   <br>
+System Requirements
+-------------------
 
 .. raw:: html
 
