@@ -10,15 +10,8 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
 
 .. raw:: html
 
-   <table>
-     <tr>
-     <td><div align="center">
-       <a href="https://adhusch.github.io/PaCER/"><img src="https://img.shields.io/badge/PaCER-docs-blue.svg?maxAge=0"></a>
-       </div></td>
-       <td><div align="center"><a href="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/badge/icon"><img src="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/badge/icon"></a>
-       </div></td>
-     </tr>
-   </table>
+   <a href="https://adhusch.github.io/PaCER/"><img src="https://img.shields.io/badge/PaCER-docs-blue.svg?maxAge=0"></a>
+   &nbsp;&nbsp;&nbsp;<a href="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/"><img src="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/badge/icon"></a>
    <br>
 
 ..
@@ -165,16 +158,10 @@ toolboxes and scripts:
 
 .. raw:: html
 
-   <table>
-     <tr>
-     <td><div align="center">
+   <div align="center">
        <a href="https://opencobra.github.io/artenolis"><img src="https://opencobra.github.io/artenolis/stable/_static/img/logo_artenolis.png" height="160px"></a>
-       </div></td>
-       <td><div align="center"><a href="https://www.uni.lu/lcsb/"><img src="https://prince.lcsb.uni.lu/img/logos/R3_Logo.png" height="160px"></a>
-       </div></td>
-     </tr>
-   </table>
-   <br>
+       <a href="https://www.uni.lu/lcsb/"><img src="https://prince.lcsb.uni.lu/img/logos/R3_Logo.png" height="160px"></a>
+   </div>
 
 .. |br| raw:: html
 
