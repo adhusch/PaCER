@@ -17,7 +17,6 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
        </div></td>
        <td><div align="center"><a href="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/badge/icon"><img src="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/badge/icon"></a>
        </div></td>
-       <td></td>
      </tr>
    </table>
    <br>
