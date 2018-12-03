@@ -13,7 +13,7 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
    <br>
    <a href="https://adhusch.github.io/PaCER/"><img src="https://img.shields.io/badge/PaCER-docs-blue.svg?maxAge=0"></a>
    &nbsp;&nbsp;&nbsp;<a href="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/"><img src="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/badge/icon"></a>
-   <br>
+   <br><br>
 
 ..
 
@@ -162,6 +162,7 @@ toolboxes and scripts:
    <br><br>
    <div align="center">
        <a href="https://opencobra.github.io/artenolis"><img src="https://opencobra.github.io/artenolis/stable/_static/img/logo_artenolis.png" height="120px"></a>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        <a href="https://www.uni.lu/lcsb/"><img src="https://prince.lcsb.uni.lu/img/logos/R3_Logo.png" height="120px"></a>
    </div>
 
