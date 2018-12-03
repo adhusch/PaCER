@@ -163,6 +163,19 @@ toolboxes and scripts:
 - `Cylinder Between 2 Points <https://de.mathworks.com/matlabcentral/fileexchange/5468-cylinder-between-2-points>`__ by Per Sundqvist
 - `MPR View` by Florian Bernard
 
+.. raw:: html
+
+   <table>
+     <tr>
+     <td><div align="center">
+       <a href="https://opencobra.github.io/artenolis"><img src="https://opencobra.github.io/artenolis/stable/_static/img/logo_artenolis.png" height="160px"></a>
+       </div></td>
+       <td><div align="center"><a href="https://www.uni.lu/lcsb/"><img src="https://prince.lcsb.uni.lu/img/logos/R3_Logo.png" height="160px"></a>
+       </div></td>
+     </tr>
+   </table>
+   <br>
+
 .. |br| raw:: html
 
    <br>
