@@ -139,21 +139,6 @@ If you need help our have trouble processing local data you are invited
 to open a GitHub issue. Any feedback to further improve the performance
 on varing datasets is very welcome.
 
-Acknowledgement
----------------
-
-This work was made possible by an `Aide à la Formation Recherche (AFR)` grant
-to Andreas Husch from the Luxembourg National Research Fund (FNR).
-
-.. raw:: html
-
-   <br><br>
-   <div align="center">
-       <a href="https://opencobra.github.io/artenolis"><img src="https://opencobra.github.io/artenolis/stable/_static/img/logo_artenolis.png" height="120px"></a>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       <a href="https://www.uni.lu/lcsb/"><img src="https://prince.lcsb.uni.lu/img/logos/R3_Logo.png" height="120px"></a>
-   </div>
-
 References
 ----------
 
@@ -168,6 +153,23 @@ toolboxes and scripts:
 - `in_polyhedron <https://de.mathworks.com/matlabcentral/fileexchange/48041-in-polyhedron>`__ by Jaroslaw Tuszynski
 - `Cylinder Between 2 Points <https://de.mathworks.com/matlabcentral/fileexchange/5468-cylinder-between-2-points>`__ by Per Sundqvist
 - `MPR View` by Florian Bernard
+
+Acknowledgement
+---------------
+
+This work was made possible by an `Aide à la Formation Recherche (AFR)` grant
+to Andreas Husch from the Luxembourg National Research Fund (FNR).
+
+.. raw:: html
+
+   <br><br>
+   <div align="center">
+       <a href="https://opencobra.github.io/artenolis"><img src="https://opencobra.github.io/artenolis/stable/_static/img/logo_artenolis.png" height="120px"></a>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <a href="https://www.uni.lu/lcsb"><img src="https://prince.lcsb.uni.lu/img/logos/R3_Logo.png" height="120px"></a>
+       <a href="https://www.fnr.lu"><img src="https://prince.lcsb.uni.lu/img/logos/fnr.png" height="120px"></a>
+       <a href="https://www.chl.lu"><img src="https://prince.lcsb.uni.lu/img/logos/chl.jpg" height="120px"></a>
+   </div>
 
 .. |br| raw:: html
 
