@@ -142,8 +142,20 @@ on varing datasets is very welcome.
 Acknowledgement
 ---------------
 
-This work was made possible by a Aide à la Formation Recherche grant
-(AFR) to Andreas Husch by the Luxembourg National Research (FNR).
+This work was made possible by an `Aide à la Formation Recherche (AFR)` grant
+to Andreas Husch from the Luxembourg National Research Fund (FNR).
+
+.. raw:: html
+
+   <br><br>
+   <div align="center">
+       <a href="https://opencobra.github.io/artenolis"><img src="https://opencobra.github.io/artenolis/stable/_static/img/logo_artenolis.png" height="120px"></a>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <a href="https://www.uni.lu/lcsb/"><img src="https://prince.lcsb.uni.lu/img/logos/R3_Logo.png" height="120px"></a>
+   </div>
+
+References
+----------
 
 PaCER is packaged with some free external software libraries for
 convenience. Please see the “toolboxes” folder and the respective
@@ -156,15 +168,6 @@ toolboxes and scripts:
 - `in_polyhedron <https://de.mathworks.com/matlabcentral/fileexchange/48041-in-polyhedron>`__ by Jaroslaw Tuszynski
 - `Cylinder Between 2 Points <https://de.mathworks.com/matlabcentral/fileexchange/5468-cylinder-between-2-points>`__ by Per Sundqvist
 - `MPR View` by Florian Bernard
-
-.. raw:: html
-
-   <br><br>
-   <div align="center">
-       <a href="https://opencobra.github.io/artenolis"><img src="https://opencobra.github.io/artenolis/stable/_static/img/logo_artenolis.png" height="120px"></a>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       <a href="https://www.uni.lu/lcsb/"><img src="https://prince.lcsb.uni.lu/img/logos/R3_Logo.png" height="120px"></a>
-   </div>
 
 .. |br| raw:: html
 
