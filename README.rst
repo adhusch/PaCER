@@ -165,9 +165,11 @@ to Andreas Husch from the Luxembourg National Research Fund (FNR).
    <br><br>
    <div align="center">
        <a href="https://opencobra.github.io/artenolis"><img src="https://opencobra.github.io/artenolis/stable/_static/img/logo_artenolis.png" height="80px"></a>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;
        <a href="https://www.uni.lu/lcsb"><img src="https://prince.lcsb.uni.lu/img/logos/R3_Logo.png" height="80px"></a>
+       &nbsp;&nbsp;&nbsp;
        <a href="https://www.fnr.lu"><img src="https://prince.lcsb.uni.lu/img/logos/fnr.png" height="80px"></a>
+       &nbsp;&nbsp;&nbsp;
        <a href="https://www.chl.lu"><img src="https://prince.lcsb.uni.lu/img/logos/chl.jpg" height="80px"></a>
    </div>
 
