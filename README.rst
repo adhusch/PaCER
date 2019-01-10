@@ -173,7 +173,7 @@ This work was made possible by an `Aide à la Formation Recherche (AFR)` grant
 to Andreas Husch from the Luxembourg National Research Fund (FNR).
 
 The Responsible and Reproducible Research (R3) of the LCSB BioCore is acknowledged
-for providing the `ARTENOLIS infrastructure <http://artenolis.lcsb.uni.lu>` and technical expertise to ensure high quality of the present software.
+for providing the `ARTENOLIS infrastructure <http://artenolis.lcsb.uni.lu>`__ and technical expertise to ensure high quality of the present software.
 
 .. raw:: html
 
