@@ -5,3 +5,4 @@ atlas/
 pacer_sample_dataset/
 exampledata/
 .DS_Store
+docs/build
