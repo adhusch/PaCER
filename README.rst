@@ -38,6 +38,8 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
 Background
 ----------
 
+.. begin-intro-marker
+
 The PaCER Toolbox is a MATLAB
 implementation of a robust method to fully automatically reconstruct
 deep brain stimulation trajectories from post operative CT imaging
@@ -46,6 +48,8 @@ by brainshift). Further is able to detect individual contacts on
 high-resolution data. The PaCER toolbox is provided with means to
 easily visualize electrodes as well as imaging data within the MATLAB
 environment.
+
+.. end-intro-marker
 
 Requirements
 ------------
@@ -169,11 +173,15 @@ You may cite ARTENOLIS as:
 Acknowledgement
 ---------------
 
+.. begin-acknowledgments-marker
+
 This work was made possible by an `Aide à la Formation Recherche (AFR)` grant
 to Andreas Husch from the Luxembourg National Research Fund (FNR).
 
 The Responsible and Reproducible Research (R3) of the LCSB BioCore is acknowledged
 for providing the `ARTENOLIS infrastructure <http://artenolis.lcsb.uni.lu>`__ and technical expertise to ensure high quality of the present software.
+
+.. end-acknowledgments-marker
 
 .. raw:: html
 
