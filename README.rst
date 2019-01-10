@@ -154,11 +154,26 @@ toolboxes and scripts:
 - `Cylinder Between 2 Points <https://de.mathworks.com/matlabcentral/fileexchange/5468-cylinder-between-2-points>`__ by Per Sundqvist
 - `MPR View` by Florian Bernard
 
+ARTENOLIS
+---------
+
+ARTENOLIS (`Automated Reproducibility and Testing Environment for Licensed Software <https://opencobra.github.io/artenolis>`) is a general-purpose and flexible infrastructure
+software application that implements continuous integration for open-source software with licensed dependencies.
+
+You may cite ARTENOLIS as:
+
+    L. Heirendt, S. Arreckx, C. Trefois, Y. Jarosz, M. Vyas, V. P. Satagopam,
+    R. Schneider, I. Thiele, R. M. T. Fleming: *ARTENOLIS: Automated Reproducibility
+    and Testing Environment for Licensed Software*, `abs/1712.05236 <http://arxiv.org/abs/1712.05236>`__, 2017.
+
 Acknowledgement
 ---------------
 
 This work was made possible by an `Aide à la Formation Recherche (AFR)` grant
 to Andreas Husch from the Luxembourg National Research Fund (FNR).
+
+The Responsible and Reproducible Research (R3) of the LCSB BioCore is acknowledged
+for providing the `ARTENOLIS infrastructure <http://artenolis.lcsb.uni.lu>` and technical expertise to ensure high quality of the present software.
 
 .. raw:: html
 
