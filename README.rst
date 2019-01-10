@@ -157,7 +157,7 @@ toolboxes and scripts:
 ARTENOLIS
 ---------
 
-ARTENOLIS (`Automated Reproducibility and Testing Environment for Licensed Software <https://opencobra.github.io/artenolis>`) is a general-purpose and flexible infrastructure
+ARTENOLIS (`Automated Reproducibility and Testing Environment for Licensed Software <https://opencobra.github.io/artenolis>`__) is a general-purpose and flexible infrastructure
 software application that implements continuous integration for open-source software with licensed dependencies.
 
 You may cite ARTENOLIS as:
