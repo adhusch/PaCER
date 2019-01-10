@@ -5,4 +5,5 @@ PaCER
    :maxdepth: 2
 
    Home <index>
+   acknowledgments
 
