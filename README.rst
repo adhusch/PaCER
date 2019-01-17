@@ -51,8 +51,11 @@ environment.
 
 .. end-intro-marker
 
+Getting Started
+----------------
+
 Requirements
-------------
+~~~~~~~~~~~~
 
 .. begin-req-marker
 
@@ -69,8 +72,8 @@ are supported in compressed form (.nii.gz) as well as non-compressed
 
 .. end-req-marker
 
-Getting Started
-----------------
+Examples
+~~~~~~~~
 
 .. begin-gs-marker
 
