@@ -6,5 +6,7 @@ PaCER
 
    Home <index>
    requirements
+   help
+   literature
    acknowledgments
 

@@ -100,17 +100,12 @@ Examples
    -  **EXAMPLE_1_1.m** - Continues EXAMPLE_1 by adding an **MPR view**
       of the CT image and demonstrating some **plot customisations**
 
-Questions
----------
-
-Feel free to open an issue at https://github.com/adhusch/PaCER or drop a
-note to mail (at) andreashusch.de
-
 Literature
 ----------
 
+.. begin-lit-marker
+
 The PaCER algorithm is described in:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     A. Husch, M. V. Petersen, P. Gemmar, J. Goncalves, F. Hertel: *PaCER – A
     fully automated method for electrode trajectory and contact
@@ -120,7 +115,6 @@ The PaCER algorithm is described in:
     fulltext] <http://orbilu.uni.lu/bitstream/10993/33063/1/1-s2.0-S2213158217302450-main.pdf>`__.
 
 For people interested in even more technical details, the preprocessing pipeline is described in more details here:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     A. Husch, P. Gemmar, J. Lohscheller, F. Bernard, F. Hertel: *Assessment
     of Electrode Displacement and Deformation with Respect to Pre-Operative
@@ -129,7 +123,6 @@ For people interested in even more technical details, the preprocessing pipeline
     fulltext request form] <http://orbilu.uni.lu/handle/10993/20817>`__
 
 An example of using PaCER within an automatic image-registration pipeline for DBS assessment is described in:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     A. Husch, M. V. Petersen, P. Gemmar, J. Goncalves, N. Sunde, F. Hertel:
     *Post-operative deep brain stimulation assessment: Automatic data
@@ -140,12 +133,21 @@ An example of using PaCER within an automatic image-registration pipeline for DB
 Please acknowledge the respective papers when using the algorithm in
 your work.
 
-Help?
------
+.. end-lit-marker
+
+Do you need any help?
+----------------------
+
+.. begin-faq-marker
+
+Feel free to open an issue at https://github.com/adhusch/PaCER or drop a
+note to mail (at) andreashusch.de
 
 If you need help our have trouble processing local data you are invited
 to open a GitHub issue. Any feedback to further improve the performance
 on varing datasets is very welcome.
+
+.. end-faq-marker
 
 References
 ----------
