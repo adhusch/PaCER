@@ -72,14 +72,13 @@ are supported in compressed form (.nii.gz) as well as non-compressed
 Getting Started
 ----------------
 
+.. begin-gs-marker
+
 The easiest way to learn about PaCER is to run the example files. We
 recommend to add the PaCER directory and all its subdirectories to your
 MATLAB path first. This can be archived by running the file
 SETUP_PACER.m in MATLAB (once). The examples include a call to
 SETUP_PACER.
-
-Example Dataset
-~~~~~~~~~~~~~~~
 
 The following examples require only a post op CT dataset - they should
 work out of the box for most CT scan protocols as long as the slice
@@ -92,16 +91,15 @@ in the examples/advanced/ directory. However these examples require
 appropriate co-registered image modalities (e.g. atlases, segmentation).
 We are in the process to provide a full example dataset in the future.
 
-Examples
-~~~~~~~~
-
 -  **EXAMPLE_1.m** - Basic PaCER call and electrode plot. Start here!
 
    -  **EXAMPLE_1_1.m** - Continues EXAMPLE_1 by adding an **MPR view**
       of the CT image and demonstrating some **plot customisations**
 
-Literature
-----------
+.. end-gs-marker
+
+How to cite?
+------------
 
 .. begin-lit-marker
 
@@ -130,6 +128,13 @@ An example of using PaCER within an automatic image-registration pipeline for DB
     1 February 2018. `[Open access
     fulltext] <http://orbilu.uni.lu/bitstream/10993/34548/2/Husch%2c%20Petersen%20et%20al.%202018%20-%20Post-operative%20deep%20brain%20stimulation%20assessment.pdf>`__
 
+ARTENOLIS (`Automated Reproducibility and Testing Environment for Licensed Software <https://opencobra.github.io/artenolis>`__) is a general-purpose and flexible infrastructure
+software application that implements continuous integration for open-source software with licensed dependencies. You may cite ARTENOLIS as:
+
+    L. Heirendt, S. Arreckx, C. Trefois, Y. Jarosz, M. Vyas, V. P. Satagopam,
+    R. Schneider, I. Thiele, R. M. T. Fleming: *ARTENOLIS: Automated Reproducibility
+    and Testing Environment for Licensed Software*, `abs/1712.05236 <http://arxiv.org/abs/1712.05236>`__, 2017.
+
 Please acknowledge the respective papers when using the algorithm in
 your work.
 
@@ -149,8 +154,13 @@ on varing datasets is very welcome.
 
 .. end-faq-marker
 
-References
-----------
+Acknowledgements
+---------------
+
+Software tools
+~~~~~~~~~~~~~~
+
+.. begin-software-marker
 
 PaCER is packaged with some free external software libraries for
 convenience. Please see the “toolboxes” folder and the respective
@@ -164,30 +174,18 @@ toolboxes and scripts:
 - `Cylinder Between 2 Points <https://de.mathworks.com/matlabcentral/fileexchange/5468-cylinder-between-2-points>`__ by Per Sundqvist
 - `MPR View` by Florian Bernard
 
-ARTENOLIS
----------
+.. end-software-marker
 
-ARTENOLIS (`Automated Reproducibility and Testing Environment for Licensed Software <https://opencobra.github.io/artenolis>`__) is a general-purpose and flexible infrastructure
-software application that implements continuous integration for open-source software with licensed dependencies.
+Funding & infrastructure
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-You may cite ARTENOLIS as:
-
-    L. Heirendt, S. Arreckx, C. Trefois, Y. Jarosz, M. Vyas, V. P. Satagopam,
-    R. Schneider, I. Thiele, R. M. T. Fleming: *ARTENOLIS: Automated Reproducibility
-    and Testing Environment for Licensed Software*, `abs/1712.05236 <http://arxiv.org/abs/1712.05236>`__, 2017.
-
-Acknowledgement
----------------
-
-.. begin-acknowledgments-marker
+.. begin-funding-marker
 
 This work was made possible by an `Aide à la Formation Recherche (AFR)` grant
 to Andreas Husch from the Luxembourg National Research Fund (FNR).
 
 The Responsible and Reproducible Research (R3) of the LCSB BioCore is acknowledged
 for providing the `ARTENOLIS infrastructure <http://artenolis.lcsb.uni.lu>`__ and technical expertise to ensure high quality of the present software.
-
-.. end-acknowledgments-marker
 
 .. raw:: html
 
@@ -201,6 +199,8 @@ for providing the `ARTENOLIS infrastructure <http://artenolis.lcsb.uni.lu>`__ an
        &nbsp;&nbsp;&nbsp;
        <a href="https://www.chl.lu"><img src="https://prince.lcsb.uni.lu/img/logos/chl.jpg" height="80px"></a>
    </div>
+
+.. end-funding-marker
 
 .. |br| raw:: html
 
