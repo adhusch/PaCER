@@ -190,6 +190,8 @@ to Andreas Husch from the Luxembourg National Research Fund (FNR).
 The Responsible and Reproducible Research (R3) of the LCSB BioCore is acknowledged
 for providing the `ARTENOLIS infrastructure <http://artenolis.lcsb.uni.lu>`__ and technical expertise to ensure high quality of the present software.
 
+.. end-funding-marker
+
 .. raw:: html
 
    <br><br>
@@ -202,8 +204,6 @@ for providing the `ARTENOLIS infrastructure <http://artenolis.lcsb.uni.lu>`__ an
        &nbsp;&nbsp;&nbsp;
        <a href="https://www.chl.lu"><img src="https://prince.lcsb.uni.lu/img/logos/chl.jpg" height="80px"></a>
    </div>
-
-.. end-funding-marker
 
 .. |br| raw:: html
 
