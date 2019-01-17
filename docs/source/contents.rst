@@ -5,8 +5,8 @@ PaCER
    :maxdepth: 2
 
    Home <index>
-   requirements
-   help
+   gettingStarted
    literature
+   help
    acknowledgments
 
