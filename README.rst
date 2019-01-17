@@ -54,6 +54,8 @@ environment.
 Requirements
 ------------
 
+.. begin-req-marker
+
 The requirements to use PaCER are:
 
 - **MATLAB**, including the Image Processing Toolbox
@@ -64,6 +66,8 @@ on lower resolution data too by falling back to a less sophisticated
 contact detection method (yielding lower accuracy). Nifti input files
 are supported in compressed form (.nii.gz) as well as non-compressed
 (.nii).
+
+.. end-req-marker
 
 Getting Started
 ----------------
