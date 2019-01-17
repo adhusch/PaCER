@@ -7,6 +7,8 @@
 % mail@andreashusch.de, husch.andreas@chl.lu
 
 function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT, varargin)
+    disp(['Voxel size in elecsPointcloudStruct: ' num2str(niiCT.voxsize')]);
+
     % CONSTANTS
     LAMBDA_1 = 25;  % elec latent space length [mm]
 
@@ -26,7 +28,7 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
     % assume a 1024 offset was added to make it strictly positive and
     % handle this here
     if(min(niiCT.img(:)) >= 0)
-        METAL_THRESHOLD = args.metalThreshold; + 1024;
+        METAL_THRESHOLD = args.metalThreshold + 1024;
     else
         METAL_THRESHOLD = args.metalThreshold;
     end
@@ -65,7 +67,8 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
     elecIdxs = [];
     minVoxelNumber =  (1.2 * (1.27/2))^2 * pi * 40 / prod(niiCT.voxsize); % assumin at least 40mm in brain and 20% partial voluming
     maxVoxelNumber =  (3 * (1.27/2))^2 * pi * 80 / prod(niiCT.voxsize);  % assumin 80mm in brain and 300% partial voluming 
-
+   % maxVoxelNumber = Inf; % FIXME
+    % DEBUG: figure, scatterMatrix3(ccProps(1).PixelList)
     largeComponents = areas(areas >= minVoxelNumber & areas <= maxVoxelNumber); % Voxels
     componentIdxs = idxs(areas >= minVoxelNumber & areas <= maxVoxelNumber);
     
@@ -87,9 +90,9 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
     disp(['Guessing that ' num2str(nElecs) ' of them are Electrodes...']);
     
     if(nElecs == 0)
-        if(METAL_THRESHOLD > 200)
-            disp('Somehing is weird with your CT data...  Trying again with lower metal threshold. ')
-            [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT, 'brainMask', args.brainMask, 'metalThreshold', METAL_THRESHOLD * 0.8, 'medtronicXMLPlan', args.medtronicXMLPlan);
+        if(METAL_THRESHOLD < 3000)
+            disp('Something is weird with your CT data...  Trying again with higher metal threshold. ')
+            [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT, 'brainMask', args.brainMask, 'metalThreshold', METAL_THRESHOLD * 1.2, 'medtronicXMLPlan', args.medtronicXMLPlan);
             return;
         else
             %% We tried hard but  didn't find an object that looks like an electrode in a reasonalbe HU range, notify the user and quit
