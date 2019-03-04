@@ -1,13 +1,22 @@
-%% Extracts the convex hull of the brain out of a CT image
-%
-% Andreas Husch
-% Centre Hospitalier de Luxembourg, Dept. of Neurosurgery /
-% University of Luxembourg - Luxembourg Centre for Systems Biomedicne
-% 2015 - 2017
-% mail@andreashusch.de, husch.andreas@chl.lu
 function [convHullBrainMask, roughBrainMask] = extractBrainConvHull(niiCT)
-%% force caching
-niiCT.isToBeCached = 1;
+% Extracts the convex hull of the brain out of a CT image
+%
+% USAGE:
+%
+%    [convHullBrainMask, roughBrainMask] = extractBrainConvHull(niiCT)
+%
+% INPUT: 
+%    niiCT:     
+%
+% OUTPUTS: 
+%   convHullBrainMask:      
+%   roughBrainMask:         
+%
+% .. AUTHOR:
+%       - Andreas Husch, Original File
+%       - Daniel Duarte Tojal, Documentation
+
+niiCT.isToBeCached = 1; % force caching
 if(~niiCT.isLoaded)
     niiCT.load();
 end
