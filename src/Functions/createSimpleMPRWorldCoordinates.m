@@ -1,13 +1,21 @@
-%% Convenience Wrapper for the MPRWorldCoordinate Class by Florian Bernard
-%
-% Andreas Husch
-% Centre Hospitalier de Luxembourg, Dept. of Neurosurgery /
-% University of Luxembourg - Luxembourg Centre for Systems Biomedicne
-% 2017
-% mail@andreashusch.de, husch.andreas@chl.lu
 function [mpr, oc] = createSimpleMPRWorldCoordinates(nii)
-%mprPanel = uipanel('Parent', gcf);
-axesObj = gca;%axesObj = axes('Parent', mprPanel);
+% Convenience Wrapper for the MPRWorldCoordinate Class by Florian Bernard
+%
+% USAGE:
+%
+%    [mpr, oc] = createSimpleMPRWorldCoordinates(nii)
+%
+% INPUT:
+%    nii:       
+%
+% OUTPUTS:
+%    mpr:       
+%    oc:        
+%
+% .. AUTHOR:
+%       - Andreas Husch, Centre Hospitalier de Luxembourg, Dept. of Neurosurgery / Luxembourg Centre for Systems, Biomedicine, University of Luxembourg, 2017, mail@andreashusch.de, husch.andreas@chl.lu
+
+axesObj = gca;%axesObj = axes('Parent', mprPanel); %mprPanel = uipanel('Parent', gcf);
 mpr = MPRWorldCoordinates(axesObj, nii.img, [0 0 0], nii);
 view(160,10);
 %oc = OrientationCube(mprPanel, axesObj);
