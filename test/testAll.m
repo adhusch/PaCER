@@ -1,0 +1,1 @@
+-r "fprintf('Hello ARTENOLIS.\n'); quit();"
