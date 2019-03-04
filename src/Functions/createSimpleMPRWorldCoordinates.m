@@ -13,9 +13,10 @@ function [mpr, oc] = createSimpleMPRWorldCoordinates(nii)
 %    oc:        
 %
 % .. AUTHOR:
-%       - Andreas Husch, Centre Hospitalier de Luxembourg, Dept. of Neurosurgery / Luxembourg Centre for Systems, Biomedicine, University of Luxembourg, 2017, mail@andreashusch.de, husch.andreas@chl.lu
+%       - Andreas Husch, Original file
+%       - Daniel Duarte, Documentation
 
-axesObj = gca;%axesObj = axes('Parent', mprPanel); %mprPanel = uipanel('Parent', gcf);
+axesObj = gca; %axesObj = axes('Parent', mprPanel); %mprPanel = uipanel('Parent', gcf);
 mpr = MPRWorldCoordinates(axesObj, nii.img, [0 0 0], nii);
 view(160,10);
 %oc = OrientationCube(mprPanel, axesObj);
