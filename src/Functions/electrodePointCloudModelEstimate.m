@@ -1,17 +1,31 @@
-%% electrodePointCloudModelEstimate - extract skeleton points from given pointcloud and subsequently fit a polynomial
-%
-% PARAMETERS
-% varargin{1} = pixelValues list got from reference image of the  segmentation. When given used for intensity based
-%               weightig of cenroid  calculation.
-% varargin{2} = reverse Z direction (for special cases, e.g. certain phantom studies)
-%
-% Andreas Husch
-% Centre Hospitalier de Luxembourg / Luxembourg Centre for Systems
-% Biomedicine, University of Luxembourg
-% 2014  - 2017
-% mail@andreashusch.de
-
 function [r3polynomial, tPerMm, skeleton, totalLengthMm] = electrodePointCloudModelEstimate(elecPointCloudMm, varargin)
+% electrodePointCloudModelEstimate - extract skeleton points from given pointcloud and subsequently fit a polynomial
+%
+% USAGE:
+%
+%    [r3polynomial, tPerMm, skeleton, totalLengthMm] = electrodePointCloudModelEstimate(elecPointCloudMm, varargin)
+%
+% INPUTS:
+%    elecPointCloudMm:      
+%    varargin:              
+% 
+% OPTIONAL INPUTS:
+%    varargin               Two parameters:
+%                               
+%                               * varargin{1} - pixelValues list received from reference image of the segmentation. When given, used for intensity based weighting of cenroid calculation.
+%                               * varargin{2} - reverse Z direction (for special cases, e.g. certain phantom studies)
+%
+% OUTPUTS: 
+%    r3polynomial:      
+%    tPerMm:            
+%    skeleton:          
+%    totalLengthMm:     
+%
+% .. AUTHOR:
+%       - Andreas Husch, Original file
+%       - Daniel Duarte, Documentation
+
+
 revDir = false;
 INTERNAL_DEGREE = 8; % fixed, determined as sufficient by AIC analysis
 
