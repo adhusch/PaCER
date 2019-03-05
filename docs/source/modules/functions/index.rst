@@ -2,7 +2,7 @@
 
 
 Functions
-------------
+---------
 
-.. automodule:: src.Functions   
+.. automodule:: src.Functions
    :members:

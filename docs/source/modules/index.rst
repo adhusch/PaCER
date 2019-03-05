@@ -1,7 +1,7 @@
 .. _modules_functions:
 
-Source Code
-=========
+Source code
+===========
 
 .. toctree::
 
