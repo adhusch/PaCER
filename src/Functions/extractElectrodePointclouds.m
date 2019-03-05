@@ -1,10 +1,22 @@
-%% extractElectrodePointclouds - Preprocess CT Data for Electrode Artifacts
+function
+% extractElectrodePointclouds - Preprocess CT Data for Electrode Artifacts
 %
-% Andreas Husch
-% Centre Hospitalier de Luxembourg, Dep. of Neurosurgery /
-% University of Luxembourg - Luxembourg Centre for Systems Biomedicne
-% 2014 - 2017
-% mail@andreashusch.de, husch.andreas@chl.lu
+% USAGE:
+%
+%   [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT, varargin)
+%
+% INPUTS: 
+%    niiCT:         
+%    varargin:      
+%
+% OUTPUTS: 
+%    elecsPointcloudStruct:     create output struct and try to associate electrodes 
+%                               from xml defition if given
+%    brainMask:                 
+%
+% .. AUTHOR:
+%       - Andreas Husch, Original file
+%       - Daniel Duarte Tojal, Documentation
 
 function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT, varargin)
     disp(['Voxel size in elecsPointcloudStruct: ' num2str(niiCT.voxsize')]);
@@ -113,8 +125,6 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
         disp(['No xmlElectrodeDefition given. Guessing that there are ' num2str(nElecs) ' electrodes in the image']);
     end
     
-    %% create output struct and try to associate electrodes from xml defitions
-    % if given
     elecsPointcloudStruct = struct();
     
     for i=1:nElecs
