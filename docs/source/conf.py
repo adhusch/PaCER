@@ -24,6 +24,8 @@ sys.path.append('sphinxext')
 sys.path.insert(0, os.path.abspath(os.path.join('..', '..', '..')))
 # sys.path.insert(0, os.path.abspath('.'))
 
+matlab_src_dir = os.path.abspath(os.path.join('..', '..'))
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -35,6 +37,8 @@ sys.path.insert(0, os.path.abspath(os.path.join('..', '..', '..')))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinxcontrib.napoleon',
+    'sphinxcontrib.matlab',
     'sphinxcontrib.fulltoc']
 
 # remove path in function names
