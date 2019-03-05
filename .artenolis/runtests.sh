@@ -2,7 +2,7 @@
 
 # launch MATLAB
 if [ "$ARCH" == "Linux" ]; then
-    /mnt/MATLAB/$MATLAB_VER/bin/./matlab -nodesktop -nosplash -r "fprintf('Hello ARTENOLIS.\n'); quit();"
+    /mnt/prince-data/MATLAB/$MATLAB_VER/bin/./matlab -nodesktop -nosplash < test/testAll.m
 fi
 
 CODE=$?
