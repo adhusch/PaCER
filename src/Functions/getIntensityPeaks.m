@@ -1,12 +1,38 @@
-%% Get peaks respectivly center points at threshold below the peaks from 1D
-% intensity profile. Expected peakWaveCenter number == 4 for now (needs update to support electrodes with more ring contacts)!
-%
-% Andreas Husch
-% Centre Hospitalier de Luxembourg, Dep. of Neurosurgery /
-% University of Luxembourg - Luxembourg Centre for Systems Biomedicne
-% 2014 - 2017
-% mail@andreashusch.de, husch.andreas@chl.lu
 function [peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, threshold, contactAreaCenter, contactAreaWidth, xrayMarkerAreaCenter, xrayMarkerAreaWidth] = getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs)
+% Get peaks, respectively center points, at threshold below the peaks from 1D
+% intensity profile. Expected peakWaveCenter number is 4 for now (needs 
+% update to support electrodes with more ring contacts)!
+%
+% USAGE:
+%
+%    [peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, 
+%    threshold, contactAreaCenter, contactAreaWidth, xrayMarkerAreaCenter, 
+%    xrayMarkerAreaWidth] = getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs)
+%
+% INPUTS: 
+%    intensityProfile:      
+%    skelScaleMm:           
+%    filterIdxs:            
+%
+% OUTPUTS: 
+%    peaklocs:                  
+%    peakWaveCenters:           
+%    peakValues:                
+%    threshIntensityProfile:    
+%    threshold:                 
+%    contactAreaCenter:         
+%    contactAreaWidth:          
+%    xrayMarkerAreaCenter:      
+%    xrayMarkerAreaWidth:       
+%
+% EXAMPLE:
+%
+% NOTE:
+%
+% .. AUTHOR:
+%       - Andreas Husch, Original File
+%       - Daniel Duarte Tojal, Documentation
+
 [peakValues, peakLocs, ~, pkPromineces] =  findpeaks(intensityProfile(filterIdxs),skelScaleMm(filterIdxs), 'MinPeakDistance', 1.4, 'MinPeakHeight', 1.1 * nanmean(intensityProfile), 'MinPeakProminence', 0.01 * nanmean(intensityProfile)); % find elec contacts, TODO 1.5 is for 3389/3387
 xrayMarkerAreaWidth = [];
 xrayMarkerAreaCenter = [];
@@ -31,18 +57,22 @@ threshIntensityProfileArea = min(intensityProfile, thresholdArea);
 contactSampleLabels = bwlabel(~(threshIntensityProfileArea(filterIdxs) < thresholdArea));
 values = accumarray((contactSampleLabels+1)', skelScaleMm(filterIdxs)); % in x ([mm])
 counts = accumarray((contactSampleLabels+1)', 1);
-contactAreaCenter = values(2)./counts(2); % index 1 is the "zero label", index 2  (value 1) is the contact region, index 3 (value 2) might be an X-Ray obaque arker
+contactAreaCenter = values(2)./counts(2); % index 1 is the "zero label", index 2  (value 1) is the contact region, 
+                                          % index 3 (value 2) might be an X-Ray obaque arker
 idxs = find(contactSampleLabels+1==2);
 contactAreaWidth =  abs(skelScaleMm(idxs(1))-skelScaleMm(idxs(end)));
 if(max(contactSampleLabels) > 1)
     disp('Multiple metal areas found along electrode. Is this an electrode type with an addtional X-Ray marker?');
-    xrayMarkerAreaCenter = values(3)./counts(3); % index 1 is the "zero label", index 2  (value 1) is the contact region, index 3 (value 2) might be an X-Ray obaque arker
+    xrayMarkerAreaCenter = values(3)./counts(3); % index 1 is the "zero label", index 2  (value 1) 
+                                                 % is the contact region, index 3 (value 2) might be an X-Ray obaque arker
     idxs = find(contactSampleLabels+1==3);
     xrayMarkerAreaWidth =  abs(skelScaleMm(idxs(1))-skelScaleMm(idxs(end)));
 end
 %% Plot
 % figure
-% findpeaks(intensityProfile(filterIdxs),skelScaleMm(filterIdxs), 'MinPeakDistance', 3, 'MinPeakHeight', 1.1 * nanmean(intensityProfile), 'MinPeakProminence', 0.1 * nanmean(intensityProfile)); % find elec contacts, TODO 1.5 is for 3389/3387
+% findpeaks(intensityProfile(filterIdxs),skelScaleMm(filterIdxs), 'MinPeakDistance', 3, 
+% 'MinPeakHeight', 1.1 * nanmean(intensityProfile), 'MinPeakProminence', 
+% 0.1 * nanmean(intensityProfile)); % find elec contacts, TODO 1.5 is for 3389/3387
 % hold on;
 % plot(skelScaleMm(filterIdxs), threshIntensityProfileArea(filterIdxs));
 % scatter(peakWaveCenters, repmat(threshold,1,4), 'filled');
