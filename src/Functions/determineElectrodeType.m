@@ -1,12 +1,25 @@
-%% determineElectrodeType - get most likly electrode type be eucleadian distance between detected ans specified peaks
-%
-% Andreas Husch
-% Centre Hospitalier de Luxembourg / Luxembourg Centre for Systems
-% Biomedicine, University of Luxembourg
-% 2016  - 2017
-% mail@andreashusch.de
-
 function [elecStruct, rms, d] = determineElectrodeType(peakDistances)
+% gets the most suitable electrode type based on the euclidean distance between 
+% detected and specified peaks in the collected data. Data should should be provided 
+% in the form of the file 'electrodeGeometries.mat'. 
+%
+% USAGE:
+%
+%    [electStruct, rms, d] = determineElectrodeType(peakDistances)
+%
+% INPUT: 
+%    peakDistances:     The peak distances between the signals, provided by the inserted 
+%                       data sheet.   
+%
+% OUTPUTS: 
+%    electStruct:       Electrode Type.
+%    rms:               Root-mean-square of the distance between the electrode signals.
+%    d:                 Euclidian distance to the closest electrode prototype
+%
+% .. AUTHOR:
+%       - Andreas Husch, Original file
+%       - Daniel Duarte, Documentation
+
 electrodeGeometries = load('electrodeGeometries.mat');
 electrodeGeometries = electrodeGeometries.electrodeGeometries;
 
