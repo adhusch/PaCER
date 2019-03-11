@@ -14,7 +14,7 @@ function [elecStruct, rms, d] = determineElectrodeType(peakDistances)
 % OUTPUTS: 
 %    electStruct:       Electrode Type.
 %    rms:               Root-mean-square of the distance between the electrode signals.
-%    d:                 ?
+%    d:                 Euclidian distance to the closest electrode prototype
 %
 % .. AUTHOR:
 %       - Andreas Husch, Original file
