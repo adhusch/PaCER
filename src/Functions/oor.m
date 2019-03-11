@@ -11,7 +11,7 @@
 % mail@andreashusch.de
 %
 % That code needs some cleanup :-) But it works ;-)
-function [improvedSkeleton, medIntensity,orthIntensVol, orthSamplePointsVol, skelScaleMm] = orr(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)
+function [improvedSkeleton, medIntensity,orthIntensVol, orthSamplePointsVol, skelScaleMm] = oor(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)
 SND_THRESH=1500;
 
 arcLength = polyArcLength3(r3polyToUse, 0, 1);
