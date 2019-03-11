@@ -6,12 +6,12 @@ function
 %   [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT, varargin)
 %
 % INPUTS: 
-%    niiCT:         
+%    niiCT:         NiftiMod object of a post-operative CT image
 %    varargin:      
 %
 % OUTPUTS: 
-%    elecsPointcloudStruct:     create output struct and try to associate electrodes 
-%                               from xml defition if given
+%    elecsPointcloudStruct:     Create output struct and try to associate electrodes 
+%                               from xml definition if given
 %    brainMask:                 
 %
 % .. AUTHOR:
