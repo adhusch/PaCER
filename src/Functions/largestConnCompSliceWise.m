@@ -1,6 +1,20 @@
-% Andreas Husch
-% 2018
 function binaryMask = largestConnCompSliceWise(img3d)
+%
+% USAGE:
+%
+%    binaryMask = largestConnCompSliceWise(img3d)
+%
+% INPUT: 
+%    img3d:     
+%
+% OUTPUT: 
+%    binaryMask:    
+%
+% .. AUTHOR:
+%       - Andreas Husch, Original File
+%       - Daniel Duarte Tojal, Documentation
+
+
 binaryMask = false(size(img3d));
 
 for i = 1:size(img3d,3) % z
