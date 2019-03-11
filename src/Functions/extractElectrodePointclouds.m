@@ -1,4 +1,4 @@
-function
+function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT, varargin)
 % extractElectrodePointclouds - Preprocess CT Data for Electrode Artifacts
 %
 % USAGE:
@@ -18,7 +18,6 @@ function
 %       - Andreas Husch, Original file
 %       - Daniel Duarte Tojal, Documentation
 
-function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT, varargin)
     disp(['Voxel size in elecsPointcloudStruct: ' num2str(niiCT.voxsize')]);
 
     % CONSTANTS
