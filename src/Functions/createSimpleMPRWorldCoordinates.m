@@ -6,11 +6,11 @@ function [mpr, oc] = createSimpleMPRWorldCoordinates(nii)
 %    [mpr, oc] = createSimpleMPRWorldCoordinates(nii)
 %
 % INPUT:
-%    nii:       
+%    nii:       NiftiModality object to visualize as multi-planar-reformatting (MPR)
 %
 % OUTPUTS:
-%    mpr:       
-%    oc:        
+%    mpr:       Handle to MPR
+%    oc:        optional orientation cube (deprecated)
 %
 % .. AUTHOR:
 %       - Andreas Husch, Original file
