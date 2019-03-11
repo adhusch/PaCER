@@ -12,7 +12,7 @@ function
 % OUTPUTS: 
 %    elecsPointcloudStruct:     Create output struct and try to associate electrodes 
 %                               from xml definition if given
-%    brainMask:                 
+%    brainMask:                 Define the brain area
 %
 % .. AUTHOR:
 %       - Andreas Husch, Original file
