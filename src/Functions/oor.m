@@ -1,4 +1,5 @@
 function [improvedSkeleton, medIntensity,orthIntensVol, orthSamplePointsVol, skelScaleMm] = oor(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)
+% oor - optimal oblique resampling along a given polynonimal
 %
 % USAGE:
 %
@@ -13,8 +14,9 @@ function [improvedSkeleton, medIntensity,orthIntensVol, orthSamplePointsVol, ske
 %    interpolationF:    
 %
 % OUTPUTS: 
-%    improvedSkeleton:          
-%    medIntensity:              
+%    improvedSkeleton:          skeleton gained along the polynomial by
+%                               resampling and intensity weithed centroid calculation
+%    medIntensity:              median intensity profile along the polynoial
 %    orthIntensVol:             
 %    orthSamplePointsVol:       
 %    skelScaleMm:               
