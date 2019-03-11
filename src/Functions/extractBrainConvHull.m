@@ -6,11 +6,11 @@ function [convHullBrainMask, roughBrainMask] = extractBrainConvHull(niiCT)
 %    [convHullBrainMask, roughBrainMask] = extractBrainConvHull(niiCT)
 %
 % INPUT: 
-%    niiCT:     
+%    niiCT:     NiftiMod object of a post-operative CT image
 %
 % OUTPUTS: 
-%   convHullBrainMask:      
-%   roughBrainMask:         
+%   convHullBrainMask:      Estimated mask of the convex hull of the brain
+%   roughBrainMask:         Estimated rough brain mask wich may contain inaccuracies
 %
 % .. AUTHOR:
 %       - Andreas Husch, Original File
