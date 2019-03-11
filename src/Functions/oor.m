@@ -1,17 +1,28 @@
-%% oor - optimal opliptimal oblique sampling along a given polynonimal
-%
-% Returns: improvedSkeleton - skeleton gained along the polynomial by
-%                             resampling and intensity weithed centroid calculation
-%          medIntensity     - median intensity profile along the polynoial
-%
-% Andreas Husch
-% Centre Hospitalier de Luxembourg / Luxembourg Centre for Systems
-% Biomedicine, University of Luxembourg
-% 2016  - 2017
-% mail@andreashusch.de
-%
-% That code needs some cleanup :-) But it works ;-)
 function [improvedSkeleton, medIntensity,orthIntensVol, orthSamplePointsVol, skelScaleMm] = oor(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)
+%
+% USAGE:
+%
+%    [improvedSkeleton, medIntensity, orthIntensVol, orthSamplePointsVol, skelScaleMm] 
+%    = oor(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)
+%
+% INPUTS: 
+%    r3polyToUse:       
+%    STEP_SIZE:         
+%    XGrid:             
+%    YGrid:             
+%    interpolationF:    
+%
+% OUTPUTS: 
+%    improvedSkeleton:          
+%    medIntensity:              
+%    orthIntensVol:             
+%    orthSamplePointsVol:       
+%    skelScaleMm:               
+%
+% .. AUTHOR:
+%       - Andreas Husch, Original File
+%       - Daniel Duarte Tojal, Documentation
+
 SND_THRESH=1500;
 
 arcLength = polyArcLength3(r3polyToUse, 0, 1);
