@@ -7,7 +7,13 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
 %
 % INPUTS: 
 %    niiCT:         NiftiMod object of a post-operative CT image
-%    varargin:      
+%    varargin:      Variable Argument:
+%
+%                       noMask:                 For phantom studies where no brain is present in data
+%                       brainMask:              For manually providing brain mask 
+%                                               (binary segmentation image file path)
+%                       medtronicXMLPlan:       
+%                       metalThreshold:         
 %
 % OUTPUTS: 
 %    elecsPointcloudStruct:     Create output struct and try to associate electrodes 
@@ -27,8 +33,8 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
     argParser = inputParser();
     argParser.KeepUnmatched = true;
 
-    argParser.addParameter('noMask', false); % for phantom studies where no brain is present in data
-    argParser.addParameter('brainMask', ''); % for manually providing brain mask (binary segmentation image file path)
+    argParser.addParameter('noMask', false);
+    argParser.addParameter('brainMask', '');
     argParser.addParameter('medtronicXMLPlan', '', @(x)(ischar(x)));
     argParser.addParameter('metalThreshold', 800, @(x)(isnumeric(x)));
     
@@ -66,7 +72,7 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
 
     maskedImg(~(brainMask)) = NaN;
     threImg = (maskedImg > METAL_THRESHOLD);
-    %% largest connectet components of metal inside the brain represent electrodes
+    %% largest connected components of metal inside the brain represent electrodes
     cc = bwconncomp(threImg,26);
     disp([num2str(cc.NumObjects) ' potential metal components detected within brain.']);
     
@@ -75,9 +81,9 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
     
     %%  try to guess the number and idxs of electrodes in the image
     elecIdxs = [];
-    minVoxelNumber =  (1.2 * (1.27/2))^2 * pi * 40 / prod(niiCT.voxsize); % assumin at least 40mm in brain and 20% partial voluming
-    maxVoxelNumber =  (3 * (1.27/2))^2 * pi * 80 / prod(niiCT.voxsize);  % assumin 80mm in brain and 300% partial voluming 
-   % maxVoxelNumber = Inf; % FIXME
+    minVoxelNumber =  (1.2 * (1.27/2))^2 * pi * 40 / prod(niiCT.voxsize); % assuming at least 40mm in brain and 20% partial voluming
+    maxVoxelNumber =  (3 * (1.27/2))^2 * pi * 80 / prod(niiCT.voxsize);  % assuming 80mm in brain and 300% partial voluming 
+    % maxVoxelNumber = Inf; % FIXME
     % DEBUG: figure, scatterMatrix3(ccProps(1).PixelList)
     largeComponents = areas(areas >= minVoxelNumber & areas <= maxVoxelNumber); % Voxels
     componentIdxs = idxs(areas >= minVoxelNumber & areas <= maxVoxelNumber);
@@ -90,7 +96,7 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
         latent = sqrt(latent) * 2; % axes length == variance, * 2 for full (instead half) axes, note that the variance is not the extrem value!
        % an electrode has large variance in one direction and about the same in the
        % two others FIXME magic constants! 
-      % pointCloudExtend = norm(max(ccProps(componentIdxs(i)).PixelList) - min(ccProps(componentIdxs(i)).PixelList))
+       % pointCloudExtend = norm(max(ccProps(componentIdxs(i)).PixelList) - min(ccProps(componentIdxs(i)).PixelList))
        lowerAxesLength = sort(latent(2:3));
        if(latent(1) > LAMBDA_1 && latent(1) / mean(latent(2:3)) > 10 && lowerAxesLength(2) / (lowerAxesLength(1)+0.001) < 8) % 
            elecIdxs(end+1) = componentIdxs(i);  %#ok<AGROW>
@@ -135,7 +141,7 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
         elecsPointcloudStruct(i).pointCloudMm =(pixelList-1) * abs(niiCT.transformationMatrix(1:3,1:3));  % minus 1 is done in the get funtions but manually here
         elecsPointcloudStruct(i).pointCloudWorld = niiCT.getNiftiWorldCoordinatesFromMatlabIdx(pixelList')';%bsxfun(@plus,(pixelList-1) * niiCT.transformationMatrix(1:3,1:3), niiCT.transformationMatrix(1:3,4)'); 
         
-     %   elecsPointcloudStruct(i).surroundingPoints = setdiff(bbPointCloud, pixelList, 'rows')* abs(niiCT.transformationMatrix(1:3,1:3));
+        % elecsPointcloudStruct(i).surroundingPoints = setdiff(bbPointCloud, pixelList, 'rows')* abs(niiCT.transformationMatrix(1:3,1:3));
         
         elecMask = false(size(maskedImg)); % FIXME check this swaps!!
         elecMask(elecsPointcloudStruct(i).pixelIdxs ) = true; % TODO: make sure we don't have to Swap i,j to X,Y here!
