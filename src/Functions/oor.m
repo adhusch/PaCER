@@ -1,5 +1,5 @@
 function [improvedSkeleton, medIntensity,orthIntensVol, orthSamplePointsVol, skelScaleMm] = oor(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)
-% oor - optimal oblique resampling along a given polynonimal
+% OOR - Optimal Oblique Resampling along a given polynonimal
 %
 % USAGE:
 %
@@ -7,19 +7,18 @@ function [improvedSkeleton, medIntensity,orthIntensVol, orthSamplePointsVol, ske
 %    = oor(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)
 %
 % INPUTS: 
-%    r3polyToUse:       
-%    STEP_SIZE:         
-%    XGrid:             
-%    YGrid:             
-%    interpolationF:    
+%    r3polyToUse:       Polynomial coefficient matrix
+%    STEP_SIZE:         Step size along polynomial
+%    XGrid:             Grid to sample perpentidular to polyonial (x)
+%    YGrid:             Grid to sample perpentidular to polyonial (y)
+%    interpolationF:    An interpolater fitted to point cloud (see scatteredInterpolant)
 %
 % OUTPUTS: 
-%    improvedSkeleton:          skeleton gained along the polynomial by
-%                               resampling and intensity weithed centroid calculation
-%    medIntensity:              median intensity profile along the polynoial
-%    orthIntensVol:             
-%    orthSamplePointsVol:       
-%    skelScaleMm:               
+%    improvedSkeleton:          Newly determined skeleton point cloud after re-sampling
+%    medIntensity:              Median intensity along the polynomial
+%    orthIntensVol:             Intensity volume stacked as orthogonal matrix
+%    orthSamplePointsVol:       Sampling points stacked as orthogonal matrix
+%    skelScaleMm:               Estimated millimetric scale
 %
 % .. AUTHOR:
 %       - Andreas Husch, Original File
