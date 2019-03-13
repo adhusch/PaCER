@@ -6,8 +6,8 @@ function [peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, thresho
 % USAGE:
 %
 %    [peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, 
-%    threshold, contactAreaCenter, contactAreaWidth, xrayMarkerAreaCenter, 
-%    xrayMarkerAreaWidth] = getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs)
+%    threshold, contactAreaCenter, contactAreaWidth, xrayMarkerAreaCenter, xrayMarkerAreaWidth] 
+%    = getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs)
 %
 % INPUTS: 
 %    intensityProfile:      
@@ -24,10 +24,6 @@ function [peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, thresho
 %    contactAreaWidth:          
 %    xrayMarkerAreaCenter:      
 %    xrayMarkerAreaWidth:       
-%
-% EXAMPLE:
-%
-% NOTE:
 %
 % .. AUTHOR:
 %       - Andreas Husch, Original File
