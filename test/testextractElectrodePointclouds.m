@@ -14,10 +14,10 @@ fileDir = fileparts(which(mfilename));
 cd(fileDir);
 
 % load reference data
-refData = load ('refData_extractElectrodePC.m')
+refData = load ([getenv('PACER_DATA_PATH') filesep 'refData_extractElectrodePC.m'])
 
 % generate data
-niiCT_new = NiftiMod('ct_post.nii.gz')
+niiCT_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'ct_post.nii.gz'])
 [elecsPointcloudStruct_new, brainMask_new] = extractElectrodePointclouds(niiCT)
 
 % compare the reference data 
