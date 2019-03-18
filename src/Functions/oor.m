@@ -7,11 +7,11 @@ function [improvedSkeleton, medIntensity,orthIntensVol, orthSamplePointsVol, ske
 %    = oor(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)
 %
 % INPUTS: 
-%    r3polyToUse:       Polynomial coefficient matrix
-%    STEP_SIZE:         Step size along polynomial
-%    XGrid:             Grid to sample perpentidular to polyonial (x)
-%    YGrid:             Grid to sample perpentidular to polyonial (y)
-%    interpolationF:    An interpolater fitted to point cloud (see scatteredInterpolant)
+%    r3polyToUse:               Polynomial coefficient matrix
+%    STEP_SIZE:                 Step size along polynomial
+%    XGrid:                     Grid to sample perpentidular to polyonial (x)
+%    YGrid:                     Grid to sample perpentidular to polyonial (y)
+%    interpolationF:            An interpolater fitted to point cloud (see scatteredInterpolant)
 %
 % OUTPUTS: 
 %    improvedSkeleton:          Newly determined skeleton point cloud after re-sampling
@@ -20,7 +20,7 @@ function [improvedSkeleton, medIntensity,orthIntensVol, orthSamplePointsVol, ske
 %    orthSamplePointsVol:       Sampling points stacked as orthogonal matrix
 %    skelScaleMm:               Estimated millimetric scale
 %
-% .. AUTHOR:
+% .. AUTHORS:
 %       - Andreas Husch, Original File
 %       - Daniel Duarte Tojal, Documentation
 
