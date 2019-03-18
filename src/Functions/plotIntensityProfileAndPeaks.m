@@ -17,7 +17,7 @@ function [peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, thresho
 %    threshIntensityProfile:    
 %    threshold:                 
 %
-% .. AUTHOR:
+% .. AUTHORS:
 %       - Andreas Husch, Original File
 %       - Daniel Duarte Tojal, Documentation
 
