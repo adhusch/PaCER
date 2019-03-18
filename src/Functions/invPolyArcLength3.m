@@ -9,7 +9,8 @@ function t = invPolyArcLength3(polyCoeff, arcLength)
 %
 % INPUTS: 
 %    polyCoeff:     Coefficient matrix
-%    arcLength:     
+%    arcLength:     The arc length is defined as the integral of the norm of the 
+%                   derivatives of the parameterized equations.
 %
 % OUTPUT: 
 %    t:     
