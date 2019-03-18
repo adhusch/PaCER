@@ -1,4 +1,4 @@
-% The PaCER Toolbox: testextractElectrodePointclouds.m
+% The PaCER Toolbox: testExtractElectrodePointclouds.m
 %
 % Purpose:
 %     - test the extractElectrodePointclouds function
@@ -14,12 +14,13 @@ fileDir = fileparts(which(mfilename));
 cd(fileDir);
 
 % load reference data
-refData = load ([getenv('PACER_DATA_PATH') filesep 'refData_extractElectrodePC.m'])
+refData = load ([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_extractElectrodePC.mat'])
 
-% generate data
-niiCT_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'ct_post.nii.gz'])
-[elecsPointcloudStruct_new, brainMask_new] = extractElectrodePointclouds(niiCT)
+% generate new data
+niiCT_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post.nii.gz'])
+[elecsPointcloudStruct_new, brainMask_new] = extractElectrodePointclouds(niiCT_new);
 
-% compare the reference data 
-
+% compare the new data against the reference data 
+assert(isequal(elecsPointcloudStruct_new, refData.elecsPointcloudStruct_ref))
+assert(isequal(brainMask_new, refData.brainMask_ref))
 
