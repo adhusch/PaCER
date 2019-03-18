@@ -10,7 +10,7 @@ function binaryMask = largestConnCompSliceWise(img3d)
 % OUTPUT: 
 %    binaryMask:    
 %
-% .. AUTHOR:
+% .. AUTHORS:
 %       - Andreas Husch, Original File
 %       - Daniel Duarte Tojal, Documentation
 
