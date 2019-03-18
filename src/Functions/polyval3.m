@@ -12,7 +12,7 @@ function val = polyval3(polyCoeffs, evalAt)
 % OUTPUT: 
 %    val:       
 %
-% .. AUTHOR:
+% .. AUTHORS:
 %       - Andreas Husch, Original File
 %       - Daniel Duarte Tojal, Documentation
 
