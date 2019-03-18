@@ -14,9 +14,10 @@ function arcLength = polyArcLength3(polyCoeff, lowerLimit, upperLimit)
 %                   and lower limit.
 %
 % OUTPUT: 
-%    arcLength:     Length of the arc.
+%    arcLength:     The arc length is defined as the integral of the norm of the 
+%                   derivatives of the parameterized equations.
 %
-% .. AUTHOR:
+% .. AUTHORS:
 %       - Andreas Husch, Original File
 %       - Daniel Duarte Tojal, Documentation
 
@@ -34,7 +35,7 @@ z_d = polyder(regZ);
 arcLength = nan(size(lowerLimit));
 
 for i = 1:length(lowerLimit)
-    f = @(t) sqrt(polyval(x_d, t).^2 + polyval(y_d, t).^2 + polyval(z_d, t).^2); % The arc length is defined as the integral of the norm of the derivatives of the parameterized equations.
+    f = @(t) sqrt(polyval(x_d, t).^2 + polyval(y_d, t).^2 + polyval(z_d, t).^2);
     arcLength(i) = integral(f,lowerLimit(i),upperLimit(i));
 end
 
