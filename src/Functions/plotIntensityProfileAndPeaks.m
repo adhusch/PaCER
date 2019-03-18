@@ -1,27 +1,19 @@
-function [peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, threshold] = getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs);
+function plotIntensityProfileAndPeaks(intensityProfile, skelScaleMm)
 %
 % USAGE:
 %
-%    [peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, threshold]
-%    = getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs);
+%    plotIntensityProfileAndPeaks(intensityProfile, skelScaleMm)
 %
 % INPUTS: 
 %    intensityProfile:      
 %    skelScaleMm:           
-%    filterIdxs:            
-%
-% OUTPUTS: 
-%    peakLocs                   
-%    peakWaveCenters:           
-%    peakValues:                
-%    threshIntensityProfile:    
-%    threshold:                 
 %
 % .. AUTHORS:
 %       - Andreas Husch, Original File
 %       - Daniel Duarte Tojal, Documentation
 
 filterIdxs = find(skelScaleMm <= 20); % restrict to first 20mm
+[peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, threshold] = getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs);
 
 figure('Name', 'Intensity Profile');
 ax = gca;
@@ -39,4 +31,3 @@ grid on;
 end
 
 
-% function plotIntensityProfileAndPeaks(intensityProfile, skelScaleMm)
