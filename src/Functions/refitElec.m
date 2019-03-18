@@ -24,7 +24,7 @@ function [refitReZeroedElecMod, filteredIntensity, skelScaleMm] = refitElec(init
 %    filteredIntensity:         
 %    skelScaleMm:               
 %
-% .. AUTHOR:
+% .. AUTHORS:
 %       - Andreas Husch, Original File
 %       - Daniel Duarte Tojal, Documentation
 
