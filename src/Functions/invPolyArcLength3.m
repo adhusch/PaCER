@@ -14,7 +14,7 @@ function t = invPolyArcLength3(polyCoeff, arcLength)
 % OUTPUT: 
 %    t:     
 %
-% .. AUTHOR:
+% .. AUTHORS:
 %       - Andreas Husch, Original File
 %       - Daniel Duarte Tojal, Documentation
 
