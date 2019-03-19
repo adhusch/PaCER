@@ -8,7 +8,7 @@ script:
     - CURRENT_DIR=`pwd`
 
     # update the data repository
-    - cd $DATA_PACER_PATH
+    - cd $PACER_DATA_PATH
     - git pull origin master
 
     # change to the current directory
