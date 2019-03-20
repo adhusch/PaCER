@@ -6,6 +6,9 @@
 % Author:
 %     - Loic Marx, March 2019
 
+global refDataPath
+global inputDataPath
+
 % save the current path
 currentDir = pwd;
 
@@ -14,12 +17,10 @@ fileDir = fileparts(which(mfilename));
 cd(fileDir);
 
 % load reference data
-global refDataPath
-global inputDataPath
-refData = load ([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_extractElectrodePC.mat'])
+refData = load([refDataPath filesep 'refData_extractElectrodePC.mat']);
+niiCT_new = load ([inputDataPath filesep 'ct_post.nii.gz']);
 
 % generate new data
-niiCT_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post.nii.gz'])
 [elecsPointcloudStruct_new, brainMask_new] = extractElectrodePointclouds(niiCT_new);
 
 % compare the new data against the reference data 
@@ -30,7 +31,6 @@ assert(isequal(brainMask_new, refData.brainMask_ref))
 niiCT_brainMask_ref = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post.nii.gz'])
 brainMask_ref = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post_mask.nii'])
 
-brainMask_ref= [getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post_mask.nii']
 [elecsPointcloudStruct_brainMask_ref, brainMask_brainMask_ref] = extractElectrodePointclouds(niiCT_brainMask_ref,'brainMask',brainMask_ref);
 
 
