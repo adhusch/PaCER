@@ -24,3 +24,5 @@ niiCT_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post
 assert(isequal(elecsPointcloudStruct_new, refData.elecsPointcloudStruct_ref))
 assert(isequal(brainMask_new, refData.brainMask_ref))
 
+
+
