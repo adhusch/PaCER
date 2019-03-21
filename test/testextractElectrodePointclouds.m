@@ -29,7 +29,7 @@ assert(isequal(brainMask_new, refData.brainMask_ref))
 
 % apply post CT brain mask
 niiCT_brainMask_ref = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post.nii.gz'])
-brainMaskPath = [inputDataPath filesep 'ct_post_mask.nii']
+brainMaskPath = [getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post_mask.nii']
 [elecsPointcloudStruct_brainMask_ref, brainMask_brainMask_ref] = extractElectrodePointclouds(niiCT_brainMask_ref, 'brainMask', brainMaskPath);
 
 
