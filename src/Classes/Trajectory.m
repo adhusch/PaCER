@@ -1,10 +1,21 @@
-%% Trajectory - represents a (straight line) trajectory by two Point3D (entry and target) objects
+% Trajectory - represents a (straight line) trajectory by two Point3D (entry and target) objects
 %
-% Andreas Husch
-% Centre Hospitalier de Luxembourg, Dep. of Neurosurgery /
-% University of Luxembourg - Luxembourg Centre for Systems Biomedicne
-% 2013 - 2017
-% mail@andreashusch.de
+% USAGE:
+%
+%    The usage
+%
+% INPUT: 
+%
+% OUTPUTS: 
+%
+% EXAMPLE:
+%
+% NOTE:
+%
+% .. AUTHORS:
+%       - Andreas Husch, Original File
+%       - Daniel Duarte Tojal, Documentation
+
 classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
     properties
        String = ''; 
