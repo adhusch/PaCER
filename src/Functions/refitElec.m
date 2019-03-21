@@ -21,8 +21,8 @@ function [refitReZeroedElecMod, filteredIntensity, skelScaleMm] = refitElec(init
 %    refitReZeroedElecMod:      polynomialElectrodeModel Object with the
 %                               refitted and rezeored elec model,
 %                               including reference to elecInfo etc.
-%    filteredIntensity:         
-%    skelScaleMm:               
+%    filteredIntensity:         1D intensity profile
+%    skelScaleMm:               estimated mm per skeleton step
 %
 % .. AUTHORS:
 %       - Andreas Husch, Original File
