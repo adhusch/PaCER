@@ -20,7 +20,9 @@ function success = verifyFunctionError(functionCall, varargin)
 %    success:            Whether an error was thrown, and the type and
 %                        message match (if provided)
 % AUTHOR:
-%     - Loic Marx, March 2019
+%     - Loic Marx, March 2019 (adapted from
+%     https://github.com/opencobra/cobratoolbox/blob/master/test/verifyCobraFunctionError.m)
+%     5aa9ccd
 
 testMessage = false;
 parser = inputParser();
