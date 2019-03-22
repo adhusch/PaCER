@@ -1,3 +1,10 @@
+% load the different environment variables
+global refDataPath
+global inputDataPath
+
+refDataPath = [getenv('PACER_DATA_PATH') filesep 'ref']
+inputDataPath = [getenv('PACER_DATA_PATH') filesep 'input']
+
 % request explicitly from the user to launch test suite locally
 if isempty(strfind(getenv('HOME'), 'jenkins'))
    reply = '';
@@ -56,10 +63,3 @@ catch ME
        rethrow(ME);
    end
 end
-
-% load the different environment variables
-global refDataPath
-global inputDataPath
-
-refDataPath = [getenv('PACER_DATA_PATH') filesep 'ref']
-inputDataPath = [getenv('PACER_DATA_PATH') filesep 'input']
