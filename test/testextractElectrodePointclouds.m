@@ -17,10 +17,10 @@ fileDir = fileparts(which(mfilename));
 cd(fileDir);
 
 % load reference data
-refData = load ([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_extractElectrodePC.mat'])
+refData = load([refDataPath 'refData_extractElectrodePC.mat']);
 
 % generate new data
-niiCT_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post.nii.gz'])
+niiCT_new = NiftiMod([inputDataPath 'ct_post.nii.gz'])
 [elecsPointcloudStruct_new, brainMask_new] = extractElectrodePointclouds(niiCT_new);
 
 % compare the new data against the reference data 
@@ -28,9 +28,9 @@ assert(isequal(elecsPointcloudStruct_new, refData.elecsPointcloudStruct_ref))
 assert(isequal(brainMask_new, refData.brainMask_ref))
 
 % apply post CT brain mask
-refData_brainMask = load ([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_extractElectrodePC_withBrainMask.mat'])
-niiCT_brainMask_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post.nii.gz'])
-brainMaskPath = [getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post_mask.nii']
+refData_brainMask = load ([refDataPath 'refData_extractElectrodePC_withBrainMask.mat'])
+niiCT_brainMask_new = NiftiMod([inputDataPath 'ct_post.nii.gz'])
+brainMaskPath = [inputDataPath 'ct_post_mask.nii']
 [elecsPointcloudStruct_brainMask_new, brainMask_brainMask_new] = extractElectrodePointclouds(niiCT_brainMask_new, 'brainMask', brainMaskPath);
 
 % compare the new data against the reference data using a BrainMask
