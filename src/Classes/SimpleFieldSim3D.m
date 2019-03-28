@@ -1,5 +1,5 @@
-%% Visualisation of the Mädler/Coenen VTA Approximation
-% see Mädler, B., and V. A. Coenen. "Explaining clinical effects of deep brain stimulation 
+%% Visualisation of the Mï¿½dler/Coenen VTA Approximation
+% see Mdler, B., and V. A. Coenen. "Explaining clinical effects of deep brain stimulation 
 % through simplified target-specific modeling of the volume of activated tissue." 
 % American Journal of Neuroradiology 33.6 (2012): 1072-1080.
 %
