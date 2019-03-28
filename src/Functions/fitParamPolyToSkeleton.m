@@ -7,13 +7,13 @@ function [r3polynomial, avgTperMm] = fitParamPolyToSkeleton(skeleton, degree)
 %
 % INPUTS: 
 %    skeleton:      3 x N skeleton pointcloud
-%    degree:        degree of fitted polynomial (DEFAULT: 3)
+%    degree:        Degree of fitted polynomial (DEFAULT: 3)
 %
 % OUTPUTS: 
-%    r3polynomial:      
-%    avgTperMm:         
+%    r3polynomial:      Coefficient matrix of fitted polynomial
+%    avgTperMm:         Average "t" per millimeter along the arc length of the polynomial
 %
-% .. AUTHOR:
+% .. AUTHORS:
 %       - Andreas Husch, Original file
 %       - DanielDuarte Tojal, Documentation
 
