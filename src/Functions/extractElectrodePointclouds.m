@@ -12,8 +12,9 @@ function [elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT,
 %                       noMask:                 For phantom studies where no brain is present in data
 %                       brainMask:              For manually providing brain mask 
 %                                               (binary segmentation image file path)
-%                       medtronicXMLPlan:       
-%                       metalThreshold:         
+%                       medtronicXMLPlan:       Path to XML file defining a Medtronic Stealth Station 
+%                                               S7 trajectory plan
+%                       metalThreshold:         CT metal threshold value.
 %
 % OUTPUTS: 
 %    elecsPointcloudStruct:     Create output struct and try to associate electrodes 
