@@ -1,4 +1,6 @@
 function binaryMask = largestConnCompSliceWise(img3d)
+% Outputs a Binary mask of the largest connected component within that volume, 
+% computed slice wise 2d and stacked
 %
 % USAGE:
 %
