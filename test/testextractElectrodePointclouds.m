@@ -57,5 +57,12 @@ xml_Plan_new = [inputDataPath 'CT_POSTOP_with_XML.xml'];
 assert(isequal(elecsPointcloudStruct_Xml_new, refData_Xml.elecsPointcloudStruct_Xml_ref))
 assert(isequal(brainMask_Xml_new, refData_Xml.brainMask_Xml_ref))
 
+%% test the error message in the test
+% define metal threshold
+METAL_THRESHOLD = 3200;
+
+% test if extractElectrodePointclouds throws an error when METAL_THRESHOLD value is too high
+assert(verifyFunctionError('extractElectrodePointclouds', 'inputs', {niiCT_brainMask_new, 'brainMask', brainMaskPath, 'metalThreshold', METAL_THRESHOLD}, 'testMessage','NO electrode artifact found within brain mask. Did you supply a post-op brain CT image? \n Try the ''no mask'' parameter in case of phantom scans without brain. \n Try providing an externally created brain mask using the "brainMask" parameter in other cases.'));
+
 %% change back to the current directory
 cd(currentDir);
