@@ -37,3 +37,11 @@ brainMaskPath = [inputDataPath 'ct_post_mask.nii']
 assert(isequal(elecsPointcloudStruct_brainMask_new, refData_brainMask.elecsPointcloudStruct_brainMask_ref))
 assert(isequal(brainMask_brainMask_new, refData_brainMask.brainMask_brainMask_ref))
 
+% load reference data for CT post OP with XML file
+refData_Xml = load([refDataPath 'refData_extractElectrodePC_xmlPlan']);
+niiCT_Xml_new = NiftiMod([inputDataPath 'CT_POSTOP_with_XML.nii.gz'])
+xml_Plan_new = [inputDataPath 'CT_POSTOP_with_XML.xml'];
+
+[elecModels_xml_new, elecPointCloudsStruct_xml_new] = PaCER(niiCT_Xml_new, 'medtronicXMLPlan', xml_Plan_new, 'electrodeType', 'Medtronic 3389');
+
+% compare the new data against the reference data using a XML plan
