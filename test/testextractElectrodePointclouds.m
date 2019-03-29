@@ -58,7 +58,7 @@ assert(isequal(elecsPointcloudStruct_Xml_new, refData_Xml.elecsPointcloudStruct_
 assert(isequal(brainMask_Xml_new, refData_Xml.brainMask_Xml_ref))
 
 %% test the error message in the test
-% define metal threshold
+% define high metal threshold
 METAL_THRESHOLD = 3200;
 
 % test if extractElectrodePointclouds throws an error when METAL_THRESHOLD value is too high
