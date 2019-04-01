@@ -27,7 +27,7 @@ assert(isequal(elecStruct_ref, elecStruct_new))
 assert(isequal(rms_ref, rms_new))
 assert(isequal(d_ref, d_new))
 
-% test if there is no objective - will throw a warning message
+% test if there is infinite value assigned to PeakDistances - will throw a warning message
 w = warning ('off','all');
 peakDistances_warning = Inf;
 try
