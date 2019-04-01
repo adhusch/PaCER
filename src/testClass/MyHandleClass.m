@@ -1,9 +1,11 @@
 classdef MyHandleClass < handle & my.super.Class
     % a handle class
     %
-    % :param x: a variable
+    % Parameters: 
+    %
+    %    a variable:     somethin something
+    %
 
-    %% some comments
     properties
         x % a property
     end
@@ -12,7 +14,6 @@ classdef MyHandleClass < handle & my.super.Class
             h.x = x
         end
         function x = get.x(obj)
-        % how is this displayed?
             x = obj.x
         end
     end
@@ -20,10 +21,19 @@ classdef MyHandleClass < handle & my.super.Class
         function w = my_static_function(z)
         % A static function in :class:`MyHandleClass`.
         %
-        % :param z: input z
-        % :returns: w
+        % Parameters: 
+        %
+        %    z:     something
+        %
+        % Returns:
+        %
+        %    w:     something else
 
             w = z
         end
     end
 end
+
+%% .. Authors:
+    %% - Andreas Husch, Original File
+    %% - Daniel Duarte Tojal, Documentation
