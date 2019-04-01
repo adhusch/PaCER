@@ -7,10 +7,10 @@ function val = polyval3(polyCoeffs, evalAt)
 %
 % INPUTS: 
 %    polyCoeffs:    Coefficient matrix
-%    evalAt:        
+%    evalAt:        a polynomial in R^3
 %
 % OUTPUT: 
-%    val:       
+%    val:           a polynomial in R
 %
 % .. AUTHORS:
 %       - Andreas Husch, Original File
