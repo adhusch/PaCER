@@ -17,24 +17,24 @@ fileDir = fileparts(which(mfilename));
 cd(fileDir);
 
 %% load reference data (function implemented only with niiCT model)
-refData = load([refDataPath 'refData_extractElectrodePC.mat']);
+refData = load([refDataPath filesep 'refData_extractElectrodePC.mat']);
 
 % define input argument (testing only niiCT input argument)
-niiCT_new = NiftiMod([inputDataPath 'ct_post.nii.gz']);
+niiCT_new = NiftiMod([inputDataPath filesep 'ct_post.nii.gz']);
 
 % generate the new output (testing only niiCT input argument)
 [elecsPointcloudStruct_new, brainMask_new] = extractElectrodePointclouds(niiCT_new);
 
-% compare the new data against the reference data 
+% compare the new data against the reference data
 assert(isequal(elecsPointcloudStruct_new, refData.elecsPointcloudStruct_ref))
 assert(isequal(brainMask_new, refData.brainMask_ref))
 
 %% load reference data (provide brain mask to the CT post OP)
-refData_brainMask = load([refDataPath 'refData_extractElectrodePC_withBrainMask.mat']);
+refData_brainMask = load([refDataPath filesep 'refData_extractElectrodePC_withBrainMask.mat']);
 
 % define input arguments (testing niiCT and brainMask)
-niiCT_brainMask_new = NiftiMod([inputDataPath 'ct_post.nii.gz']);
-brainMaskPath = [inputDataPath 'ct_post_mask.nii'];
+niiCT_brainMask_new = niiCT_new;
+brainMaskPath = [inputDataPath filesep 'ct_post_mask.nii'];
 
 % generate the new output (testing niiCT and brainMask)
 [elecsPointcloudStruct_brainMask_new, brainMask_brainMask_new] = extractElectrodePointclouds(niiCT_brainMask_new, 'brainMask', brainMaskPath);
@@ -44,11 +44,11 @@ assert(isequal(elecsPointcloudStruct_brainMask_new, refData_brainMask.elecsPoint
 assert(isequal(brainMask_brainMask_new, refData_brainMask.brainMask_brainMask_ref))
 
 %% load reference data for CT post OP with the corresponding XML file
-refData_Xml = load([refDataPath 'refData_extractElectrodePC_xmlPlan.mat']);
+refData_Xml = load([refDataPath filesep 'refData_extractElectrodePC_xmlPlan.mat']);
 
 % define input arguments (testing niiCT and Xml Plan)
-niiCT_Xml_new = NiftiMod([inputDataPath 'CT_POSTOP_with_XML.nii.gz']);
-xml_Plan_new = [inputDataPath 'CT_POSTOP_with_XML.xml'];
+niiCT_Xml_new = NiftiMod([inputDataPath filesep 'CT_POSTOP_with_XML.nii.gz']);
+xml_Plan_new = [inputDataPath filesep 'CT_POSTOP_with_XML.xml'];
 
 % generate the new output (function implemented with XML plan)
 [elecsPointcloudStruct_Xml_new, brainMask_Xml_new] = extractElectrodePointclouds(niiCT_Xml_new, 'medtronicXMLPlan', xml_Plan_new);
