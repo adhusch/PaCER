@@ -1,9 +1,10 @@
 % load the different environment variables
 global refDataPath
 global inputDataPath
+global PACERDIR
 
-refDataPath = [getenv('PACER_DATA_PATH') filesep 'ref']
-inputDataPath = [getenv('PACER_DATA_PATH') filesep 'input']
+refDataPath = [getenv('PACER_DATA_PATH') filesep 'ref'];
+inputDataPath = [getenv('PACER_DATA_PATH') filesep 'input'];
 
 % request explicitly from the user to launch test suite locally
 if isempty(strfind(getenv('HOME'), 'jenkins'))
@@ -52,8 +53,10 @@ if launchTestSuite
         COVERAGE = false;
     end
 
+    SETUP_PACER
+
     % change to the test folder
-    currentDir = cd('test');
+    currentDir = cd([PACERDIR filesep 'test']);
     testDirContent = getFilesInDir('type', 'all');  % Get all currently present files in the folder.
     testDirPath = pwd;
     cd(currentDir);
@@ -135,6 +138,92 @@ end
 
 try
    if launchTestSuite
+
+ % save the userpath
+        originalUserPath = path;
+
+        % run the tests in the subfolder verifiedTests/ recursively
+        [result, resultTable] = runTestSuite();
+
+        sumSkipped = sum(resultTable.Skipped);
+        sumFailed = sum(resultTable.Failed);
+
+        fprintf(['\n > ', num2str(sumFailed), ' tests failed. ', num2str(sumSkipped), ' tests were skipped due to missing requirements.\n\n']);
+
+        % count the number of covered lines of code
+        if COVERAGE
+            % write coverage based on profile('info')
+            fprintf('Running MoCov ... \n')
+            mocov('-cover', 'src', ...
+                '-profile_info', ...
+                '-cover_json_file', 'coverage.json', ...
+                '-cover_html_dir', 'coverage_html', ...
+                '-cover_method', 'profile', ...
+                '-verbose');
+
+            % load the coverage file
+            data = loadjson('coverage.json', 'SimplifyCell', 1);
+
+            sf = data.source_files;
+            clFiles = zeros(length(sf), 1);
+            tlFiles = zeros(length(sf), 1);
+
+            for i = 1:length(sf)
+                clFiles(i) = nnz(sf(i).coverage);
+                tlFiles(i) = length(sf(i).coverage);
+            end
+
+            % average the values for each file
+            cl = sum(clFiles);
+            tl = sum(tlFiles);
+
+            % print out the coverage
+            fprintf('Covered Lines: %i, Total Lines: %i, Coverage: %f%%.\n', cl, tl, cl / tl * 100);
+        end
+
+        % print out a summary table
+        resultTable
+
+        % Print some information on failed and skipped tests.
+        skippedTests = find(resultTable.Skipped);
+        if sum(skippedTests > 0)
+            fprintf('The following tests were skipped:\n%s\n\n', strjoin(resultTable.TestName(skippedTests), '\n'));
+            fprintf('The reasons were as follows:\n')
+            for i = 1:numel(skippedTests)
+                fprintf('------------------------------------------------\n')
+                fprintf('%s:\n', resultTable.TestName{skippedTests(i)});
+                fprintf('%s\n', resultTable.Details{skippedTests(i)});
+                fprintf('------------------------------------------------\n')
+            end
+            fprintf('\n\n')
+        end
+
+        failedTests = find(resultTable.Failed & ~resultTable.Skipped);
+        if sum(failedTests > 0)
+            fprintf('The following tests failed:\n%s\n\n', strjoin(resultTable.TestName(failedTests), '\n'));
+            fprintf('The reasons were as follows:\n')
+            for i = 1:numel(failedTests)
+                fprintf('------------------------------------------------\n')
+                fprintf('%s:\n', resultTable.TestName{failedTests(i)});
+                trace = result(failedTests(i)).Error.getReport();
+                tracePerLine = strsplit(trace, '\n');
+                testSuitePosition = find(cellfun(@(x) ~isempty(strfind(x, 'runTestSuite')), tracePerLine));
+                trace = sprintf(strjoin(tracePerLine(1:(testSuitePosition - 7)), '\n'));  % Remove the testSuiteTrace.
+                fprintf('%s\n', trace);
+                fprintf('------------------------------------------------\n')
+            end
+            fprintf('\n\n')
+        end
+
+      % restore the original path
+      restoredefaultpath;
+      addpath(originalUserPath);
+
+      if sumFailed > 0
+        exit_code = 1;
+      end
+
+      fprintf(['\n > The exit code is ', num2str(exit_code), '.\n\n']);
 
       % ensure that we ALWAYS call exit
       if ~isempty(strfind(getenv('HOME'), 'jenkins')) || ~isempty(strfind(getenv('USERPROFILE'), 'jenkins'))
