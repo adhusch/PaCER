@@ -10,7 +10,7 @@ function success = verifyFunctionError(functionCall, varargin)
 %    functionCall:       The name of a function.
 %
 % OPTIONAL INPUTS:
-%    
+%
 %    varargin:           Parameter Value pairs for specific options.
 %                         * outputArgCount -     The number of output arguments requested, as this can influence the functionality (Default: 0).
 %                         * testMessage -        The message that should be thrown in this error. If no message is supplied, any thrown error will be accepted
@@ -19,10 +19,13 @@ function success = verifyFunctionError(functionCall, varargin)
 % OUTPUTS:
 %    success:            Whether an error was thrown, and the type and
 %                        message match (if provided)
-% AUTHOR:
-%     - Loic Marx, March 2019 (adapted from
-%     https://github.com/opencobra/cobratoolbox/blob/master/test/verifyCobraFunctionError.m)
-%     5aa9ccd
+%
+% .. AUTHOR:
+%       - Thomas Pfau, 2018
+%       - Loic Marx, March 2019
+%
+% .. NOTE:
+%     This function has been adapted from https://github.com/opencobra/cobratoolbox/blob/master/test/verifyCobraFunctionError.m [5aa9ccd]
 
 testMessage = false;
 parser = inputParser();
@@ -40,7 +43,7 @@ inputs = parser.Results.inputs;
 
 functionCall = str2func(functionCall);
 success = true;
-try   
+try
     if outputArgcount > 0
         outArgs = cell(outputArgcount,1);
         [outArgs{:}] = functionCall(inputs{:});
