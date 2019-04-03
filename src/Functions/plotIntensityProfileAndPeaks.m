@@ -5,8 +5,8 @@ function plotIntensityProfileAndPeaks(intensityProfile, skelScaleMm)
 %    plotIntensityProfileAndPeaks(intensityProfile, skelScaleMm)
 %
 % INPUTS: 
-%    intensityProfile:      
-%    skelScaleMm:           
+%    intensityProfile:      a 1D Intensity profile
+%    skelScaleMm:           Estimated scale (mm per intensity sample)
 %
 % .. AUTHORS:
 %       - Andreas Husch, Original File
