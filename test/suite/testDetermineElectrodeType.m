@@ -17,7 +17,7 @@ cd(fileDir);
 load('refData_determineElectrodeType.mat');
 
 % define input argument
-peakDistances_new = [0.7500 1.75]; % electrod contact is normally 1.5mm long
+peakDistances_new = [0.7500 1.75]; % electrode contact is normally 1.5mm long
 
 % generate new output 
 [elecStruct_new, rms_new, d_new] = determineElectrodeType(peakDistances_new);
