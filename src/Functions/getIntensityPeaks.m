@@ -10,20 +10,20 @@ function [peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, thresho
 %    = getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs)
 %
 % INPUTS: 
-%    intensityProfile:      
-%    skelScaleMm:           
-%    filterIdxs:            
+%    intensityProfile:      Profile intensity
+%    skelScaleMm:           Estimated millimetric scale
+%    filterIdxs:            Finds the linear index of the millimetric scale
 %
 % OUTPUTS: 
-%    peaklocs:                  
-%    peakWaveCenters:           
-%    peakValues:                
-%    threshIntensityProfile:    
-%    threshold:                 
-%    contactAreaCenter:         
-%    contactAreaWidth:          
-%    xrayMarkerAreaCenter:      
-%    xrayMarkerAreaWidth:       
+%    peaklocs:                  1D peak locations
+%    peakWaveCenters:           1D peak wave center locations
+%    peakValues:                Peak values
+%    threshIntensityProfile:    Thresholded intensity profile
+%    threshold:                 Threshold
+%    contactAreaCenter:         Center of the assumed contact area
+%    contactAreaWidth:          Width of the assumed contact area
+%    xrayMarkerAreaCenter:      Center of the xray marker (if any)
+%    xrayMarkerAreaWidth:       Width of the xray maker (if any)
 %
 % .. AUTHOR:
 %       - Andreas Husch, Original File
