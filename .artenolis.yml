@@ -24,3 +24,12 @@ after_success:
     - if [[ "$MATLAB_VER" == "R2018b" && "$ARCH" == "Linux" ]]; then
       bash <(curl -s https://codecov.io/bash) -f "!*.lst";
       fi
+
+    # deploy documentation
+    - if [[ "$MATLAB_VER" == "R2018b" && "$ARCH" == "Linux" && "$JENKINS_PULL_REQUEST" != "True" ]]; then
+      export PATH="/home/jenkins/.local/bin":$PATH;
+      pip install --upgrade --user -r docs/requirements.txt;
+      export GIT_LOCAL_BRANCH=${GIT_BRANCH##origin/};
+      echo $GIT_LOCAL_BRANCH;
+      python -c "from documenter.deploy import Documentation; doc = Documentation('github.com/adhusch/PaCER', local_upstream='$(pwd)', ci='jenkins'); doc.deploy()";
+      fi
