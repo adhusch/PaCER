@@ -14,7 +14,7 @@ fileDir = fileparts(which(mfilename));
 cd(fileDir);
 
 % load reference data
-load('RefData_determineElectrodeType.mat');
+load('refData_determineElectrodeType.mat');
 
 % define input argument
 peakDistances_new = [0.7500 1.75]; % electrod contact is normally 1.5mm long
