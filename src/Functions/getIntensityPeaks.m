@@ -10,7 +10,7 @@ function [peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, thresho
 %    = getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs)
 %
 % INPUTS: 
-%    intensityProfile:      Profile intensity
+%    intensityProfile:      1D Intensity Profile
 %    skelScaleMm:           Estimated millimetric scale
 %    filterIdxs:            Finds the linear index of the millimetric scale
 %
