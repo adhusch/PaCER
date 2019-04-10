@@ -105,3 +105,4 @@ assert(isequal(skelSkelmms_Medtronic3389_new, refData_electrodeType.skelSkelmms_
 assert(isequal(elecPointCloudsStruct_Boston_new, refData_electrodeType.elecPointCloudsStruct_Boston_ref))
 assert(isequal(intensityProfiles_Boston_new, refData_electrodeType.intensityProfiles_Boston_ref))
 assert(isequal(skelSkelmms_Boston_new, refData_electrodeType.skelSkelmms_Boston_ref))
+
