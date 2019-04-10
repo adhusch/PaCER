@@ -34,6 +34,26 @@ assert(isequal(elecPointCloudsStruct_new, refData.elecPointCloudsStruct_ref))
 assert(isequal(intensityProfiles_new, refData.intensityProfiles_ref))
 assert(isequal(skelSkelmms_new, refData.skelSkelmms_ref))
 
+% test the function with XML plan
+%load reference data for CT post OP with the corresponding XML file
+refData_XML = load ([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_PaCER_xmlPlan.mat']);
+
+% define input arguments (testing niiCT and Xml Plan)
+niiCT_Xml_new = niiCT_PostOP_new; 
+xml_Plan_new= [getenv('PACER_DATA_PATH') filesep 'input' filesep 'CT_POSTOP_with_XML.xml'];
+
+% generate the new output (function implemented with XML plan)
+[elecModels_XML_new, elecPointCloudsStruct_XML_new, intensityProfiles_XML_new, skelSkelmms_XML_new] = PaCER(niiCT_Xml_new,'medtronicXMLPlan', xml_Plan_new);
+
+% compare the new data against the reference data using a XML plan
+%assert(isequal(elecModels_XML_new, refData_XML.elecModels_XML_ref))
+assert(isequal(elecPointCloudsStruct_XML_new, refData_XML.elecPointCloudsStruct_XML_ref))
+assert(isequal(intensityProfiles_XML_new, refData_XML.intensityProfiles_XML_ref))
+assert(isequal(skelSkelmms_XML_new, refData_XML.skelSkelmms_XML_ref))
+%
+
+
+
 %% load reference data (provide brain mask to the CT post OP)
 refData_brainMask = load([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_PaCER_WithBrainMask.mat']);
 
