@@ -106,3 +106,14 @@ assert(isequal(elecPointCloudsStruct_Boston_new, refData_electrodeType.elecPoint
 assert(isequal(intensityProfiles_Boston_new, refData_electrodeType.intensityProfiles_Boston_ref))
 assert(isequal(skelSkelmms_Boston_new, refData_electrodeType.skelSkelmms_Boston_ref))
 
+%% test the warning messages
+
+w = warning ('off','all');%%
+try
+    [elecModels_warning, elecPointCloudsStruct_warning, intensityProfiles_warning, skelSkelmms_warning] = PaCER(niiCT_brainMask_new);
+catch ME
+    assert(length(ME.message) > 0)
+end
+w = warning ('on','all');
+
+
