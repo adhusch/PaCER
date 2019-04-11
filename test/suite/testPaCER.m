@@ -117,3 +117,30 @@ end
 w = warning ('on','all');
 
 
+% reset warnings
+lastwarn('');
+
+% Do your fitting
+    [elecModels_warning, elecPointCloudsStruct_warning, intensityProfiles_warning, skelSkelmms_warning] = PaCER(niiCT_brainMask_new);
+
+% Check which warning occured
+ [msgstr, msgid] = lastwarn;
+switch msgid
+   case 'No electrode specification given! Set electrodeType option! Trying to estimate type by contactAreaWidth only which might be wrong!'
+      % In your case you say you want to throw an error
+      error(msgstr); % or your custom error message
+   %case 'SomeOtherMessageIDIfYouWantToCheckForSomethingElse'
+
+end
+
+
+lastwarn('');
+w = warning ('off','all');%%
+try
+    [elecModels_warning, elecPointCloudsStruct_warning, intensityProfiles_warning, skelSkelmms_warning] = PaCER(niiCT_brainMask_new);
+     [msgstr, msgid] = lastwarn;
+catch msgstr
+    assert(length(msgstr) > 0)
+end
+w = warning ('on','all');
+
