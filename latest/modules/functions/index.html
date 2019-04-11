@@ -354,6 +354,53 @@ Average &#8220;t&#8221; per millimeter along the arc length of the polynomial</l
 </dd></dl>
 
 <dl class="function">
+<dt id="src.Functions.getIntensityPeaks">
+<code class="descname">getIntensityPeaks</code><span class="sig-paren">(</span><em>intensityProfile</em>, <em>skelScaleMm</em>, <em>filterIdxs</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.getIntensityPeaks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get peaks, respectively center points, at threshold below the peaks from 1D
+intensity profile. Expected peakWaveCenter number is 4 for now (needs
+update to support electrodes with more ring contacts)!</p>
+<p><strong>Usage</strong></p>
+<blockquote>
+<div>[peakLocs, peakWaveCenters, peakValues, threshIntensityProfile,
+threshold, contactAreaCenter, contactAreaWidth, xrayMarkerAreaCenter, xrayMarkerAreaWidth]
+= getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs)</div></blockquote>
+<p><strong>Inputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>intensityProfile</strong> &#8211;
+1D Intensity Profile</li>
+<li><strong>skelScaleMm</strong> &#8211;
+Estimated millimetric scale</li>
+<li><strong>filterIdxs</strong> &#8211;
+Finds the linear index of the millimetric scale</li>
+</ul>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>peaklocs</strong> &#8211;
+1D peak locations</li>
+<li><strong>peakWaveCenters</strong> &#8211;
+1D peak wave center locations</li>
+<li><strong>peakValues</strong> &#8211;
+Peak values</li>
+<li><strong>threshIntensityProfile</strong> &#8211;
+Thresholded intensity profile</li>
+<li><strong>threshold</strong> &#8211;
+Threshold</li>
+<li><strong>contactAreaCenter</strong> &#8211;
+Center of the assumed contact area</li>
+<li><strong>contactAreaWidth</strong> &#8211;
+Width of the assumed contact area</li>
+<li><strong>xrayMarkerAreaCenter</strong> &#8211;
+Center of the xray marker (if any)</li>
+<li><strong>xrayMarkerAreaWidth</strong> &#8211;
+Width of the xray maker (if any)</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
 <dt id="src.Functions.invPolyArcLength3">
 <code class="descname">invPolyArcLength3</code><span class="sig-paren">(</span><em>polyCoeff</em>, <em>arcLength</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.invPolyArcLength3" title="Permalink to this definition">¶</a></dt>
 <dd><p>Numerically calculate the parameter (t) of parameterized [0,1] -&gt; R^3 polynomial
@@ -442,6 +489,23 @@ Intensity volume stacked as orthogonal matrix</li>
 Sampling points stacked as orthogonal matrix</li>
 <li><strong>skelScaleMm</strong> &#8211;
 Estimated millimetric scale</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.plotIntensityProfileAndPeaks">
+<code class="descname">plotIntensityProfileAndPeaks</code><span class="sig-paren">(</span><em>intensityProfile</em>, <em>skelScaleMm</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.plotIntensityProfileAndPeaks" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Usage</strong></p>
+<blockquote>
+<div>plotIntensityProfileAndPeaks(intensityProfile, skelScaleMm)</div></blockquote>
+<p><strong>Inputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>intensityProfile</strong> &#8211;
+a 1D Intensity profile</li>
+<li><strong>skelScaleMm</strong> &#8211;
+Estimated scale (mm per intensity sample)</li>
 </ul>
 </div></blockquote>
 </dd></dl>
