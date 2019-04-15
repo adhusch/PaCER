@@ -3,33 +3,34 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
     %
     % Parameters:
     %
-    %    
+    %    Something:     
 
     properties
-       String = ''; %A Property of String
+       String = ''; % A Property of String
     end
 
     properties (SetObservable = true)
-        entryPoint3D = Point3D.empty; %A property of entrypoint3D
-        targetPoint3D = Point3D.empty; %A property of targetpoint3D
+        entryPoint3D = Point3D.empty; % A property of entrypoint3D
+        targetPoint3D = Point3D.empty; % A property of targetpoint3D
     end
+
     properties (Access = public, Dependent = true); 
-        entryPoint = NaN(3,1); % blabla
-        targetPoint = NaN(3,1); %hehe
-        direction = NaN(3,1); %protperty
+        entryPoint = NaN(3,1); % A property of entryPoint
+        targetPoint = NaN(3,1); % A property of targetPoint
+        direction = NaN(3,1); % A property of direction
     end
     
     methods
        function str = toString(this)
-        % Description of the function goes here
+        % --Description of the function goes here
         %
         % Parameters:
         %
-        %    str:   
+        %    this:      
         %
         % Returns:
         %
-        %    output goes here
+        %    str:       
         %
             if(isempty(this.String))
                 str = ['Trajectory Object with target ' num2str(this.targetPoint')];
@@ -39,6 +40,17 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function set.entryPoint3D(this, point3DObj)
+        % --Description of the function goes here
+        %
+        % Parameters:
+        %
+        %    this:          
+        %    point3DObj:    
+        %
+        % Returns:
+        %
+        %    output goes here
+        %
             if(isa(point3DObj, 'Point3D'))
                 this.entryPoint3D = point3DObj;
                 this.notify('trajectoryChanged');
@@ -46,6 +58,17 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function set.targetPoint3D(this, point3DObj)
+        % --Description of the function goes here
+        %
+        % Parameters:
+        %
+        %    this:          
+        %    point3DObj:    
+        %
+        % Returns:
+        %
+        %    output goes here
+        %
             if(isa(point3DObj, 'Point3D'))
                 this.targetPoint3D = point3DObj;
                 this.notify('trajectoryChanged');
@@ -53,14 +76,44 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function value = get.entryPoint(this)
+        % --Description of the function goes here
+        %
+        % Parameters:
+        %
+        %    this:      
+        %
+        % Returns:
+        %
+        %    value:     
+        %
             value = this.entryPoint3D.point;
         end
         
         function value = get.targetPoint(this)
+        % --Description of the function goes here
+        %
+        % Parameters:
+        %
+        %    this:      
+        %
+        % Returns:
+        %
+        %    value:     
+        %
             value = this.targetPoint3D.point;
         end
         
         function set.entryPoint(this, point)
+        % --Description of the function goes here
+        %
+        % Parameters:
+        %
+        %    str:   
+        %
+        % Returns:
+        %
+        %    output goes here
+        %
             if(isempty(this.entryPoint3D))
                 this.entryPoint3D = Point3D();
             end
@@ -69,6 +122,17 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function set.targetPoint(this, point)
+        % --Description of the function goes here
+        %
+        % Parameters:
+        %
+        %    this:      
+        %    point:     
+        %
+        % Returns:
+        %
+        %    output goes here
+        %
             if(isempty(this.targetPoint3D))
                 this.targetPoint3D = Point3D();
             end
@@ -77,7 +141,16 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function direction = get.direction(this)
-            %normalized vector from entry to destination
+        % Normalized vector from entry to destination
+        %
+        % Parameters:
+        %
+        %    this:          
+        %
+        % Returns:
+        %
+        %    direction:     
+        %
             direction = -((this.entryPoint3D.point - this.targetPoint3D.point) / norm(this.entryPoint3D.point - this.targetPoint3D.point));
         end
     end
