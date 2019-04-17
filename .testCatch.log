@@ -1,0 +1,10 @@
+{Error: <a href="matlab: opentoline('/Users/loicmarx/PaCER/testA.m',2,1)">File: testA.m Line: 2 Column: 1
+</a>Invalid use of operator.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('catchWarning', '/Users/loicmarx/PaCER/catchWarning.m', 7)" style="font-weight:bold">catchWarning</a> (<a href="matlab: opentoline('/Users/loicmarx/PaCER/catchWarning.m',7,0)">line 7</a>)
+    eval(functionName);
+} 
+niiCT_brainMask_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post.nii.gz']);
+clear
+niiCT_brainMask_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post.nii.gz']);
+foundWarning = catchWarning('PaCER', 'Slice thickness is greater than 0.7 mm! Independet contact detection might not work reliable in this case. However, for certain electrode types with large contacts spacings you might be lucky.');
