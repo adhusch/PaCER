@@ -65,7 +65,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         % Returns:
         %
         %     :             Returns a feedback message to confirm the settings.
-        
+
             if(isa(point3DObj, 'Point3D'))
                 this.targetPoint3D = point3DObj;
                 this.notify('trajectoryChanged');
@@ -73,6 +73,16 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function value = getEntryPoint(this)
+        % Function that gets the coordinates of the entry point
+        %
+        % Parameters :
+        %
+        %    this:      Local Variable
+        %
+        % Returns:
+        %
+        %    value:     Entry point coordinates. 
+        
             value = this.entryPoint3D.point;
         end
         
