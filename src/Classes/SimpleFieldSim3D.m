@@ -1,14 +1,9 @@
-%% Visualisation of the Mädler/Coenen VTA Approximation
-% see Mädler, B., and V. A. Coenen. "Explaining clinical effects of deep brain stimulation 
+classdef SimpleFieldSim3D < plotable3D & configurable & handle
+% Visualisation of the MÃ¤dler/Coenen VTA Approximation
+% see MÃ¤dler, B., and V. A. Coenen. "Explaining clinical effects of deep brain stimulation 
 % through simplified target-specific modeling of the volume of activated tissue." 
 % American Journal of Neuroradiology 33.6 (2012): 1072-1080.
-%
-% Andreas Husch
-% Centre Hospitalier de Luxembourg, Dep. of Neurosurgery /
-% University of Luxembourg - Luxembourg Centre for Systems Biomedicne
-% 2013 - 2017
-% mail@andreashusch.de, husch.andreas@chl.lu
-classdef SimpleFieldSim3D < plotable3D & configurable & handle
+
     properties (SetAccess = public, GetAccess = public)
         trajectoryObject = [];
         color = [1 0 0];    %default red
@@ -90,3 +85,7 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         end
     end
 end
+
+% .. AUTHORS:
+%       - Andreas Husch, Original File
+%       - Daniel Duarte Tojal, Documentation
