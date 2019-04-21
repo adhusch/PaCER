@@ -4,5 +4,5 @@
 Classes
 ---------
 
-.. automodule:: src.testClass
+.. automodule:: src.Classes
    :members:
