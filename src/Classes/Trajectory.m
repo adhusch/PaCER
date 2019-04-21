@@ -139,7 +139,17 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function direction = getDirection(this)
-            %normalized vector from entry to destination
+        % Function to give a normalized vector from entry to destination
+        %
+        % Parameters:
+        %
+        %    this:          Local Variable
+        %
+        % Returns:
+        %
+        %    direction:     the direction of the 3D vector betwen the entry
+        %                   and the target point
+        
             direction = -((this.entryPoint3D.point - this.targetPoint3D.point) / norm(this.entryPoint3D.point - this.targetPoint3D.point));
         end
     end
