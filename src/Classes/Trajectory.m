@@ -42,11 +42,11 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         % Parameters:
         %
         %    this:          Local Variable
-        %    point3DObj:    3D point coordinates to set the entry point to
+        %    point3DObj:    3D point coordinates to set the entry point to.
         %
         % Returns:
         %
-        %     :              Returns a feedback message to confirm the settings
+        %     :              Returns a feedback message to confirm the settings.
 
             if(isa(point3DObj, 'Point3D'))
                 this.entryPoint3D = point3DObj;
@@ -55,6 +55,17 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function setTargetPoint3D(this, point3DObj)
+        % Function that sets the target point of the trajectory
+        %
+        % Parameters:
+        %
+        %    this:          Local Variable
+        %    point3DObj:    3D point coordinates to set the target point to.
+        %
+        % Returns:
+        %
+        %     :             Returns a feedback message to confirm the settings.
+        
             if(isa(point3DObj, 'Point3D'))
                 this.targetPoint3D = point3DObj;
                 this.notify('trajectoryChanged');
