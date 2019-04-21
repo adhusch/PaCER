@@ -37,7 +37,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function setEntryPoint3D(this, point3DObj)
-        % Function that sets the entry point of the trajectory
+        % Function that sets the 3D entry point of the trajectory
         %
         % Parameters:
         %
@@ -55,7 +55,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function setTargetPoint3D(this, point3DObj)
-        % Function that sets the target point of the trajectory
+        % Function that sets the 3D target point of the trajectory
         %
         % Parameters:
         %
