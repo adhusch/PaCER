@@ -82,11 +82,21 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         % Returns:
         %
         %    value:     Entry point coordinates. 
-        
+
             value = this.entryPoint3D.point;
         end
         
         function value = getTargetPoint(this)
+        % Function that gets the coordinates of the target point
+        %
+        % Parameters :
+        %
+        %    this:      Local Variable
+        %
+        % Returns:
+        %
+        %    value:     Target point coordinates.
+
             value = this.targetPoint3D.point;
         end
         
