@@ -5,17 +5,20 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
 % American Journal of Neuroradiology 33.6 (2012): 1072-1080.
 
     properties (SetAccess = public, GetAccess = public)
-        trajectoryObject = [];
-        color = [1 0 0];    %default red
-        string = 'SimpleFieldSim';
-        graphicsHandles = [];
+        trajectoryObject = [];      % Trajectory of the Object
+        color = [1 0 0];            % Default red colour of the visualization
+        string = 'SimpleFieldSim';  %
+        graphicsHandles = [];       %
     end
+
     properties (SetAccess = public, GetAccess = public, SetObservable=true)
-        impedance = 800; %[Ohm]
-        voltage = 1.0; %[V]
+        impedance = 800;    % Resistance given in [Ohm]
+        voltage = 1.0;      % Voltage given in [V]
     end
+
     properties (Access = protected)
-        sphere_x = []; % a normalized sphere used as base
+    % a normalized sphere used as base
+        sphere_x = []; 
         sphere_y = [];
         sphere_z = [];
     end
