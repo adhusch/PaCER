@@ -101,6 +101,17 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function setEntryPoint(this, point)
+        % Function that sets the 3D entry point of the trajectory
+        %
+        % Parameters:
+        %
+        %    this:      Local Variable
+        %    point:     Point coordinates to set the entry point to.
+        %
+        % Returns:
+        %
+        %     :         Returns a feedback message to confirm the settings.
+
             if(isempty(this.entryPoint3D))
                 this.entryPoint3D = Point3D();
             end
