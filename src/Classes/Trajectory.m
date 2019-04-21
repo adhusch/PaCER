@@ -1,12 +1,6 @@
-% Trajectory - represents a (straight line) trajectory by two Point3D (entry and target) objects
-%
-% Andreas Husch
-% Centre Hospitalier de Luxembourg, Dep. of Neurosurgery /
-% University of Luxembourg - Luxembourg Centre for Systems Biomedicne
-% 2014 - 2017
-% mail@andreashusch.de, husch.andreas@chl.lu
-
 classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
+% Trajectory - represents a (straight line) trajectory by two Point3D (entry and target) objects
+
     properties
        String = ''; % An empty starting string
     end
@@ -24,7 +18,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
     
     methods
        function str = toString(this)
-        % Sets the info message for the feedback
+        % Function that sets the info message for the feedback
         %
         % Parameters:
         %
@@ -86,3 +80,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
     end
 end
+
+% .. AUTHORS:
+%       - Andreas Husch, Original File
+%       - Daniel Duarte Tojal, Documentation
