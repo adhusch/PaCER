@@ -8,22 +8,33 @@
 
 classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
     properties
-       String = ''; 
+       String = ''; % An empty starting string
     end
 
     properties (SetObservable = true)
-        entryPoint3D = Point3D.empty;
-        targetPoint3D = Point3D.empty;
+        entryPoint3D = Point3D.empty; %3D entry point of the trajectory
+        targetPoint3D = Point3D.empty; %3D target point of the trajectory
     end
 
     properties (Access = public, Dependent = true);
-        entryPoint = NaN(3,1);
-        targetPoint = NaN(3,1);
-        direction = NaN(3,1);      
+        entryPoint = NaN(3,1); % Public entry point property of the class
+        targetPoint = NaN(3,1); % Public target point property of the class
+        direction = NaN(3,1); % Public direction property of the class
     end
     
     methods
        function str = toString(this)
+        % Sets the info message for the feedback
+        %
+        % Parameters:
+        %
+        %    this:      Local variable
+        %
+        % Returns:
+        %
+        %    str:       String that returns text when target point is set
+        %               or stays empty if not.
+
             if(isempty(this.String))
                 str = ['Trajectory Object with target ' num2str(this.targetPoint')];
             else
