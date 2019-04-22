@@ -45,6 +45,16 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         end
         
         function str = toString(this)
+        % Function that generates a string
+        %
+        % Parameters:
+        %
+        %    this:      Local Variable
+        %
+        % Returns:
+        %
+        %    str:       Returned String
+        
             str = this.string;
         end
         
