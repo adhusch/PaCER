@@ -25,8 +25,17 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
     
     methods
         function this = SimpleFieldSim3D(trajectoryObject)
+        % Function that serves to initialize a normalized sphere
+        %
+        % Parameters:
+        %
+        %    trajectoryObject:      Object that defines the trajectory
+        %
+        % Returns:
+        %
+        %    this:                  
+        
             this.trajectoryObject = trajectoryObject;
-            % init normalized sphere
             [this.sphere_x,this.sphere_y,this.sphere_z] = sphere;
             addlistener(this, 'voltage', 'PostSet', @this.updatePlot3D);
             addlistener(this, 'impedance', 'PostSet', @this.updatePlot3D);
