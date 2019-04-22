@@ -110,6 +110,16 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         end
      
         function fig = getConfigWindow(this)
+        % Function that opens the configuration window
+        %
+        % Parameters:
+        %
+        %    this:      Local Variable
+        %
+        % Returns:
+        %
+        %    fig:       Configuration window
+        
             scrsz = get(groot,'ScreenSize');
             fig = figure('Name', 'SimpleFieldSim3D Config', 'Position',[scrsz(3)/2 scrsz(4)/2 500 150], 'MenuBar', 'none');
             this.getConfigPanel();
