@@ -1,12 +1,7 @@
-%% PolynomialElectrodeModel - Class representing a (potentially curved) electrode
-% represented by a fitted polynomial ([0,1] -> R^3)
-%
-% Andreas Husch
-% Centre Hospitalier de Luxembourg, Dep. of Neurosurgery /
-% University of Luxembourg - Luxembourg Centre for Systems Biomedicne
-% 2014 - 2017
-% mail@andreashusch.de, husch.andreas@chl.lu
 classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
+% PolynomialElectrodeModel - Class representing a (potentially curved) electrode
+% represented by a fitted polynomial ([0,1] -> R^3)
+
     properties (SetObservable);
         ELECTRODE_DIAMETER = 1.27; % deprecated, use this.electrodeInfo.diameterMm
         ELECTRODE_COLOR = rgb('DodgerBlue');
@@ -265,3 +260,7 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
         end
     end
 end
+
+% .. AUTHORS:
+%       - Andreas Husch, Original File
+%       - Daniel Duarte Tojal, Documentation
