@@ -54,11 +54,22 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         % Returns:
         %
         %    str:       Returned String
-        
+
             str = this.string;
         end
         
         function graphicsHandle = initPlot3D(this, ax)
+        % Function that initiates a 3D plot
+        %
+        % Parameters:
+        %
+        %    this:              Local Variable
+        %    ax:                
+        %
+        % Returns:
+        %
+        %    graphicsHandle:    
+        
             set(ax, 'NextPlot', 'add');
             if(isa(this.trajectoryObject, 'TestElectrodes'))
                 targetpoint = this.trajectoryObject.electrodesTargetPoints(:,this.selectedElectrodeContact); %NOT contact but the selected trajectory (out of the five)
