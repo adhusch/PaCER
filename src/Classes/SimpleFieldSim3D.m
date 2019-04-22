@@ -119,7 +119,7 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         % Returns:
         %
         %    fig:       Configuration window
-        
+
             scrsz = get(groot,'ScreenSize');
             fig = figure('Name', 'SimpleFieldSim3D Config', 'Position',[scrsz(3)/2 scrsz(4)/2 500 150], 'MenuBar', 'none');
             this.getConfigPanel();
@@ -128,11 +128,22 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
     
     methods (Static)
         function r = calcFieldradius(impedance, voltage)
+        % Function that calculates isoline distance [mm] from center of electrode. 
+        % Note the electrode type!
+        %
+        % Parameters:
+        %
+        %    impedance:     Resistance of the electrodes.
+        %    voltage:       Voltage between the electrodes.
+        %
+        % Returns:
+        %
+        %    r:             Returned radius if the field
+
             k1 = -1.0473;
             k3 = 0.2786;
             k4 = 0.0009856;
             
-            % calculate isoline distance [mm] from center of electrode. note the electrode type!
             fr = @(impedance, voltage)(-(k4 * impedance -sqrt(k4^2*impedance^2 + 2*k1*k4*impedance + k1^2 + 4*k3*voltage) + k1) / (2 * k3));
             r = fr(impedance, voltage);
         end
