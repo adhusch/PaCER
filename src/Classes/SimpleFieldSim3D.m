@@ -96,6 +96,16 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         end
 
         function panel = getConfigPanel(this, varargin)
+        % Function that gets the configuration panel of the simulation
+        %
+        % Parameters: 
+        %
+        %    this:          Local Variable
+        %    varargin:
+        %
+        % Returns:
+        %
+        %    panel:         Information panel of the simulation
             panel = SimpleFieldSim3DViewElement(this, varargin{:});
         end
      
