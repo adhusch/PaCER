@@ -21,24 +21,23 @@ function success = verifyFunctionWarning(functionCall, warningMessage, varargin)
 %    https://github.com/opencobra/cobratoolbox/blob/master/test/verifyCobraFunctionError.m
 %    [5aa9ccd]
 
-warningMessage = false;
+
 parser = inputParser();
-parser.addRequired('functionCall',@ischar)
-parser.addRequired('warningMessage','',@ischar)
+parser.addRequired('functionCall', @ischar)
+parser.addRequired('warningMessage', @ischar)
 parser.addParamValue('inputs',{},@iscell)
 parser.addParamValue('outputArgCount',0,@(x) isnumeric(x) && mod(x,1) == 0);
 
 parser.parse(functionCall, warningMessage, varargin{:});
 
 outputArgcount = parser.Results.outputArgCount;
-warningMessage = ~any(ismember('warningMessage',parser.UsingDefaults));
-message = parser.Results.warningMessage;
+%warningMessage = ~any(ismember('warningMessage',parser.UsingDefaults));
+%message = parser.Results.warningMessage;
 inputs = parser.Results.inputs;
 
 functionCall = str2func(functionCall);
-success = true;
+success = false;
 
-%success = false;
 logFile = '.testCatch.log';
 diary(logFile); % run the function in diary mode
 try   
@@ -55,14 +54,21 @@ end
 % loop through the temporary diary file
     fid = fopen(logFile);
     tline = fgetl(fid);
-    while ischar(tline)
-        tline = fgetl(fid);
-        disp(tline);
+    counter = 0;
+    while ~feof(fid)
+        tline = [tline ' ' fgetl(fid)];
+        %disp(tline);
         if ~isempty(tline) && contains(tline, warningMessage)
-            verifyFunctionWarning = true;
+            success = true;
             break;
         end
+        if counter > 3
+            tline = '';
+            counter = 0;
+        end
+        counter = counter + 1;
     end
+    
     fclose(fid);
 
     % remove the temporary diary file
