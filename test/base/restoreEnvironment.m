@@ -17,7 +17,6 @@ function restoreEnvironment(environment, restorePath, printLevel)
 %    https://github.com/opencobra/cobratoolbox/blob/master/src/base/utilities/restoreEnvironment.m
 %    [005f7d1]
   
-
     if ~exist('restorePath','var')
         restorePath = true;
     end
