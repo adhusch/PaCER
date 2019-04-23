@@ -21,24 +21,24 @@ function success = verifyFunctionWarning(functionCall, warningMessage, varargin)
 %    https://github.com/opencobra/cobratoolbox/blob/master/test/verifyCobraFunctionError.m
 %    [5aa9ccd]
 
-testMessage = false;
+warningMessage = false;
 parser = inputParser();
 parser.addRequired('functionCall',@ischar)
 parser.addRequired('warningMessage','',@ischar)
 parser.addParamValue('inputs',{},@iscell)
 parser.addParamValue('outputArgCount',0,@(x) isnumeric(x) && mod(x,1) == 0);
 
-parser.parse(functionCall,varargin{:});
+parser.parse(functionCall, warningMessage, varargin{:});
 
 outputArgcount = parser.Results.outputArgCount;
 warningMessage = ~any(ismember('warningMessage',parser.UsingDefaults));
-message = parser.Results.testMessage;
+message = parser.Results.warningMessage;
 inputs = parser.Results.inputs;
 
 functionCall = str2func(functionCall);
 success = true;
 
-verifyFunctionWarning = false;
+%success = false;
 logFile = '.testCatch.log';
 diary(logFile); % run the function in diary mode
 try   
