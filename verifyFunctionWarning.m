@@ -1,16 +1,20 @@
 function success = verifyFunctionWarning(functionCall, warningMessage, varargin)
-% Tests if the warning message fits to the warning provided
+% Tests if the warning message fits to the provided warning
 %
 % USAGE:
 %
-%    success = verifyFunctionWarning(functionCall, warningMessage, varargin)
+%    success = verifyFunctionWarning('functionCall', warningMessage, varargin)
 %
 % INPUTS:
 %    functionCall:       The name of a function.
 %    warningMessage:     The warning message that we want to capture
 %
 % OUPUTS: 
-%    success:            Catch the provided warning message
+%    success:            Catch the provided warning message in tline
+%
+% EXAMPLE:
+%    % Test whether PaCER function throws the provided warning message: 
+%    verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT})
 %
 % AUTORS:
 %    Laurent Heirendt, April 2019
@@ -21,43 +25,41 @@ function success = verifyFunctionWarning(functionCall, warningMessage, varargin)
 %    https://github.com/opencobra/cobratoolbox/blob/master/test/verifyCobraFunctionError.m
 %    [5aa9ccd]
 
-
 parser = inputParser();
 parser.addRequired('functionCall', @ischar)
 parser.addRequired('warningMessage', @ischar)
-parser.addParamValue('inputs',{},@iscell)
-parser.addParamValue('outputArgCount',0,@(x) isnumeric(x) && mod(x,1) == 0);
-
+parser.addParamValue('inputs', {}, @iscell)
+parser.addParamValue('outputArgCount', 0, @(x) isnumeric(x) && mod(x,1) == 0);
 parser.parse(functionCall, warningMessage, varargin{:});
 
 outputArgcount = parser.Results.outputArgCount;
-%warningMessage = ~any(ismember('warningMessage',parser.UsingDefaults));
-%message = parser.Results.warningMessage;
 inputs = parser.Results.inputs;
-
 functionCall = str2func(functionCall);
-success = false;
 
-logFile = '.testCatch.log';
-diary(logFile); % run the function in diary mode
+% initialize the test 
+success = false; 
+% create an hidden file 
+logFile = '.testCatch.log'; 
+% run the function in diary mode
+diary(logFile);
 try   
     if outputArgcount > 0
-        outArgs = cell(outputArgcount,1);
+        outArgs = cell(outputArgcount, 1);
         [outArgs{:}] = functionCall(inputs{:});
     else
         functionCall(inputs{:});
     end 
 end 
-
     diary off
     
 % loop through the temporary diary file
     fid = fopen(logFile);
     tline = fgetl(fid);
     counter = 0;
-    while ~feof(fid)
+    % Read one line at a time until you reach the end of the file
+    while ~feof(fid) 
+        % Concatenate the text if the provided warning message is found in the 3 next line, otherwise tline is empty
         tline = [tline ' ' fgetl(fid)];
-        %disp(tline);
         if ~isempty(tline) && contains(tline, warningMessage)
             success = true;
             break;
@@ -70,7 +72,6 @@ end
     end
     
     fclose(fid);
-
     % remove the temporary diary file
     delete(logFile);
 end
