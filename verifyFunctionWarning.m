@@ -6,15 +6,15 @@ function success = verifyFunctionWarning(functionCall, warningMessage, varargin)
 %    success = verifyFunctionWarning('functionCall', warningMessage, varargin)
 %
 % INPUTS:
-%    functionCall:       The name of a function.
-%    warningMessage:     The warning message that we want to capture
+%    functionCall:       The name of a function
+%    warningMessage:     The specific warning message that need to be tested
 %
 % OUPUTS: 
-%    success:            Catch the provided warning message in tline
+%    success:            Verify if the function throws the provided warning message and catch it in tline
 %
 % EXAMPLE:
 %    % Test whether PaCER function throws the provided warning message: 
-%    verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT})
+%    assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT}));
 %
 % AUTORS:
 %    Laurent Heirendt, April 2019
@@ -31,11 +31,9 @@ parser.addRequired('warningMessage', @ischar)
 parser.addParamValue('inputs', {}, @iscell)
 parser.addParamValue('outputArgCount', 0, @(x) isnumeric(x) && mod(x,1) == 0);
 parser.parse(functionCall, warningMessage, varargin{:});
-
 outputArgcount = parser.Results.outputArgCount;
 inputs = parser.Results.inputs;
 functionCall = str2func(functionCall);
-
 % initialize the test 
 success = false; 
 % create an hidden file 
@@ -50,15 +48,16 @@ try
         functionCall(inputs{:});
     end 
 end 
-    diary off
-    
+    diary off   
 % loop through the temporary diary file
     fid = fopen(logFile);
     tline = fgetl(fid);
     counter = 0;
-    % Read one line at a time until you reach the end of the file
+    % Read the code until it reaches the end of the script
     while ~feof(fid) 
-        % Concatenate the text if the provided warning message is found in the 3 next line, otherwise tline is empty
+        % Setup the function to read the script three lines by three lines. If a
+        % warning message is found in these three lines, this message will be
+        % concatenated in tline. If not, tline will be empty. 
         tline = [tline ' ' fgetl(fid)];
         if ~isempty(tline) && contains(tline, warningMessage)
             success = true;
@@ -70,7 +69,6 @@ end
         end
         counter = counter + 1;
     end
-    
     fclose(fid);
     % remove the temporary diary file
     delete(logFile);
