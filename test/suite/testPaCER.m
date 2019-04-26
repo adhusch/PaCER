@@ -28,8 +28,33 @@ niiCT_PostOP_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep '
 % generate the new output (testing only niiCT input argument)
 [elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PostOP_new);
 
+% create a scalar structure with fields to compare the elecModels structure
+S.f1 = elecModels_new{1, 1}.ELECTRODE_DIAMETER
+S.f2 = elecModels_new{1, 1}.ELECTRODE_COLOR  
+S.f3 = elecModels_new{1, 1}.ACTIVE_CONTACT_COLOR 
+S.f4 = elecModels_new{1, 1}.METAL_COLOR  
+S.f5 = elecModels_new{1, 1}.contactPositions  
+S.f12 = elecModels_new{1, 2}.ELECTRODE_DIAMETER % second electrode
+S.f22 = elecModels_new{1, 2}.ELECTRODE_COLOR  
+S.f32 = elecModels_new{1, 2}.ACTIVE_CONTACT_COLOR 
+S.f42 = elecModels_new{1, 2}.METAL_COLOR  
+S.f52 = elecModels_new{1, 2}.contactPositions  
+
+L.f1 = refData.elecModels_ref{1, 1}.ELECTRODE_DIAMETER  
+L.f2 = refData.elecModels_ref{1, 1}.ELECTRODE_COLOR 
+L.f3 = refData.elecModels_ref{1, 1}.ACTIVE_CONTACT_COLOR  
+L.f4 = refData.elecModels_ref{1, 1}.METAL_COLOR 
+L.f5 = refData.elecModels_ref{1, 1}.contactPositions  
+L.f12 = refData.elecModels_ref{1, 2}.ELECTRODE_DIAMETER  % second electrode
+L.f22 = refData.elecModels_ref{1, 2}.ELECTRODE_COLOR 
+L.f32 = refData.elecModels_ref{1, 2}.ACTIVE_CONTACT_COLOR  
+L.f42 = refData.elecModels_ref{1, 2}.METAL_COLOR 
+L.f52 = refData.elecModels_ref{1, 2}.contactPositions  
+
+% compare the new data against the reference data of elecModels structure
+assert(isequal(S,L))
+
 % compare the new data against the reference data
-%assert(isequal (elecModels_new, refData.elecModels_ref))
 assert(isequal(elecPointCloudsStruct_new, refData.elecPointCloudsStruct_ref))
 assert(isequal(intensityProfiles_new, refData.intensityProfiles_ref))
 assert(isequal(skelSkelmms_new, refData.skelSkelmms_ref))
