@@ -54,6 +54,15 @@ L.f52 = refData.elecModels_ref{1, 2}.contactPositions
 % compare the new data against the reference data of elecModels structure
 assert(isequal(S,L))
 
+
+% test the elecModels structure
+for k = 1:length(elecModels_new)
+    assert(isequal(elecModels_new{:}, refData.elecModels_ref{:}))
+end
+
+
+
+
 % compare the new data against the reference data
 assert(isequal(elecPointCloudsStruct_new, refData.elecPointCloudsStruct_ref))
 assert(isequal(intensityProfiles_new, refData.intensityProfiles_ref))
@@ -139,4 +148,6 @@ assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_ne
 % test if slice thickness is greater than 0.7 mm
 warningMessage = 'Slice thickness is greater than 0.7 mm! Independet contact detection might not work reliable in this case. However, for certain electrode types with large contacts spacings you might be lucky.';
 assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_brainMask_new}))
+
+
 
