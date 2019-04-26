@@ -94,17 +94,17 @@ assert(isequal(intensityProfiles_Mask_new, refData_brainMask.intensityProfiles_M
 assert(isequal(skelSkelmms_Mask_new, refData_brainMask.skelSkelmms_Mask_Ref))
 
 %% test different electrode type: 
-%load the reference data
+% load the reference data
 refData_electrodeType = load([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_PaCER_electrodeType.mat']);
 % define the input argument 
 niiCT_electrodesType = niiCT_PostOP_new; 
 xml_Plan_new; 
 
-%generate the new output with Medtronic 3387 electrode type. 
+% generate the new output with Medtronic 3387 electrode type. 
 [elecModels_Medtronic3387_new, elecPointCloudsStruct_Medtronic3387_new, intensityProfiles_Medtronic3387_new, skelSkelmms_Medtronic3387_new] = PaCER(niiCT_electrodesType, 'medtronicXMLPlan', xml_Plan_new, 'electrodeType', 'Medtronic 3387');
 
-%compare the new data against the reference data using XML plan and
-%providing electrode type (Medtronic 3387)
+% compare the new data against the reference data using XML plan and
+% providing electrode type (Medtronic 3387)
 
 %assert(isequal(elecModels_Medtronic3387_new, refData_electrodeType.elecModels_Medtronic3387_ref))
 assert(isequal(elecPointCloudsStruct_Medtronic3387_new, refData_electrodeType.elecPointCloudsStruct_Medtronic3387_ref))
@@ -114,8 +114,8 @@ assert(isequal(skelSkelmms_Medtronic3387_new, refData_electrodeType.skelSkelmms_
 % generate the new output with Medtronic 3389 electrode type.
 [elecModels_Medtronic3389_new, elecPointCloudsStruct_Medtronic3389_new, intensityProfiles_Medtronic3389_new, skelSkelmms_Medtronic3389_new] = PaCER(niiCT_electrodesType, 'medtronicXMLPlan', xml_Plan_new, 'electrodeType', 'Medtronic 3389');
 
-%compare the new data against the reference data using XML plan and
-%providing electrode type (Medtronic 3389)
+% compare the new data against the reference data using XML plan and
+% providing electrode type (Medtronic 3389)
 %assert(isequal(elecModels_Medtronic3389_new, refData_electrodeType.elecModels_Medtronic3389_ref))
 assert(isequal(elecPointCloudsStruct_Medtronic3389_new, refData_electrodeType.elecPointCloudsStruct_Medtronic3389_ref))
 assert(isequal(intensityProfiles_Medtronic3389_new, refData_electrodeType.intensityProfiles_Medtronic3389_ref))
@@ -124,48 +124,19 @@ assert(isequal(skelSkelmms_Medtronic3389_new, refData_electrodeType.skelSkelmms_
 % generate the new output with Boston electrode type.
 [elecModels_Boston_new, elecPointCloudsStruct_Boston_new, intensityProfiles_Boston_new, skelSkelmms_Boston_new] = PaCER(niiCT_electrodesType, 'medtronicXMLPlan', xml_Plan_new, 'electrodeType', 'Boston Vercise Directional');
 
-%compare the new data against the reference data using XML plan and
-%providing electrode type (Boston Vercise Directional)
+% compare the new data against the reference data using XML plan and
+% providing electrode type (Boston Vercise Directional)
 %assert(isequal(elecModels_Boston_new, refData_electrodeType.elecModels_Boston_ref))
 assert(isequal(elecPointCloudsStruct_Boston_new, refData_electrodeType.elecPointCloudsStruct_Boston_ref))
 assert(isequal(intensityProfiles_Boston_new, refData_electrodeType.intensityProfiles_Boston_ref))
 assert(isequal(skelSkelmms_Boston_new, refData_electrodeType.skelSkelmms_Boston_ref))
 
 %% test the warning messages
+% test if slice thickness is greater than 1 mm
+warningMessage = 'Slice thickness is greater than 1 mm! Independent contact detection is most likly not possible. Forcing contactAreaCenter based method.';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
 
-w = warning ('off','all');%%
-try
-    [elecModels_warning, elecPointCloudsStruct_warning, intensityProfiles_warning, skelSkelmms_warning] = PaCER(niiCT_brainMask_new);
-catch ME
-    assert(length(ME.message) > 0)
-end
-w = warning ('on','all');
-
-
-% reset warnings
-lastwarn('');
-
-% Do your fitting
-    [elecModels_warning, elecPointCloudsStruct_warning, intensityProfiles_warning, skelSkelmms_warning] = PaCER(niiCT_brainMask_new);
-
-% Check which warning occured
- [msgstr, msgid] = lastwarn;
-switch msgid
-   case 'No electrode specification given! Set electrodeType option! Trying to estimate type by contactAreaWidth only which might be wrong!'
-      % In your case you say you want to throw an error
-      error(msgstr); % or your custom error message
-   %case 'SomeOtherMessageIDIfYouWantToCheckForSomethingElse'
-
-end
-
-
-lastwarn('');
-w = warning ('off','all');%%
-try
-    [elecModels_warning, elecPointCloudsStruct_warning, intensityProfiles_warning, skelSkelmms_warning] = PaCER(niiCT_brainMask_new);
-     [msgstr, msgid] = lastwarn;
-catch msgstr
-    assert(length(msgstr) > 0)
-end
-w = warning ('on','all');
+% test if slice thickness is greater than 0.7 mm
+warningMessage = 'Slice thickness is greater than 0.7 mm! Independet contact detection might not work reliable in this case. However, for certain electrode types with large contacts spacings you might be lucky.';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_brainMask_new}))
 
