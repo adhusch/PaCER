@@ -1,17 +1,29 @@
-%% oor - optimal opliptimal oblique sampling along a given polynonimal
+function [improvedSkeleton, medIntensity,orthIntensVol, orthSamplePointsVol, skelScaleMm] = oor(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)
+% OOR - Optimal Oblique Resampling along a given polynonimal
 %
-% Returns: improvedSkeleton - skeleton gained along the polynomial by
-%                             resampling and intensity weithed centroid calculation
-%          medIntensity     - median intensity profile along the polynoial
+% USAGE:
 %
-% Andreas Husch
-% Centre Hospitalier de Luxembourg / Luxembourg Centre for Systems
-% Biomedicine, University of Luxembourg
-% 2016  - 2017
-% mail@andreashusch.de
+%    [improvedSkeleton, medIntensity, orthIntensVol, orthSamplePointsVol, skelScaleMm] 
+%    = oor(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)
 %
-% That code needs some cleanup :-) But it works ;-)
-function [improvedSkeleton, medIntensity,orthIntensVol, orthSamplePointsVol, skelScaleMm] = orr(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)
+% INPUTS: 
+%    r3polyToUse:               Polynomial coefficient matrix
+%    STEP_SIZE:                 Step size along polynomial
+%    XGrid:                     Grid to sample perpentidular to polyonial (x)
+%    YGrid:                     Grid to sample perpentidular to polyonial (y)
+%    interpolationF:            An interpolater fitted to point cloud (see scatteredInterpolant)
+%
+% OUTPUTS: 
+%    improvedSkeleton:          Newly determined skeleton point cloud after re-sampling
+%    medIntensity:              Median intensity along the polynomial
+%    orthIntensVol:             Intensity volume stacked as orthogonal matrix
+%    orthSamplePointsVol:       Sampling points stacked as orthogonal matrix
+%    skelScaleMm:               Estimated millimetric scale
+%
+% .. AUTHORS:
+%       - Andreas Husch, Original File
+%       - Daniel Duarte Tojal, Documentation
+
 SND_THRESH=1500;
 
 arcLength = polyArcLength3(r3polyToUse, 0, 1);
