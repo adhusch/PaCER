@@ -9,7 +9,7 @@
 global refDataPath
 global inputDataPath
 
-%% save the current path
+% save the current path
 currentDir = pwd;
 
 % initialize the test
@@ -17,10 +17,12 @@ fileDir = fileparts(which(mfilename));
 cd(fileDir);
 
 % load reference data (function implemented with niiCT model)
-refData = load ([refDataPath  filesep 'refData_extractBrainConvHull.mat']);
+refData = load ([refDataPath filesep 'refData_extractBrainConvHull.mat']);
 
-% generate the new output
+% load the niiCT model 
 niiCT = NiftiMod([inputDataPath filesep 'ct_post.nii.gz']);
+
+% generate the new outputs by using the niiCT model
 [convHullBrainMask_new, roughBrainMask_new] = extractBrainConvHull(niiCT);
 
 % comparison between the new output and the reference data 
