@@ -17,7 +17,7 @@ cd(fileDir);
 polyCoeff = [1 1 1; 2 3 4]; % degree 1 polynomial in 3d, i.e. a straight line through 3d space with bias (1) in each x,y,z direction and a slope of 2 in x, 3 in y and 4 and z direction.
 arcLength = -1;  
 
-% reference data hard-coded
+% hard-coded reference data
 t_ref = 0; 
 
 % generate the new output  
@@ -31,11 +31,10 @@ warningMessage = 'invPolyArcLength3: given arcLength is negative! Forcing t=0. T
 assert(verifyFunctionWarning('invPolyArcLength3', warningMessage, 'inputs', {polyCoeff, arcLength}));
 
 % setup the inputs arguments to satisfy the condition when ~arcLength(i)<0
-polyCoeff;
 arcLength_positive = 10; 
 tol = 1e-4; % tolerence value for the comparison between reference data and the new output
 
-% reference data hard-coded
+% hard-coded reference data
 t_ref_positive = 5.7735; 
 
 % generate the new output using a positive value for arcLength 
