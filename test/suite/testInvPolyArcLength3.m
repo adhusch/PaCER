@@ -13,9 +13,11 @@ currentDir = pwd;
 fileDir = fileparts(which(mfilename));
 cd(fileDir);
 
-%% setup the reference data to capture the warning message 
-polyCoeff = [1, 2, 3];
+% setup the inputs data to capture the warning message 
+polyCoeff = [1, 2, 3]; % coefficient matrix corresponding to a 3rd degree polynomial, which maps to  3-dimensional coordinates in the last fitting step
 arcLength = -1;  
+
+% reference data hard-coded
 t_ref = 0; 
 
 % generate the new output  
@@ -28,16 +30,18 @@ assert(isequal(t_ref, t_new));
 warningMessage = 'invPolyArcLength3: given arcLength is negative! Forcing t=0. This is wrong but might be approximatly okay for the use case! Check carefully!';
 assert(verifyFunctionWarning('invPolyArcLength3', warningMessage, 'inputs', {polyCoeff, arcLength}));
 
-%% setup the reference data to test if ~arcLength(i)<0
+% setup the inputs data to test if ~arcLength(i)<0
 polyCoeff;
-arcLength_2 = 10; 
-t_ref2 = 0; 
+arcLength = 10; 
+
+% reference data hard-coded
+t_ref = 0; 
 
 % generate the new output 
-t_new2 = invPolyArcLength3(polyCoeff, arcLength_2);
+t_new = invPolyArcLength3(polyCoeff, arcLength);
 
 % compare the reference data and the new generated data
-assert(isequal(t_ref2, t_new2));
+assert(isequal(t_ref, t_new));
 
 % change back to the current directory
 cd(currentDir);
