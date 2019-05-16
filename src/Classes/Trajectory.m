@@ -22,7 +22,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         %
         % Parameters:
         %
-        %    this:      Local variable
+        %    this:      Self-reference
         %
         % Returns:
         %
@@ -41,7 +41,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         %
         % Parameters:
         %
-        %    this:          Local Variable
+        %    this:          Self-Reference
         %    point3DObj:    3D point coordinates to set the entry point to.
         %
         % Returns:
@@ -59,7 +59,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         %
         % Parameters:
         %
-        %    this:          Local Variable
+        %    this:          Self-Reference
         %    point3DObj:    3D point coordinates to set the target point to.
         %
         % Returns:
@@ -75,9 +75,9 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         function value = getEntryPoint(this)
         % Function that gets the coordinates of the entry point
         %
-        % Parameters :
+        % Parameters:
         %
-        %    this:      Local Variable
+        %    this:      Self-Reference
         %
         % Returns:
         %
@@ -89,9 +89,9 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         function value = getTargetPoint(this)
         % Function that gets the coordinates of the target point
         %
-        % Parameters :
+        % Parameters:
         %
-        %    this:      Local Variable
+        %    this:      Self-Reference
         %
         % Returns:
         %
@@ -105,7 +105,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         %
         % Parameters:
         %
-        %    this:      Local Variable
+        %    this:      Self-Reference
         %    point:     Point coordinates to set the entry point to.
         %
         % Returns:
@@ -124,7 +124,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         %
         % Parameters:
         %
-        %    this:      Local Variable
+        %    this:      Self-Reference
         %    point:     Point coordinates to set the target point to.
         %
         % Returns:
@@ -143,7 +143,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         %
         % Parameters:
         %
-        %    this:          Local Variable
+        %    this:          Self-Reference
         %
         % Returns:
         %
