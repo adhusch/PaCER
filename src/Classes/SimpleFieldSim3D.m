@@ -33,7 +33,7 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         %
         % Returns:
         %
-        %    this:                  
+        %    this:                  Self-Reference
         
             this.trajectoryObject = trajectoryObject;
             [this.sphere_x,this.sphere_y,this.sphere_z] = sphere;
@@ -49,7 +49,7 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         %
         % Parameters:
         %
-        %    this:      Local Variable
+        %    this:      Self-Reference
         %
         % Returns:
         %
@@ -63,7 +63,7 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         %
         % Parameters:
         %
-        %    this:              Local Variable
+        %    this:              Self-Reference
         %    ax:                
         %
         % Returns:
@@ -100,7 +100,7 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         %
         % Parameters: 
         %
-        %    this:          Local Variable
+        %    this:          Self-Reference
         %    varargin:
         %
         % Returns:
@@ -114,7 +114,7 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         %
         % Parameters:
         %
-        %    this:      Local Variable
+        %    this:      Self-Reference
         %
         % Returns:
         %
