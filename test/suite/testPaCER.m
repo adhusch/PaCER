@@ -54,9 +54,12 @@ L.f52 = refData.elecModels_ref{1, 2}.contactPositions
 % compare the new data against the reference data of elecModels structure
 assert(isequal(S,L))
 
-
 % test the elecModels structure
-for k = 1:length(elecModels_new)
+a = [S,L]; % concatenate the scalar structure together 
+b = transpose(a); 
+
+%% need to be fixed !
+for k = 1:length(b)
     assert(isequal(elecModels_new{:}, refData.elecModels_ref{:}))
 end
 
