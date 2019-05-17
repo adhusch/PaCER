@@ -100,7 +100,7 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
             str = ['PolynomialElectrodeModel displaying as ' this.electrodeInfo.string];
         end
         
-        function point = get.activeContactPoint(this)
+        function point = getActiveContactPoint(this)
         % Function that gives the active contact points of the electrodes
         %
         % Parameters:
@@ -115,7 +115,7 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
             point = polyval3(this.r3polynomial, tPos);
         end
         
-        function positions = get.contactPositions(this)
+        function positions = getContactPositions(this)
         % Function that gives the contact position of the electrodes in the electrode space
         %
         % Parameters:
@@ -133,7 +133,7 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
             end
         end
 
-        function skel = get.skeleton(this)
+        function skel = getSkeleton(this)
         % Function that gives the contact position of the electrodes in the electrode space
         %
         % Parameters:
@@ -192,7 +192,7 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
             this.activeContact = contact;
         end
         
-        function apprTotalLengthMm = get.apprTotalLengthMm(this)
+        function apprTotalLengthMm = getApprTotalLengthMm(this)
         % Function that ?
         %
         % Parameters:
