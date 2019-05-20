@@ -28,15 +28,22 @@ niiCT_PostOP_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep '
 % generate the new output (testing only niiCT input argument)
 [elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PostOP_new);
 
+% get the fieldnames which are not empty 
 
+%emptyIndex = find(arrayfun(@(MyStruct) isempty(MyStruct.myField),MyStruct));
 fn = fieldnames(refData.elecModels_ref{1});
+tf = refData.elecModels_ref{1}(~structfun('isempty', refData.elecModels_ref{1}))
+tf = cellfun(@(c) isempty(refData.elecModels_ref{1}.(c)) && (~isnumeric(getfield(elecModels_new{1}, fn)
+S2 = rmfield(refData.elecModels_ref{1}, fn(tf))
+
+refData.elecModels_ref{1}  
+elecModels_new{1}
 assert(isequal(getfield(elecModels_new{1}, fn{1}), getfield(refData.elecModels_ref{1}, fn{1})))
+
 
 %% need to be fixed !
 
 for k = 1:length(fn) 
-    k
-    fn{k}
     if (~isnumeric(getfield(elecModels_new{1}, fn{k})) && ~isnumeric(getfield(refData.elecModels_ref{1}, fn{k})))
         assert(isequal(getfield(elecModels_new{1}, fn{k}), getfield(refData.elecModels_ref{1}, fn{k})))
     end
