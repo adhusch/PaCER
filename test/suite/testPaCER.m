@@ -29,16 +29,28 @@ niiCT_PostOP_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep '
 [elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PostOP_new);
 
 % get the fieldnames which are not empty 
-
+% try 
 %emptyIndex = find(arrayfun(@(MyStruct) isempty(MyStruct.myField),MyStruct));
 fn = fieldnames(refData.elecModels_ref{1});
-tf = refData.elecModels_ref{1}(~structfun('isempty', refData.elecModels_ref{1}))
-tf = cellfun(@(c) isempty(refData.elecModels_ref{1}.(c)) && (~isnumeric(getfield(elecModels_new{1}, fn)
+%tf = refData.elecModels_ref{1}(~structfun('isempty', refData.elecModels_ref{1}))
+refData.elecModels_ref{1}
+tf = cellfun(@(c) isempty(refData.elecModels_ref{1}.(c)) && (~isnumeric(getfield(elecModels_new{1}, fn))))
 S2 = rmfield(refData.elecModels_ref{1}, fn(tf))
 
-refData.elecModels_ref{1}  
+refData.elecModels_ref{1}(~cellfun('isempty',refData.elecModels_ref{1}))  
 elecModels_new{1}
 assert(isequal(getfield(elecModels_new{1}, fn{1}), getfield(refData.elecModels_ref{1}, fn{1})))
+
+S = refData.elecModels_ref{1}
+fn = fieldnames(refData.elecModels_ref{1});
+fields = {'apprTotalLengthMm','activeContactPoint'};
+A = rmfield(S,fields)
+
+
+%or 
+fn = fieldnames(S)
+tf = cellfun(@(c) isempty(S.(c)), fn)
+S2 = rmfield(S, fn(tf))
 
 
 %% need to be fixed !
