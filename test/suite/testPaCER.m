@@ -27,64 +27,13 @@ niiCT_PostOP_new = NiftiMod([inputDataPath filesep 'CT_POSTOP_with_XML.nii.gz'])
 % generate the new output (testing only niiCT input argument)
 [elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PostOP_new);
 
-% get the fieldnames which are not empty 
-% try 
-%emptyIndex = find(arrayfun(@(MyStruct) isempty(MyStruct.myField),MyStruct));
-fn = fieldnames(refData.elecModels_ref{1});
-%tf = refData.elecModels_ref{1}(~structfun('isempty', refData.elecModels_ref{1}))
-refData.elecModels_ref{1}
-tf = cellfun(@(c) isempty(refData.elecModels_ref{1}.(c)) && (~isnumeric(getfield(elecModels_new{1}, fn))))
-S2 = rmfield(refData.elecModels_ref{1}, fn(tf))
-
-refData.elecModels_ref{1}(~cellfun('isempty',refData.elecModels_ref{1}))  
-elecModels_new{1}
-assert(isequal(getfield(elecModels_new{1}, fn{1}), getfield(refData.elecModels_ref{1}, fn{1})))
-
-S = refData.elecModels_ref{1}
-fn = fieldnames(refData.elecModels_ref{1});
-fields = {'apprTotalLengthMm','activeContactPoint'};
-A = rmfield(S,fields)
-
-
-%or 
-fn = fieldnames(S)
-tf = cellfun(@(c) isempty(S.(c)), fn)
-S2 = rmfield(S, fn(tf))
-
-
-%% need to be fixed !
-for j=1:length(refData.elecModels_ref)
-    fn = fieldnames(refData.elecModels_ref{j});
-    for k = 1:length(fn) 
-        if (~isnumeric(getfield(elecModels_new{j}, fn{k})) && ~isnumeric(getfield(refData.elecModels_ref{j}, fn{k})))
-            assert(isequal(getfield(elecModels_new{j}, fn{k}), getfield(refData.elecModels_ref{j}, fn{k})))
-        end
-    end
-end
-
-
-function structureComparison (refData, structure)
-    for j=1:length(refData.structure_ref)
-        fn = fieldnames(refData.structure_ref{j});
-        for k = 1:length(fn) 
-            if (~isnumeric(getfield(structure_new{j}, fn{k})) && ~isnumeric(getfield(refData.structure_ref{j}, fn{k})))
-                assert(isequal(getfield(structure_new{j}, fn{k}), getfield(refData.elecModels_ref{j}, fn{k})))
-            end
-        end
-    end
-end
-
-structureComparison (refData, refData.elecModels_ref); 
-
-
-
 % compare the new data against the reference data
-assert(norm(elecModels_new, refData.elecModels_ref) < tol)
+structureComparison(refData.elecModels_ref, elecModels_new)
 assert(isequal(elecPointCloudsStruct_new, refData.elecPointCloudsStruct_ref))
 assert(isequal(intensityProfiles_new, refData.intensityProfiles_ref))
 assert(isequal(skelSkelmms_new, refData.skelSkelmms_ref))
 
-% test the function with XML plan
+%% test the function with XML plan
 %load reference data for CT post OP with the corresponding XML file
 refData_XML = load ([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_PaCER_xmlPlan.mat']);
 
@@ -96,11 +45,10 @@ xml_Plan_new = [getenv('PACER_DATA_PATH') filesep 'input' filesep 'CT_POSTOP_wit
 [elecModels_XML_new, elecPointCloudsStruct_XML_new, intensityProfiles_XML_new, skelSkelmms_XML_new] = PaCER(niiCT_Xml_new,'medtronicXMLPlan', xml_Plan_new);
 
 % compare the new data against the reference data using a XML plan
-%assert(isequal(elecModels_XML_new, refData_XML.elecModels_XML_ref))
+structureComparison(refData_XML.elecModels_XML_ref, elecModels_XML_new)
 assert(isequal(elecPointCloudsStruct_XML_new, refData_XML.elecPointCloudsStruct_XML_ref))
 assert(isequal(intensityProfiles_XML_new, refData_XML.intensityProfiles_XML_ref))
 assert(isequal(skelSkelmms_XML_new, refData_XML.skelSkelmms_XML_ref))
-%
 
 %% load reference data (provide brain mask to the CT post OP)
 refData_brainMask = load([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_PaCER_WithBrainMask.mat']);
@@ -113,7 +61,7 @@ brainMaskPath = [getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post_mask
 [elecModels_Mask_new, elecPointCloudsStruct_Mask_new, intensityProfiles_Mask_new, skelSkelmms_Mask_new] = PaCER(niiCT_brainMask_new,'brainMask', brainMaskPath);
 
 % compare the new data against the reference data using a BrainMask
-%assert(isequal(elecModels_Mask_new{1, 1}, refData_brainMask.elecModels_Mask_Ref{1, 1}))
+structureComparison(refData_brainMask.elecModels_Mask_Ref, elecModels_Mask_new)
 assert(isequal(elecPointCloudsStruct_Mask_new, refData_brainMask.elecPointCloudsStruct_Mask_Ref))
 assert(isequal(intensityProfiles_Mask_new, refData_brainMask.intensityProfiles_Mask_Ref))
 assert(isequal(skelSkelmms_Mask_new, refData_brainMask.skelSkelmms_Mask_Ref))
@@ -130,8 +78,7 @@ xml_Plan_new;
 
 % compare the new data against the reference data using XML plan and
 % providing electrode type (Medtronic 3387)
-
-%assert(isequal(elecModels_Medtronic3387_new, refData_electrodeType.elecModels_Medtronic3387_ref))
+structureComparison(elecModels_Medtronic3387_new, refData_electrodeType.elecModels_Medtronic3387_ref)
 assert(isequal(elecPointCloudsStruct_Medtronic3387_new, refData_electrodeType.elecPointCloudsStruct_Medtronic3387_ref))
 assert(isequal(intensityProfiles_Medtronic3387_new, refData_electrodeType.intensityProfiles_Medtronic3387_ref))
 assert(isequal(skelSkelmms_Medtronic3387_new, refData_electrodeType.skelSkelmms_Medtronic3387_ref))
@@ -141,7 +88,7 @@ assert(isequal(skelSkelmms_Medtronic3387_new, refData_electrodeType.skelSkelmms_
 
 % compare the new data against the reference data using XML plan and
 % providing electrode type (Medtronic 3389)
-%assert(isequal(elecModels_Medtronic3389_new, refData_electrodeType.elecModels_Medtronic3389_ref))
+structureComparison(elecModels_Medtronic3389_new, refData_electrodeType.elecModels_Medtronic3389_ref)
 assert(isequal(elecPointCloudsStruct_Medtronic3389_new, refData_electrodeType.elecPointCloudsStruct_Medtronic3389_ref))
 assert(isequal(intensityProfiles_Medtronic3389_new, refData_electrodeType.intensityProfiles_Medtronic3389_ref))
 assert(isequal(skelSkelmms_Medtronic3389_new, refData_electrodeType.skelSkelmms_Medtronic3389_ref))
@@ -151,7 +98,7 @@ assert(isequal(skelSkelmms_Medtronic3389_new, refData_electrodeType.skelSkelmms_
 
 % compare the new data against the reference data using XML plan and
 % providing electrode type (Boston Vercise Directional)
-%assert(isequal(elecModels_Boston_new, refData_electrodeType.elecModels_Boston_ref))
+structureComparison(elecModels_Boston_new, refData_electrodeType.elecModels_Boston_ref)
 assert(isequal(elecPointCloudsStruct_Boston_new, refData_electrodeType.elecPointCloudsStruct_Boston_ref))
 assert(isequal(intensityProfiles_Boston_new, refData_electrodeType.intensityProfiles_Boston_ref))
 assert(isequal(skelSkelmms_Boston_new, refData_electrodeType.skelSkelmms_Boston_ref))
