@@ -54,13 +54,28 @@ S2 = rmfield(S, fn(tf))
 
 
 %% need to be fixed !
-
-for k = 1:length(fn) 
-    if (~isnumeric(getfield(elecModels_new{1}, fn{k})) && ~isnumeric(getfield(refData.elecModels_ref{1}, fn{k})))
-        assert(isequal(getfield(elecModels_new{1}, fn{k}), getfield(refData.elecModels_ref{1}, fn{k})))
+for j=1:length(refData.elecModels_ref)
+    fn = fieldnames(refData.elecModels_ref{j});
+    for k = 1:length(fn) 
+        if (~isnumeric(getfield(elecModels_new{j}, fn{k})) && ~isnumeric(getfield(refData.elecModels_ref{j}, fn{k})))
+            assert(isequal(getfield(elecModels_new{j}, fn{k}), getfield(refData.elecModels_ref{j}, fn{k})))
+        end
     end
-   k = k+1;
 end
+
+
+function loicsLoop(refData, structure)
+    for j=1:length(refData.structure)
+        fn = fieldnames(refData.structure{j});
+        for k = 1:length(fn) 
+            if (~isnumeric(getfield(elecModels_new{j}, fn{k})) && ~isnumeric(getfield(refData.elecModels_ref{j}, fn{k})))
+                assert(isequal(getfield(elecModels_new{j}, fn{k}), getfield(refData.elecModels_ref{j}, fn{k})))
+            end
+        end
+    end
+end
+
+%end
 
 
 
