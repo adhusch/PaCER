@@ -8,7 +8,6 @@
 
 global refDataPath
 global inputDataPath
-global PACERDIR
 
 %% save the current path
 currentDir = pwd;
@@ -18,12 +17,12 @@ fileDir = fileparts(which(mfilename));
 cd(fileDir);
 
 %% load reference data (function implemented only with niiCT model)
-%refData = load([refDataPath filesep 'refData_PaCER_niiCT.mat']);
-refData = load ([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_PaCER_niiCT.mat']);
+refData = load([refDataPath filesep 'refData_PaCER_niiCT.mat']);
+%refData = load ([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_PaCER_niiCT.mat']);
 
 % Load post OP CT 
-%niiCT_PostOP_new = NiftiMod([inputDataPath filesep 'CT_POSTOP_with_XML.nii.gz']);
-niiCT_PostOP_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'CT_POSTOP_with_XML.nii.gz']);
+niiCT_PostOP_new = NiftiMod([inputDataPath filesep 'CT_POSTOP_with_XML.nii.gz']);
+%niiCT_PostOP_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'CT_POSTOP_with_XML.nii.gz']);
 
 % generate the new output (testing only niiCT input argument)
 [elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PostOP_new);
@@ -64,19 +63,18 @@ for j=1:length(refData.elecModels_ref)
 end
 
 
-function loicsLoop(refData, structure)
-    for j=1:length(refData.structure)
-        fn = fieldnames(refData.structure{j});
+function structureComparison (refData, structure)
+    for j=1:length(refData.structure_ref)
+        fn = fieldnames(refData.structure_ref{j});
         for k = 1:length(fn) 
-            if (~isnumeric(getfield(elecModels_new{j}, fn{k})) && ~isnumeric(getfield(refData.elecModels_ref{j}, fn{k})))
-                assert(isequal(getfield(elecModels_new{j}, fn{k}), getfield(refData.elecModels_ref{j}, fn{k})))
+            if (~isnumeric(getfield(structure_new{j}, fn{k})) && ~isnumeric(getfield(refData.structure_ref{j}, fn{k})))
+                assert(isequal(getfield(structure_new{j}, fn{k}), getfield(refData.elecModels_ref{j}, fn{k})))
             end
         end
     end
 end
 
-%end
-
+structureComparison (refData, refData.elecModels_ref); 
 
 
 
