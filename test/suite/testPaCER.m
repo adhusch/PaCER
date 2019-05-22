@@ -1,7 +1,7 @@
 % The PaCER Toolbox: testPaCER.m
 %
 % Purpose:
-%     - test the PaCER function
+%     - test the PaCER function (main function)
 %
 % Author:
 %     - Loic Marx, March 2019
@@ -18,11 +18,9 @@ cd(fileDir);
 
 %% load reference data (function implemented only with niiCT model)
 refData = load([refDataPath filesep 'refData_PaCER_niiCT.mat']);
-%refData = load ([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_PaCER_niiCT.mat']);
 
 % Load post OP CT 
 niiCT_PostOP_new = NiftiMod([inputDataPath filesep 'CT_POSTOP_with_XML.nii.gz']);
-%niiCT_PostOP_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'CT_POSTOP_with_XML.nii.gz']);
 
 % generate the new output (testing only niiCT input argument)
 [elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PostOP_new);
@@ -35,11 +33,11 @@ assert(isequal(skelSkelmms_new, refData.skelSkelmms_ref))
 
 %% test the function with XML plan
 %load reference data for CT post OP with the corresponding XML file
-refData_XML = load ([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_PaCER_xmlPlan.mat']);
+refData_XML = load ([refDataPath filesep 'refData_PaCER_xmlPlan.mat']);
 
 % define input arguments (testing niiCT and Xml Plan)
 niiCT_Xml_new = niiCT_PostOP_new; 
-xml_Plan_new = [getenv('PACER_DATA_PATH') filesep 'input' filesep 'CT_POSTOP_with_XML.xml'];
+xml_Plan_new = [inputDataPath filesep 'CT_POSTOP_with_XML.xml'];
 
 % generate the new output (function implemented with XML plan)
 [elecModels_XML_new, elecPointCloudsStruct_XML_new, intensityProfiles_XML_new, skelSkelmms_XML_new] = PaCER(niiCT_Xml_new,'medtronicXMLPlan', xml_Plan_new);
@@ -51,11 +49,11 @@ assert(isequal(intensityProfiles_XML_new, refData_XML.intensityProfiles_XML_ref)
 assert(isequal(skelSkelmms_XML_new, refData_XML.skelSkelmms_XML_ref))
 
 %% load reference data (provide brain mask to the CT post OP)
-refData_brainMask = load([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_PaCER_WithBrainMask.mat']);
+refData_brainMask = load([refDataPath filesep 'refData_PaCER_WithBrainMask.mat']);
 
 % define input arguments (testing niiCT and brainMask)
-niiCT_brainMask_new = NiftiMod([getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post.nii.gz']);
-brainMaskPath = [getenv('PACER_DATA_PATH') filesep 'input' filesep 'ct_post_mask.nii'];
+niiCT_brainMask_new = NiftiMod([inputDataPath filesep  'ct_post.nii.gz']);
+brainMaskPath = [inputDataPath filesep 'ct_post_mask.nii'];
 
 % generate the new output (testing niiCT and brainMask)
 [elecModels_Mask_new, elecPointCloudsStruct_Mask_new, intensityProfiles_Mask_new, skelSkelmms_Mask_new] = PaCER(niiCT_brainMask_new,'brainMask', brainMaskPath);
@@ -68,7 +66,7 @@ assert(isequal(skelSkelmms_Mask_new, refData_brainMask.skelSkelmms_Mask_Ref))
 
 %% test different electrode type: 
 % load the reference data
-refData_electrodeType = load([getenv('PACER_DATA_PATH') filesep 'ref' filesep 'refData_PaCER_electrodeType.mat']);
+refData_electrodeType = load([refDataPath filesep 'refData_PaCER_electrodeType.mat']);
 % define the input argument 
 niiCT_electrodesType = niiCT_PostOP_new; 
 xml_Plan_new; 
