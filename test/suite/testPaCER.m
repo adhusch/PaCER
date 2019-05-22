@@ -110,5 +110,5 @@ assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_ne
 warningMessage = 'Slice thickness is greater than 0.7 mm! Independet contact detection might not work reliable in this case. However, for certain electrode types with large contacts spacings you might be lucky.';
 assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_brainMask_new}))
 
-
-
+%% change back to the current directory
+cd(currentDir);
