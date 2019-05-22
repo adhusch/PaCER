@@ -64,8 +64,11 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
         end
         
         function point = get.activeContactPoint(this)
-            tPos = invPolyArcLength3(this.r3polynomial, this.electrodeInfo.ringContactCentersMm(this.activeContact));
-            point = polyval3(this.r3polynomial, tPos);
+            point = [];
+            if ~isnan(this.activeContact)
+                tPos = invPolyArcLength3(this.r3polynomial, this.electrodeInfo.ringContactCentersMm(this.activeContact));
+                point = polyval3(this.r3polynomial, tPos);               
+            end
         end
         
         function positions = get.contactPositions(this) % in electrode space
@@ -94,7 +97,7 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
         end
         
         function apprTotalLengthMm = get.apprTotalLengthMm(this) % not so much approximate anymore ;)          
-            apprTotalLengthMm = polyArcLength3(mod.r3polynomial,0,1);
+            apprTotalLengthMm = polyArcLength3(this.r3polynomial,0,1);
         end
         
         function setReferenceTrajectory(this, referenceTrajectory)
