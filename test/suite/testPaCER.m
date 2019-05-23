@@ -30,9 +30,7 @@ niiCT_PostOP_new = NiftiMod([inputDataPath filesep 'CT_POSTOP_with_XML.nii.gz'])
 
 % compare the new data against the reference data
 structureComparison(refData.elecModels_ref, elecModels_new)
-for k=1:length(elecPointCloudsStruct_new)
-    assert(norm(elecPointCloudsStruct_new{k} - refData.elecPointCloudsStruct_ref{k}) < tol);
-end
+assert(isequal(elecPointCloudsStruct_new, refData.elecPointCloudsStruct_ref));
 for k=1:length(intensityProfiles_new)
     assert(norm(intensityProfiles_new{k} - refData.intensityProfiles_ref{k}) < tol);
 end
@@ -53,9 +51,7 @@ xml_Plan_new = [inputDataPath filesep 'CT_POSTOP_with_XML.xml'];
 
 % compare the new data against the reference data using a XML plan
 structureComparison(refData_XML.elecModels_XML_ref, elecModels_XML_new)
-for k=1:length(elecPointCloudsStruct_XML_new)
-    assert(norm(elecPointCloudsStruct_XML_new{k} - refData_XML.elecPointCloudsStruct_XML_ref{k}) < tol);
-end
+assert(isequal(elecPointCloudsStruct_XML_new, refData_XML.elecPointCloudsStruct_XML_ref));
 for k=1:length(intensityProfiles_XML_new)
     assert(norm(intensityProfiles_XML_new{k} - refData_XML.intensityProfiles_XML_ref{k}) < tol);
 end
@@ -75,9 +71,7 @@ brainMaskPath = [inputDataPath filesep 'ct_post_mask.nii'];
 
 % compare the new data against the reference data using a BrainMask
 structureComparison(refData_brainMask.elecModels_Mask_Ref, elecModels_Mask_new)
-for k=1:length(elecPointCloudsStruct_Mask_new)
-    assert(norm(elecPointCloudsStruct_Mask_new{k} - refData_brainMask.elecPointCloudsStruct_Mask_Ref{k}) < tol);
-end
+assert(isequal(elecPointCloudsStruct_Mask_new, refData_brainMask.elecPointCloudsStruct_Mask_Ref))
 for k=1:length(intensityProfiles_Mask_new)
     assert(norm(intensityProfiles_Mask_new{k} - refData_brainMask.intensityProfiles_Mask_Ref{k}) < tol);
 end
@@ -98,9 +92,7 @@ xml_Plan_new;
 % compare the new data against the reference data using XML plan and
 % providing electrode type (Medtronic 3387)
 structureComparison(elecModels_Medtronic3387_new, refData_electrodeType.elecModels_Medtronic3387_ref)
-for k=1:length(elecPointCloudsStruct_Medtronic3387_new)
-    assert(norm(elecPointCloudsStruct_Medtronic3387_new{k} - refData_electrodeType.elecPointCloudsStruct_Medtronic3387_ref{k}) < tol);
-end
+assert(isequal(elecPointCloudsStruct_Medtronic3387_new, refData_electrodeType.elecPointCloudsStruct_Medtronic3387_ref))
 for k=1:length(intensityProfiles_Medtronic3387_new)
     assert(norm(intensityProfiles_Medtronic3387_new{k} - refData_electrodeType.intensityProfiles_Medtronic3387_ref{k}) < tol);
 end
@@ -114,9 +106,7 @@ end
 % compare the new data against the reference data using XML plan and
 % providing electrode type (Medtronic 3389)
 structureComparison(elecModels_Medtronic3389_new, refData_electrodeType.elecModels_Medtronic3389_ref)
-for k=1:length(elecPointCloudsStruct_Medtronic3389_new)
-    assert(norm(elecPointCloudsStruct_Medtronic3389_new{k} - refData_electrodeType.elecPointCloudsStruct_Medtronic3389_ref{k}) < tol);
-end
+assert(isequal(elecPointCloudsStruct_Medtronic3389_new, refData_electrodeType.elecPointCloudsStruct_Medtronic3389_ref));
 for k=1:length(intensityProfiles_Medtronic3389_new)
     assert(norm(intensityProfiles_Medtronic3389_new{k} - refData_electrodeType.intensityProfiles_Medtronic3389_ref{k}) < tol);
 end
@@ -130,9 +120,7 @@ end
 % compare the new data against the reference data using XML plan and
 % providing electrode type (Boston Vercise Directional)
 structureComparison(elecModels_Boston_new, refData_electrodeType.elecModels_Boston_ref)
-for k=1:length(elecPointCloudsStruct_Boston_new)
-    assert(norm(elecPointCloudsStruct_Boston_new{k} - refData_electrodeType.elecPointCloudsStruct_Boston_ref{k}) < tol);
-end
+assert(isequal(elecPointCloudsStruct_Boston_new, refData_electrodeType.elecPointCloudsStruct_Boston_ref))
 for k=1:length(intensityProfiles_Boston_new)
     assert(norm(intensityProfiles_Boston_new{k} - refData_electrodeType.intensityProfiles_Boston_ref{k}) < tol);
 end
