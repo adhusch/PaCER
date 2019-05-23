@@ -16,10 +16,13 @@ currentDir = pwd;
 fileDir = fileparts(which(mfilename));
 cd(fileDir);
 
-%% load reference data (function implemented only with niiCT model)
+% set a tolerance for numerical comparison
+tol = 1e-6;
+
+% load reference data (function implemented only with niiCT model)
 refData = load([refDataPath filesep 'refData_PaCER_niiCT.mat']);
 
-% Load post OP CT 
+% Load post OP CT
 niiCT_PostOP_new = NiftiMod([inputDataPath filesep 'CT_POSTOP_with_XML.nii.gz']);
 
 % generate the new output (testing only niiCT input argument)
@@ -27,16 +30,22 @@ niiCT_PostOP_new = NiftiMod([inputDataPath filesep 'CT_POSTOP_with_XML.nii.gz'])
 
 % compare the new data against the reference data
 structureComparison(refData.elecModels_ref, elecModels_new)
-assert(isequal(elecPointCloudsStruct_new, refData.elecPointCloudsStruct_ref))
-assert(isequal(intensityProfiles_new, refData.intensityProfiles_ref))
-assert(isequal(skelSkelmms_new, refData.skelSkelmms_ref))
+for k=1:length(elecPointCloudsStruct_new)
+    assert(norm(elecPointCloudsStruct_new{k} - refData.elecPointCloudsStruct_ref{k}) < tol);
+end
+for k=1:length(intensityProfiles_new)
+    assert(norm(intensityProfiles_new{k} - refData.intensityProfiles_ref{k}) < tol);
+end
+for k=1:length(skelSkelmms_new)
+    assert(norm(skelSkelmms_new{k} - refData.skelSkelmms_ref{k}) < tol);
+end
 
-%% test the function with XML plan
-%load reference data for CT post OP with the corresponding XML file
+% test the function with XML plan
+% load reference data for CT post OP with the corresponding XML file
 refData_XML = load ([refDataPath filesep 'refData_PaCER_xmlPlan.mat']);
 
 % define input arguments (testing niiCT and Xml Plan)
-niiCT_Xml_new = niiCT_PostOP_new; 
+niiCT_Xml_new = niiCT_PostOP_new;
 xml_Plan_new = [inputDataPath filesep 'CT_POSTOP_with_XML.xml'];
 
 % generate the new output (function implemented with XML plan)
@@ -64,14 +73,14 @@ assert(isequal(elecPointCloudsStruct_Mask_new, refData_brainMask.elecPointClouds
 assert(isequal(intensityProfiles_Mask_new, refData_brainMask.intensityProfiles_Mask_Ref))
 assert(isequal(skelSkelmms_Mask_new, refData_brainMask.skelSkelmms_Mask_Ref))
 
-%% test different electrode type: 
+%% test different electrode type:
 % load the reference data
 refData_electrodeType = load([refDataPath filesep 'refData_PaCER_electrodeType.mat']);
-% define the input argument 
-niiCT_electrodesType = niiCT_PostOP_new; 
-xml_Plan_new; 
+% define the input argument
+niiCT_electrodesType = niiCT_PostOP_new;
+xml_Plan_new;
 
-% generate the new output with Medtronic 3387 electrode type. 
+% generate the new output with Medtronic 3387 electrode type.
 [elecModels_Medtronic3387_new, elecPointCloudsStruct_Medtronic3387_new, intensityProfiles_Medtronic3387_new, skelSkelmms_Medtronic3387_new] = PaCER(niiCT_electrodesType, 'medtronicXMLPlan', xml_Plan_new, 'electrodeType', 'Medtronic 3387');
 
 % compare the new data against the reference data using XML plan and
