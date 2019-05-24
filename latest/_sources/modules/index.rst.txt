@@ -6,3 +6,4 @@ Source code
 .. toctree::
 
    functions/index
+   classes/index
