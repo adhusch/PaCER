@@ -189,6 +189,29 @@ dl.function{
     border-radius: 3px;
 }
 
+dl.class{
+    border: 1px solid #ddd;
+    margin: 0.5em 0;
+    padding: 0.5em;
+    border-radius: 3px;
+}
+
+dl.staticmethod{
+    background-color: whitesmoke;
+    margin-left: 10px;
+}
+
+dl.method{
+    background-color: whitesmoke;
+    margin-left: 10px;
+}
+
+dl.attribute{
+    background-color: whitesmoke;
+    padding-bottom: 2px;
+    margin-left: 10px;
+}
+
 .rst-versions {
     position: fixed;
     bottom: 0;
@@ -685,7 +708,7 @@ a .rst-content code {
 .rst-content dl:not(.docutils) dl dt {
     margin-bottom: 6px;
     border: none;
-    border-left: solid 3px #ccc;
+    border-bottom: solid 1px #ccc;
     background: #f0f0f0;
     color: #555
 }

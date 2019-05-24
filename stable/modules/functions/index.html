@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Functions &mdash; PaCER</title>
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="../../_static/js/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href="../../_static/css/easy-autocomplete.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/julia.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PaCER" href="../../index.html"/>
+        <link rel="up" title="Source code" href="../index.html"/>
+        <link rel="next" title="How to cite?" href="../../literature.html"/>
+        <link rel="prev" title="Source code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          <a href="../../index.html">
+
+          
+            
+            
+              <img src="../../_static/logo_pacer.png" class="logo" style="max-height: 10em;"/>
+            
+          
+          </a>
+          
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" id="simple"/>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+    <script>
+    	var options = {
+
+		url: "../../_static/json/functions.json",
+
+		getValue: "name",
+
+		list: {
+            onKeyEnterEvent: function(item) {
+                    return "_static/../" + item.website_url
+            },
+            maxNumberOfElements: 25,
+			match: {
+					enabled: true,
+			},
+            sort: {
+			    enabled: true
+		    }
+		},
+
+    	template: {
+	    	type: "custom",
+		    method: function(value, item) {
+                return "<span><a href='../../search.html?q=" + item.name + "&check_keywords=yes&area=default'>" + value + "</a>" + "<a href='../../_static/../" + item.website_url + "' ><img src='../../_static/img/link.svg'/></a></span>";
+		    }
+	    },
+
+		theme: "square"
+
+	};
+
+	$("#simple").easyAutocomplete(options);
+
+
+    </script>
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingStarted.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Source code</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../literature.html">How to cite?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgments.html">Acknowledgements</a></li>
+</ul>
+
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PaCER</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Source code</a> &raquo;</li>
+        
+      <li>Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="functions">
+<span id="id1"></span><h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-src.Functions"></span><dl class="function">
+<dt id="src.Functions.createSimpleMPRWorldCoordinates">
+<code class="descname">createSimpleMPRWorldCoordinates</code><span class="sig-paren">(</span><em>nii</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.createSimpleMPRWorldCoordinates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience Wrapper for the MPRWorldCoordinate Class by Florian Bernard</p>
+<p><strong>Usage</strong></p>
+<blockquote>
+<div>[mpr] = createSimpleMPRWorldCoordinates(nii)</div></blockquote>
+<p><strong>Input</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>nii</strong> &#8211;
+NiftiModality object to visualize as multi-planar-reformatting (MPR)</li>
+</ul>
+</div></blockquote>
+<p><strong>Output</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>mpr</strong> &#8211;
+Handle to MPR</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.determineElectrodeType">
+<code class="descname">determineElectrodeType</code><span class="sig-paren">(</span><em>peakDistances</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.determineElectrodeType" title="Permalink to this definition">¶</a></dt>
+<dd><p>gets the most suitable electrode type based on the euclidean distance between
+detected and specified peaks in the collected data. Data should should be provided
+in the form of the file &#8216;electrodeGeometries.mat&#8217;.</p>
+<p><strong>Usage</strong></p>
+<blockquote>
+<div>[electStruct, rms, d] = determineElectrodeType(peakDistances)</div></blockquote>
+<p><strong>Input</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>peakDistances</strong> &#8211;
+The peak distances between the signals, provided by the inserted
+data sheet.</li>
+</ul>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>electStruct</strong> &#8211;
+Electrode Type.</li>
+<li><strong>rms</strong> &#8211;
+Root-mean-square of the distance between the electrode signals.</li>
+<li><strong>d</strong> &#8211;
+Euclidian distance to the closest electrode prototype</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.extractBrainConvHull">
+<code class="descname">extractBrainConvHull</code><span class="sig-paren">(</span><em>niiCT</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.extractBrainConvHull" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts the convex hull of the brain out of a CT image</p>
+<p><strong>Usage</strong></p>
+<blockquote>
+<div>[convHullBrainMask, roughBrainMask] = extractBrainConvHull(niiCT)</div></blockquote>
+<p><strong>Input</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>niiCT</strong> &#8211;
+NiftiMod object of a post-operative CT image</li>
+</ul>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>convHullBrainMask</strong> &#8211;
+Estimated mask of the convex hull of the brain</li>
+<li><strong>roughBrainMask</strong> &#8211;
+Estimated rough brain mask wich may contain inaccuracies</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.extractElectrodePointclouds">
+<code class="descname">extractElectrodePointclouds</code><span class="sig-paren">(</span><em>niiCT</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.extractElectrodePointclouds" title="Permalink to this definition">¶</a></dt>
+<dd><p>extractElectrodePointclouds - Preprocess CT Data for Electrode Artifacts</p>
+<p><strong>Usage</strong></p>
+<blockquote>
+<div>[elecsPointcloudStruct, brainMask] = extractElectrodePointclouds(niiCT, varargin)</div></blockquote>
+<p><strong>Inputs</strong></p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>niiCT</strong> &#8211;
+NiftiMod object of a post-operative CT image</p>
+</li>
+<li><p class="first"><strong>varargin</strong> &#8211;
+Variable Argument:</p>
+<p>noMask:                 For phantom studies where no brain is present in data
+brainMask:              For manually providing brain mask</p>
+<blockquote>
+<div><p>(binary segmentation image file path)</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>medtronicXMLPlan:       Path to XML file defining a Medtronic Stealth Station</dt>
+<dd><p class="first last">S7 trajectory plan</p>
+</dd>
+</dl>
+<p>metalThreshold:         CT metal threshold value.</p>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>elecsPointcloudStruct</strong> &#8211;
+Create output struct and try to associate electrodes
+from xml definition if given</li>
+<li><strong>brainMask</strong> &#8211;
+Define the brain area</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.fitParamPolyToSkeleton">
+<code class="descname">fitParamPolyToSkeleton</code><span class="sig-paren">(</span><em>skeleton</em>, <em>degree</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.fitParamPolyToSkeleton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits a parameterized polynomial [0,1] -&gt; R^3 to a skeleton point cloud</p>
+<p><strong>Usage</strong></p>
+<blockquote>
+<div>[r3polynomial, avgTperMm] = fitParamPolyToSkeleton(skeleton, degree)</div></blockquote>
+<p><strong>Inputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>skeleton</strong> &#8211;
+3 x N skeleton pointcloud</li>
+<li><strong>degree</strong> &#8211;
+Degree of fitted polynomial (DEFAULT: 3)</li>
+</ul>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>r3polynomial</strong> &#8211;
+Coefficient matrix of fitted polynomial</li>
+<li><strong>avgTperMm</strong> &#8211;
+Average &#8220;t&#8221; per millimeter along the arc length of the polynomial</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.getIntensityPeaks">
+<code class="descname">getIntensityPeaks</code><span class="sig-paren">(</span><em>intensityProfile</em>, <em>skelScaleMm</em>, <em>filterIdxs</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.getIntensityPeaks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get peaks, respectively center points, at threshold below the peaks from 1D
+intensity profile. Expected peakWaveCenter number is 4 for now (needs
+update to support electrodes with more ring contacts)!</p>
+<p><strong>Usage</strong></p>
+<blockquote>
+<div>[peakLocs, peakWaveCenters, peakValues, threshIntensityProfile,
+threshold, contactAreaCenter, contactAreaWidth, xrayMarkerAreaCenter, xrayMarkerAreaWidth]
+= getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs)</div></blockquote>
+<p><strong>Inputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>intensityProfile</strong> &#8211;
+1D Intensity Profile</li>
+<li><strong>skelScaleMm</strong> &#8211;
+Estimated millimetric scale</li>
+<li><strong>filterIdxs</strong> &#8211;
+Finds the linear index of the millimetric scale</li>
+</ul>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>peaklocs</strong> &#8211;
+1D peak locations</li>
+<li><strong>peakWaveCenters</strong> &#8211;
+1D peak wave center locations</li>
+<li><strong>peakValues</strong> &#8211;
+Peak values</li>
+<li><strong>threshIntensityProfile</strong> &#8211;
+Thresholded intensity profile</li>
+<li><strong>threshold</strong> &#8211;
+Threshold</li>
+<li><strong>contactAreaCenter</strong> &#8211;
+Center of the assumed contact area</li>
+<li><strong>contactAreaWidth</strong> &#8211;
+Width of the assumed contact area</li>
+<li><strong>xrayMarkerAreaCenter</strong> &#8211;
+Center of the xray marker (if any)</li>
+<li><strong>xrayMarkerAreaWidth</strong> &#8211;
+Width of the xray maker (if any)</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.invPolyArcLength3">
+<code class="descname">invPolyArcLength3</code><span class="sig-paren">(</span><em>polyCoeff</em>, <em>arcLength</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.invPolyArcLength3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numerically calculate the parameter (t) of parameterized [0,1] -&gt; R^3 polynomial
+<em>given</em> an arc length (measured from 0) i.e. find the corresponding t to an arc length
+(e.g. given in [mm] from the origin), or in other words numerically invert polyArcLength3</p>
+<p><strong>Usage</strong></p>
+<blockquote>
+<div>t = invPolyArcLength3(polyCoeff, arcLength)</div></blockquote>
+<p><strong>Inputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>polyCoeff</strong> &#8211;
+Coefficient matrix</li>
+<li><strong>arcLength</strong> &#8211;
+The arc length is defined as the integral of the norm of the
+derivatives of the parameterized equations, given in mm.</li>
+</ul>
+</div></blockquote>
+<p><strong>Output</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>t</strong> &#8211;
+Parameter of the polynomial</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.largestConnCompSliceWise">
+<code class="descname">largestConnCompSliceWise</code><span class="sig-paren">(</span><em>img3d</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.largestConnCompSliceWise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Outputs a Binary mask of the largest connected component within that volume,
+computed slice wise 2d and stacked</p>
+<p><strong>Usage</strong></p>
+<blockquote>
+<div>binaryMask = largestConnCompSliceWise(img3d)</div></blockquote>
+<p><strong>Input</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>img3d</strong> &#8211;
+An image volume</li>
+</ul>
+</div></blockquote>
+<p><strong>Output</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>binaryMask</strong> &#8211;
+Binary mask of the largest connected
+component within that volume, computed slice wise 2d and stacked</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.oor">
+<code class="descname">oor</code><span class="sig-paren">(</span><em>r3polyToUse</em>, <em>STEP_SIZE</em>, <em>XGrid</em>, <em>YGrid</em>, <em>interpolationF</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.oor" title="Permalink to this definition">¶</a></dt>
+<dd><p>OOR - Optimal Oblique Resampling along a given polynonimal</p>
+<p><strong>Usage</strong></p>
+<blockquote>
+<div>[improvedSkeleton, medIntensity, orthIntensVol, orthSamplePointsVol, skelScaleMm]
+= oor(r3polyToUse, STEP_SIZE, XGrid, YGrid, interpolationF)</div></blockquote>
+<p><strong>Inputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>r3polyToUse</strong> &#8211;
+Polynomial coefficient matrix</li>
+<li><strong>STEP_SIZE</strong> &#8211;
+Step size along polynomial</li>
+<li><strong>XGrid</strong> &#8211;
+Grid to sample perpentidular to polyonial (x)</li>
+<li><strong>YGrid</strong> &#8211;
+Grid to sample perpentidular to polyonial (y)</li>
+<li><strong>interpolationF</strong> &#8211;
+An interpolater fitted to point cloud (see scatteredInterpolant)</li>
+</ul>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>improvedSkeleton</strong> &#8211;
+Newly determined skeleton point cloud after re-sampling</li>
+<li><strong>medIntensity</strong> &#8211;
+Median intensity along the polynomial</li>
+<li><strong>orthIntensVol</strong> &#8211;
+Intensity volume stacked as orthogonal matrix</li>
+<li><strong>orthSamplePointsVol</strong> &#8211;
+Sampling points stacked as orthogonal matrix</li>
+<li><strong>skelScaleMm</strong> &#8211;
+Estimated millimetric scale</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.plotIntensityProfileAndPeaks">
+<code class="descname">plotIntensityProfileAndPeaks</code><span class="sig-paren">(</span><em>intensityProfile</em>, <em>skelScaleMm</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.plotIntensityProfileAndPeaks" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Usage</strong></p>
+<blockquote>
+<div>plotIntensityProfileAndPeaks(intensityProfile, skelScaleMm)</div></blockquote>
+<p><strong>Inputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>intensityProfile</strong> &#8211;
+a 1D Intensity profile</li>
+<li><strong>skelScaleMm</strong> &#8211;
+Estimated scale (mm per intensity sample)</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.polyArcLength3">
+<code class="descname">polyArcLength3</code><span class="sig-paren">(</span><em>polyCoeff</em>, <em>lowerLimit</em>, <em>upperLimit</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.polyArcLength3" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Usage</strong></p>
+<blockquote>
+<div>arcLength = polyArcLength3(polyCoeff, lowerLimit, upperLimit)</div></blockquote>
+<p><strong>Inputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>polyCoeff</strong> &#8211;
+Coefficient matrix</li>
+<li><strong>lowerLimit</strong> &#8211;
+Lower limit, taken as scalar or vector input. If put in as a vector,
+arc lengths are returned for all pairs of intervals between the lower
+and upper limit.</li>
+<li><strong>upperLimit</strong> &#8211;
+Upper limit, taken as scalar or vector input. If put in as a vector,
+arc lengths are returned for all pairs of intervals between the upper
+and lower limit.</li>
+</ul>
+</div></blockquote>
+<p><strong>Output</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>arcLength</strong> &#8211;
+The arc length is defined as the integral of the norm of the
+derivatives of the parameterized equations.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.polyval3">
+<code class="descname">polyval3</code><span class="sig-paren">(</span><em>polyCoeffs</em>, <em>evalAt</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.polyval3" title="Permalink to this definition">¶</a></dt>
+<dd><p>evaluate an (independent component) polynomial in R3</p>
+<p><strong>Usage</strong></p>
+<blockquote>
+<div>val = polyval3(polyCoeffs, evalAt)</div></blockquote>
+<p><strong>Inputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>polyCoeffs</strong> &#8211;
+Coefficient matrix</li>
+<li><strong>evalAt</strong> &#8211;
+a polynomial in R^3</li>
+</ul>
+</div></blockquote>
+<p><strong>Output</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>val</strong> &#8211;
+a polynomial in R</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.Functions.refitElec">
+<code class="descname">refitElec</code><span class="sig-paren">(</span><em>initialPoly</em>, <em>pointCloudWorld</em>, <em>voxelValues</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Functions.refitElec" title="Permalink to this definition">¶</a></dt>
+<dd><p>refits a previously extracted corse electrode model using
+optimal oblique sampling to increase accuracy and enable
+automatic contact localisation. Intital refitting
+(&#8220;2nd pass&#8221; is followed by a final &#8220;3rd pass&#8221; to
+calibrate the point of origin / zero according to the detected contacts)
+<strong>Usage</strong></p>
+<blockquote>
+<div>[refitReZeroedElecMod, filteredIntensity, skelScaleMm]
+= refitElec(initialPoly, pointCloudWorld, voxelValues, varargin)</div></blockquote>
+<p><strong>Inputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>initialPoly</strong> &#8211;
+Dx3 double, R3 ploynomial coeffecients</li>
+<li><strong>pointCloudWorld</strong> &#8211;
+Nx3 double, point cloud of sourounding voxels in
+respective coordinate system</li>
+<li><strong>voxelValues</strong> &#8211;
+Nx1 double, voxels intensitiy values (1:1 to  pointCloudWorld)</li>
+<li><strong>varargin</strong> &#8211;
+options cell</li>
+</ul>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>refitReZeroedElecMod</strong> &#8211;
+polynomialElectrodeModel Object with the
+refitted and rezeored elec model,
+including reference to elecInfo etc.</li>
+<li><strong>filteredIntensity</strong> &#8211;
+1D intensity profile</li>
+<li><strong>skelScaleMm</strong> &#8211;
+estimated mm per skeleton step</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../literature.html" class="btn btn-neutral float-right" title="How to cite?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Source code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, The PaCER developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
