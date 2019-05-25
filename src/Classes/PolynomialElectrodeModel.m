@@ -1,12 +1,7 @@
-%% PolynomialElectrodeModel - Class representing a (potentially curved) electrode
-% represented by a fitted polynomial ([0,1] -> R^3)
-%
-% Andreas Husch
-% Centre Hospitalier de Luxembourg, Dep. of Neurosurgery /
-% University of Luxembourg - Luxembourg Centre for Systems Biomedicne
-% 2014 - 2017
-% mail@andreashusch.de, husch.andreas@chl.lu
 classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
+% PolynomialElectrodeModel - Class representing a (potentially curved) electrode
+% represented by a fitted polynomial ([0,1] -> R^3)
+
     properties (SetObservable);
         ELECTRODE_DIAMETER = 1.27; % deprecated, use this.electrodeInfo.diameterMm
         ELECTRODE_COLOR = rgb('DodgerBlue');
@@ -32,6 +27,17 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
     
     methods % graphical methods
         function this = PolynomialElectrodeModel(r3polynomial, electrodeInfo)
+        % Function that sets the polynomial to create the electrode model
+        %
+        % Parameters:
+        %
+        %    r3polynomial:      The description of the polynomial in r3
+        %    electrodeInfo:      ? 
+        %
+        % Returns:
+        %
+        %    this:              Self-Reference
+
             if(nargin < 2)
                 disp('No Electrode Info given, assuming Medtronic 3389');
                 electrodeGeometries = load('electrodeGeometries.mat');
@@ -46,6 +52,16 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
 
         end
         function attachListeners(this)
+        % Function that attaches the Listeners
+        %
+        % Parameters:
+        %
+        %    this:      Self-Reference
+        %
+        % Returns:
+        %
+        %    :
+
             addlistener(this, 'trajectoryChanged', @this.updatePlot3D);
             addlistener(this, 'activeContact','PostSet', @this.fireTrajectoryChanged);
             addlistener(this, 'electrodeInfo','PostSet', @this.fireTrajectoryChanged);
@@ -55,15 +71,46 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
             addlistener(this, 'ACTIVE_CONTACT_COLOR','PostSet',@this.fireTrajectoryChanged);
             addlistener(this, 'ALPHA','PostSet',@this.fireTrajectoryChanged);
         end
+
         function fireTrajectoryChanged(this, ~, ~)
+        % Function that checks if the trajectory has changed
+        %
+        % Parameters:
+        %
+        %    this:      Self-Reference
+        %
+        % Returns:
+        %
+        %    :          Returns the notifcation that the trajectory has changed
+
             this.notify('trajectoryChanged')
         end
         
         function str = toString(this)
+        % Function that generates feedback about the electrode information
+        %
+        % Parameters:
+        %
+        %    this:      Self-Reference
+        %
+        % Returns:
+        %
+        %    str:       Returns the display info about the electrodes
+
             str = ['PolynomialElectrodeModel displaying as ' this.electrodeInfo.string];
         end
         
-        function point = get.activeContactPoint(this)
+        function point = getActiveContactPoint(this)
+        % Function that gives the active contact points of the electrodes
+        %
+        % Parameters:
+        %
+        %    this:      Self-Reference
+        %
+        % Returns:
+        %
+        %    point:     ?
+
             point = [];
             if ~isnan(this.activeContact)
                 tPos = invPolyArcLength3(this.r3polynomial, this.electrodeInfo.ringContactCentersMm(this.activeContact));
@@ -71,40 +118,123 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
             end
         end
         
-        function positions = get.contactPositions(this) % in electrode space
+        function positions = getContactPositions(this)
+        % Function that gives the contact position of the electrodes in the electrode space
+        %
+        % Parameters:
+        %
+        %    this:          Self-Reference
+        %
+        % Returns:
+        %
+        %    position:      Contact position of the electrodes
+
             if(this.useDetectedContactPositions && length(this.detectedContactPositions) == length(this.electrodeInfo.ringContactCentersMm))
                 positions = this.detectedContactPositions;
             else
                 positions = this.electrodeInfo.ringContactCentersMm;
             end
         end
-        function skel = get.skeleton(this)
+
+        function skel = getSkeleton(this)
+        % Function that ?
+        %
+        % Parameters:
+        %
+        %    this:      Self-Reference
+        %
+        % Returns:
+        %
+        %    skel:      ?
+
             % elec length in brain is upper bounded by ca. 10cm -> stepsize < 100mm / 1000 = 0.1 mm
             evalAt = linspace(0,1,1000)'; % kind of t
             skel = polyval3(this.r3polynomial, evalAt);
         end
         
-        function tipPos = getEstTipPos(this) % FIXME DEPRECATED      
+        function tipPos = getEstTipPos(this) % FIXME DEPRECATED
+        % Function that returns the estimated position of the electrode tips
+        %
+        % Parameters:
+        %
+        %    this:      Self-Reference
+        %
+        % Returns:
+        %
+        %    tipPos:    Position in 3D space of the electrodes
+
             tipPos = polyval3(this.r3polynomial,0) + (diff(this.skeleton(1:2,:)) / norm(diff(this.skeleton(1:2,:))) * -1.1); % 1.1mm from last point (as soley plastic)
         end
         
         function points = getContactPositions3D(this)
-             points = polyval3(this.r3polynomial,invPolyArcLength3(this.r3polynomial, this.contactPositions)');
+        % Function that gives the contact positions of the electrodes in a 3D space
+        %
+        % Parameters:
+        %
+        %    this:      Self-Reference
+        %
+        % Returns:
+        %
+        %    points:    ?
+
+            points = polyval3(this.r3polynomial,invPolyArcLength3(this.r3polynomial, this.contactPositions)');
         end
         
         function setActiveContact(this, contact)
+        % Function that sets the active contact
+        %
+        % Parameters:
+        %
+        %    this:          Self-Reference
+        %    contact:       
+        %
+        % Returns:
+        %
+        %    :
+
             this.activeContact = contact;
         end
         
-        function apprTotalLengthMm = get.apprTotalLengthMm(this) % not so much approximate anymore ;)          
+        function apprTotalLengthMm = getApprTotalLengthMm(this)
+        % Function that ?
+        %
+        % Parameters:
+        %
+        %    this:                  Self-Reference
+        %
+        % Returns:
+        %
+        %    apprTotalLengthMm:     Approximation of the total length in mm
+
             apprTotalLengthMm = polyArcLength3(this.r3polynomial,0,1);
         end
         
         function setReferenceTrajectory(this, referenceTrajectory)
+        % Function that ?
+        %
+        % Parameters:
+        %
+        %    this:                      Self-Reference
+        %    referenceTrajectory:       Reference trajectory
+        %
+        % Returns:
+        %
+        %    :
+
             this.referenceTrajectory = referenceTrajectory;
         end
         
         function dists = getReferenceDistance(this)
+        % Function that gets the reference Distance
+        %
+        % Parameters:
+        %
+        %    this:      Self-Reference
+        %
+        % Returns:
+        %
+        %    dists:     Reference Distance
+
             if(~isempty(this.referenceTrajectory))
                 a = this.referenceTrajectory.entryPoint - this.referenceTrajectory.targetPoint;
                 B = bsxfun(@minus, this.skeleton,this.referenceTrajectory.targetPoint');
@@ -117,7 +247,18 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
         end
         
         function graphicsHandle = initPlot3D(this, parentAxes)
-            % create a group object and group all plots to this "parent" handle
+        % Function that ?
+        %
+        % Parameters:
+        %
+        %    this:          Self-Reference
+        %    parentAxes:    Axes of the plot
+        %
+        % Returns:
+        %
+        %    graphicsHandle:    ?
+
+        % create a group object and group all plots to this "parent" handle
             graphicsHandle = hggroup('Parent', parentAxes);
             regX = this.r3polynomial(:,1);
             regY = this.r3polynomial(:,2);
@@ -254,6 +395,19 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
         end     
         
         function newPolynomialElectrodeModel = applyFSLTransform(this, fslTransMat, sourceRefImage, targetRefImage)
+        % Function that ?
+        %
+        % Parameters:
+        %
+        %    this:              Self-Reference
+        %    fslTransMat:       ?
+        %    sourceRefImage:    Source Reference Image
+        %    targetRefImage:    Target Reference Image
+        %
+        % Returns:
+        %
+        %    newPolynomialElectrodeModel:    ?
+
             newPolynomialElectrodeModel = this.copy();
             newPolynomialElectrodeModel.plotHandleHashMap3D = containers.Map('KeyType', 'double', 'ValueType', 'double'); % get rid of potenial copied handles
             newPolynomialElectrodeModel.r3polynomial = applyFSLTransformToPolyCoeffs(this.r3polynomial, fslTransMat, sourceRefImage, targetRefImage);
@@ -261,6 +415,17 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
         end
         
         function newPolynomialElectrodeModel = applyANTSTransform(this, antsTransformFileStrings)
+        % Function that ?
+        %
+        % Parameters:
+        %
+        %    this:                          Self-Reference
+        %    antsTransformFileStrings:      ?
+        %
+        % Returns:
+        %
+        %    newPolynomialElectrodeModel:    ?
+
             newPolynomialElectrodeModel = this.copy();
             newPolynomialElectrodeModel.plotHandleHashMap3D = containers.Map('KeyType', 'double', 'ValueType', 'double'); % get rid of potenial copied handles
             newPolynomialElectrodeModel.r3polynomial = applyANTSTransformToPolyCoeffs(this.r3polynomial, antsTransformFileStrings);
@@ -268,3 +433,7 @@ classdef PolynomialElectrodeModel < plotable3D & MetaTrajectory
         end
     end
 end
+
+% .. AUTHORS:
+%       - Andreas Husch, Original File
+%       - Daniel Duarte Tojal, Documentation

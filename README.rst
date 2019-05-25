@@ -31,7 +31,7 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
 .. raw:: html
 
    <p align="center">
-     <img alt="Image of a PaCER electrode reconstruction at two different time points of resolving brain shift." class="readme_main" src="https://prince.lcsb.uni.lu/PaCER/img/mainPacer.png" height="400px"/>
+     <img alt="Image of a PaCER electrode reconstruction at two different time points of resolving brain shift." class="readme_main" src="https://prince.lcsb.uni.lu/userContent/mainPacer.png" height="400px"/>
    </p>
 
 

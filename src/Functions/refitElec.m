@@ -1,35 +1,27 @@
+%% refitElec - refits a previously extracted corse electrode model using
+%               ptimal oblique samplingto increase accuracy and enable 
+%               automatic contact localisation. Intital refitting
+%               ("2nd pass" is followed by a final "3rd pass" to
+%               calibrate the point of origin / zero according to the detected contacts)
+%
+% Params: initialPoly     - Dx3 double, R3 ploynomial coeffecients, 
+%         pointCloudWorld - Nx3 double, point cloud of sourounding voxels in respective coordinate system
+%         voxelValues     - Nx1 double, voxels intensitiy values (1:1 to  pointCloudWorld)
+%         varargin        - options cell
+%
+% Returns: refitReZeroedElecMod - polynomialElectrodeModel Object with the
+%                                  refitted and rezeored elec model,
+%                                  including reference to elecInfo etc.
+%
+% Andreas Husch
+% Centre Hospitalier de Luxembourg / Luxembourg Centre for Systems
+% Biomedicine, University of Luxembourg
+% 2016  - 2017
+% mail@andreashusch.de
+
 function [refitReZeroedElecMod, filteredIntensity, skelScaleMm] = refitElec(initialPoly, pointCloudWorld, voxelValues, varargin)
-% refits a previously extracted corse electrode model using
-% optimal oblique sampling to increase accuracy and enable 
-% automatic contact localisation. Intital refitting
-% ("2nd pass" is followed by a final "3rd pass" to
-% calibrate the point of origin / zero according to the detected contacts)
-
-% USAGE:
-%
-%    [refitReZeroedElecMod, filteredIntensity, skelScaleMm] 
-%    = refitElec(initialPoly, pointCloudWorld, voxelValues, varargin)
-%
-% INPUTS: 
-%    initialPoly:           Dx3 double, R3 ploynomial coeffecients
-%    pointCloudWorld:       Nx3 double, point cloud of sourounding voxels in 
-%                           respective coordinate system
-%    voxelValues:           Nx1 double, voxels intensitiy values (1:1 to  pointCloudWorld)
-%    varargin:              options cell
-%
-% OUTPUTS: 
-%    refitReZeroedElecMod:      polynomialElectrodeModel Object with the
-%                               refitted and rezeored elec model,
-%                               including reference to elecInfo etc.
-%    filteredIntensity:         1D intensity profile
-%    skelScaleMm:               estimated mm per skeleton step
-%
-% .. AUTHORS:
-%       - Andreas Husch, Original File
-%       - Daniel Duarte Tojal, Documentation
-
-
-XY_RESOLUTION = 0.1; %% CONSTANTS FOR OOR / CONTACT DETECTION
+%% CONSTANTS FOR OOR / CONTACT DETECTION
+XY_RESOLUTION = 0.1;
 Z_RESOLUTION = 0.025;
 LIMIT_CONTACT_SEARCH_MM = 20; % limit contact search to first 20 mm
 

@@ -1,17 +1,11 @@
+%% plotIntensityProfileAndPeaks
+%
+% Andreas Husch
+% Centre Hospitalier de Luxembourg, Dep. of Neurosurgery /
+% University of Luxembourg - Luxembourg Centre for Systems Biomedicne
+% 2017
+% mail@andreashusch.de, husch.andreas@chl.lu
 function plotIntensityProfileAndPeaks(intensityProfile, skelScaleMm)
-%
-% USAGE:
-%
-%    plotIntensityProfileAndPeaks(intensityProfile, skelScaleMm)
-%
-% INPUTS: 
-%    intensityProfile:      a 1D Intensity profile
-%    skelScaleMm:           Estimated scale (mm per intensity sample)
-%
-% .. AUTHORS:
-%       - Andreas Husch, Original File
-%       - Daniel Duarte Tojal, Documentation
-
 filterIdxs = find(skelScaleMm <= 20); % restrict to first 20mm
 [peakLocs, peakWaveCenters, peakValues, threshIntensityProfile, threshold] = getIntensityPeaks(intensityProfile, skelScaleMm, filterIdxs);
 
@@ -29,5 +23,3 @@ plot(skelScaleMm(filterIdxs), threshIntensityProfile(filterIdxs));
 scatter(peakWaveCenters, repmat(threshold,1,length(peakWaveCenters)), 'filled');
 grid on;
 end
-
-

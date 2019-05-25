@@ -1,22 +1,15 @@
-function [r3polynomial, avgTperMm] = fitParamPolyToSkeleton(skeleton, degree)
-% Fits a parameterized polynomial [0,1] -> R^3 to a skeleton point cloud
+%% Fits a parameterized polynomial [0,1] -> R^3 to a skeleton point cloud
+% Params: 
+%              skeleton - 3 x N skeleton pointcloud
+%       OPTIONAL degree - degree of fitted polynomial (DEFAULT: 3)
 %
-% USAGE:
-%
-%    [r3polynomial, avgTperMm] = fitParamPolyToSkeleton(skeleton, degree)
-%
-% INPUTS: 
-%    skeleton:      3 x N skeleton pointcloud
-%    degree:        Degree of fitted polynomial (DEFAULT: 3)
-%
-% OUTPUTS: 
-%    r3polynomial:      Coefficient matrix of fitted polynomial
-%    avgTperMm:         Average "t" per millimeter along the arc length of the polynomial
-%
-% .. AUTHORS:
-%       - Andreas Husch, Original file
-%       - DanielDuarte Tojal, Documentation
+% Andreas Husch
+% Centre Hospitalier de Luxembourg / Luxembourg Centre for Systems
+% Biomedicine, University of Luxembourg
+% 2014  - 2017
+% mail@andreashusch.de, husch.andreas@chl.lu
 
+function [r3polynomial, avgTperMm] = fitParamPolyToSkeleton(skeleton, degree)
 if(nargin < 2)
     disp('No degree given, using default degree=3');
     degree=3;
