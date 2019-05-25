@@ -138,7 +138,7 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         %
         % Returns:
         %
-        %    r:             Returned radius if the field
+        %    r:             Returned radius of the field
 
             k1 = -1.0473;
             k3 = 0.2786;
