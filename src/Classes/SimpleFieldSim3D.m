@@ -5,10 +5,10 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
 % American Journal of Neuroradiology 33.6 (2012): 1072-1080.
 
     properties (SetAccess = public, GetAccess = public)
-        trajectoryObject = [];      % Trajectory of the Object
+        trajectoryObject = [];      % List of the Trajectorie of the Objects
         color = [1 0 0];            % Default red colour of the visualization
-        string = 'SimpleFieldSim';  %
-        graphicsHandles = [];       %
+        string = 'SimpleFieldSim';  % String showing the class name
+        graphicsHandles = [];       % List of the Graphics Handles
     end
 
     properties (SetAccess = public, GetAccess = public, SetObservable=true)
