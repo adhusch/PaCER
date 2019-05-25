@@ -137,5 +137,65 @@ assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_ne
 warningMessage = 'Slice thickness is greater than 0.7 mm! Independet contact detection might not work reliable in this case. However, for certain electrode types with large contacts spacings you might be lucky.';
 assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_brainMask_new}))
 
+%% test different case 
+% load reference data 
+refData_case= 
+% if contact detection set to peakWaveCenter
+%[elecModels_peakWaveCenter_ref, elecPointCloudsStruct_peakWaveCenter_ref, intensityProfiles_peakWaveCenter_ref, skelSkelmms_peakWaveCenter_ref] = PaCER(niiCT_brainMask_new,'contactDetectionMethod','peakWaveCenter');
+[elecModels_peakWaveCenter_new, elecPointCloudsStruct_peakWaveCenter_new, intensityProfiles_peakWaveCenter_new, skelSkelmms_peakWaveCenter_new] = PaCER(niiCT_brainMask_new,'contactDetectionMethod','peakWaveCenter');
+
+% compare reference data and new outputs
+structureComparison(elecModels_peakWaveCenter_new, refData_case.elecModels_peakWaveCenter_ref)
+assert(isequal(elecPointCloudsStruct_peakWaveCenter_new, refData_case.elecPointCloudsStruct_peakWaveCenter_ref))
+for k=1:length(intensityProfiles_peakWaveCenter_new)
+    assert(norm(intensityProfiles_peakWaveCenter_new{k} - refData_case.intensityProfiles_peakWaveCenter_ref{k}) < tol);
+end
+for k=1:length(skelSkelmms_peakWaveCenter_new)
+    assert(norm(skelSkelmms_peakWaveCenter_new{k} - refData_case.skelSkelmms_peakWaveCenter_ref{k}) < tol);
+end
+
+% if 'displayProfiles' is true
+%[elecModels_displayProfiles_ref, elecPointCloudsStruct_displayProfiles_ref, intensityProfiles_displayProfiles_ref, skelSkelmms_displayProfiles_ref] = PaCER(niiCT_brainMask_new,'displayProfiles', true);
+[elecModels_displayProfiles_new, elecPointCloudsStruct_displayProfiles_new, intensityProfiles_displayProfiles_new, skelSkelmms_displayProfiles_new] = PaCER(niiCT_brainMask_new,'displayProfiles', true);
+
+% compare reference data and new outputs
+structureComparison(elecModels_displayProfiles_new, refData_case.elecModels_displayProfiles_ref)
+assert(isequal(elecPointCloudsStruct_displayProfiles_new, refData_case.elecPointCloudsStruct_displayProfiles_ref))
+for k=1:length(intensityProfiles_displayProfiles_new)
+    assert(norm(intensityProfiles_displayProfiles_new{k} - refData_case.intensityProfiles_displayProfiles_ref{k}) < tol);
+end
+for k=1:length(skelSkelmms_displayProfiles_new)
+    assert(norm(skelSkelmms_displayProfiles_new{k} - refData_case.skelSkelmms_displayProfiles_ref{k}) < tol);
+end
+
+
+% if 'displayMPR' is true
+%[elecModels_displayMPR_ref, elecPointCloudsStruct_displayMPR_ref, intensityProfiles_displayMPR_ref, skelSkelmms_displayMPR_ref] = PaCER(niiCT_brainMask_new,'displayMPR', true);
+[elecModels_displayMPR_new, elecPointCloudsStruct_displayMPR_new, intensityProfiles_displayMPR_new, skelSkelmms_displayMPR_new] = PaCER(niiCT_brainMask_new,'displayMPR', true);
+
+% compare reference data and new outputs
+structureComparison(elecModels_displayMPR_new, refData_case.elecModels_displayMPR_ref)
+assert(isequal(elecPointCloudsStruct_displayMPR_new, refData_case.elecPointCloudsStruct_displayMPR_ref))
+for k=1:length(intensityProfiles_displayMPR_new)
+    assert(norm(intensityProfiles_displayMPR_new{k} - refData_case.intensityProfiles_displayMPR_ref{k}) < tol);
+end
+for k=1:length(skelSkelmms_displayMPR_new)
+    assert(norm(skelSkelmms_displayMPR_new{k} - refData_case.skelSkelmms_displayMPR_ref{k}) < tol);
+end
+
+% if final degree set 1 
+%[elecModels_degree_ref, elecPointCloudsStruct_degree_ref, intensityProfiles_degree_ref, skelSkelmms_degree_ref] = PaCER(niiCT_brainMask_new,'finalDegree', 1);
+[elecModels_degree_new, elecPointCloudsStruct_degree_new, intensityProfiles_degree_new, skelSkelmms_degree_new] = PaCER(niiCT_brainMask_new,'finalDegree', 1);
+
+% compare reference data and new outputs
+structureComparison(elecModels_degree_new, refData_case.elecModels_degree_ref)
+assert(isequal(elecPointCloudsStruct_degree_new, refData_case.elecPointCloudsStruct_degree_ref))
+for k=1:length(intensityProfiles_degree_new)
+    assert(norm(intensityProfiles_degree_new{k} - refData_case.intensityProfiles_degree_ref{k}) < tol);
+end
+for k=1:length(skelSkelmms_degree_new)
+    assert(norm(skelSkelmms_degree_new{k} - refData_case.skelSkelmms_degree_ref{k}) < tol);
+end
+
 %% change back to the current directory
 cd(currentDir);
