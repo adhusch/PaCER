@@ -17,10 +17,9 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
     end
 
     properties (Access = protected)
-    % a normalized sphere used as base
-        sphere_x = []; 
-        sphere_y = [];
-        sphere_z = [];
+        sphere_x = []; % x axis of the sphere
+        sphere_y = []; % y axis of the sphere
+        sphere_z = []; % z axis of the sphere
     end
     
     methods
