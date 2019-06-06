@@ -133,6 +133,18 @@ end
 warningMessage = 'Slice thickness is greater than 1 mm! Independent contact detection is most likly not possible. Forcing contactAreaCenter based method.';
 assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
 
+% test if Uncommon fraction of CT data in threshold range
+warningMessage = 'Uncommon fraction of CT data in threshold range (15-60 HU). Trying to compensate. Make sure to use "soft tissue" reconstruction filters for the CT (e.g. J30 kernel) if this fails. ';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
+
+% test if No electrode specification given
+warningMessage = 'No electrode specification given! Set electrodeType option! Trying to estimate type by contactAreaWidth only which might be wrong! ';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
+
+% test if PaCER cannot detect independent electrode contacts
+warningMessage = 'Could NOT detect independent electrode contacts. Check image quality. ';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
+
 % test if slice thickness is greater than 0.7 mm
 warningMessage = 'Slice thickness is greater than 0.7 mm! Independet contact detection might not work reliable in this case. However, for certain electrode types with large contacts spacings you might be lucky.';
 assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_brainMask_new}))
