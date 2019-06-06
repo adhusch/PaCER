@@ -195,5 +195,16 @@ for k=1:length(skelSkelmms_degree_new)
     assert(norm(skelSkelmms_degree_new{k} - refData_case.skelSkelmms_degree_ref{k}) < tol);
 end
 
+%% Use extra dataset to test error message 
+% test if PaCER thrown an error when No electrode artifact are found in the CT supplied
+w = warning ('off','all');
+niiCT_inputs = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_2.nii.gz']); 
+try
+[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_inputs,'noMask',false);
+catch ME
+    assert(length(ME.message) > 0)
+end
+w = warning ('on','all');
+
 %% change back to the current directory
 cd(currentDir);
