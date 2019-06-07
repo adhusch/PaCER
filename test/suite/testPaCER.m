@@ -218,5 +218,26 @@ catch ME
 end
 w = warning ('on','all');
 
+%%
+niiCT_error_1 = NiftiMod([inputDataPath filesep 'PaCER_postop_error_1.nii.gz']);
+[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_error_1)
+
+warningMessage = 'invPolyArcLength3: given arcLength is negatie! Forcing t=0. This is wrong but might be approximatly okay for the use case! Check carefully!';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_error_1}))
+% 
+
+niiCT_error_2 = NiftiMod([inputDataPath filesep 'PaCER_postop_error_2.nii.gz']);
+%warningMessage = 'checkNifti: qform_code == sform_code, however the transformation defined in the qform differes from the sform! This might indicate a serious flaw in the nifti header and lead to unexpected results as different tools/algorithms might deal differently with this situation. Fix the nifti header of your file before continuing. ';
+%assert(verifyFunctionWarning('checkNiftiHdr', warningMessage, 'inputs', {niiCT_error_2}))
+
+%warningMessage = ' CT planes in Z direction are not exactly aligned. Trying with 0.1 mm tolerance ';
+%assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_error_2}))
+
+for n = 1:2 
+    
+warningMessage_1 = 'determineElectrodeType: Could NOT detect electrode type! Electrode contact detection might by flawed. To low image resolution (to large slice thickness)!? Set electrode type manually if you want to continue with this data';
+warningMessage_2 = 'Could NOT detect independent electrode contacts. Check image quality. ';
+assert(verifyFunctionWarning('PaCER', sprintf('warningMessage_%d', n), 'inputs', {niiCT_error_2}))
+end 
 %% change back to the current directory
 cd(currentDir);
