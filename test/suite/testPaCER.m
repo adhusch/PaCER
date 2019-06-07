@@ -82,6 +82,7 @@ end
 %% test different electrodes type:
 % load the reference data
 refData_electrodeType = load([refDataPath filesep 'refData_PaCER_electrodeType.mat']);
+
 % define the input argument
 niiCT_electrodesType = niiCT_PostOP_new;
 xml_Plan_new;
@@ -89,8 +90,7 @@ xml_Plan_new;
 % generate the new output with Medtronic 3387 electrode type.
 [elecModels_Medtronic3387_new, elecPointCloudsStruct_Medtronic3387_new, intensityProfiles_Medtronic3387_new, skelSkelmms_Medtronic3387_new] = PaCER(niiCT_electrodesType, 'medtronicXMLPlan', xml_Plan_new, 'electrodeType', 'Medtronic 3387');
 
-% compare the new data against the reference data using XML plan and
-% providing electrode type (Medtronic 3387)
+% compare the new data against the reference data using XML plan and providing electrode type (Medtronic 3387)
 structureComparison(elecModels_Medtronic3387_new, refData_electrodeType.elecModels_Medtronic3387_ref)
 assert(isequal(elecPointCloudsStruct_Medtronic3387_new, refData_electrodeType.elecPointCloudsStruct_Medtronic3387_ref))
 for k=1:length(intensityProfiles_Medtronic3387_new)
@@ -103,8 +103,7 @@ end
 % generate the new output with Medtronic 3389 electrode type.
 [elecModels_Medtronic3389_new, elecPointCloudsStruct_Medtronic3389_new, intensityProfiles_Medtronic3389_new, skelSkelmms_Medtronic3389_new] = PaCER(niiCT_electrodesType, 'medtronicXMLPlan', xml_Plan_new, 'electrodeType', 'Medtronic 3389');
 
-% compare the new data against the reference data using XML plan and
-% providing electrode type (Medtronic 3389)
+% compare the new data against the reference data using XML plan and providing electrode type (Medtronic 3389)
 structureComparison(elecModels_Medtronic3389_new, refData_electrodeType.elecModels_Medtronic3389_ref)
 assert(isequal(elecPointCloudsStruct_Medtronic3389_new, refData_electrodeType.elecPointCloudsStruct_Medtronic3389_ref));
 for k=1:length(intensityProfiles_Medtronic3389_new)
@@ -129,8 +128,7 @@ for k=1:length(skelSkelmms_Boston_new)
 end
 
 %% test different case 
-% load reference data including the new condition for
-% peakWaveCenter,'displayProfiles' true, 'displayMPR' true and final degree setup to 1
+% load reference data including the new condition for peakWaveCenter,'displayProfiles' true, 'displayMPR' true and final degree setup to 1
 refData_case = load([refDataPath filesep 'refData_PaCER_different_case.mat']);
 
 % if contact detection set to peakWaveCenter
@@ -146,34 +144,7 @@ for k=1:length(skelSkelmms_peakWaveCenter_new)
     assert(norm(skelSkelmms_peakWaveCenter_new{k} - refData_case.skelSkelmms_peakWaveCenter_ref{k}) < tol);
 end
 
-% if 'displayProfiles' is true
-[elecModels_displayProfiles_new, elecPointCloudsStruct_displayProfiles_new, intensityProfiles_displayProfiles_new, skelSkelmms_displayProfiles_new] = PaCER(niiCT_brainMask_new,'displayProfiles', true);
-
-% compare reference data and new outputs
-structureComparison(elecModels_displayProfiles_new, refData_case.elecModels_displayProfiles_ref)
-assert(isequal(elecPointCloudsStruct_displayProfiles_new, refData_case.elecPointCloudsStruct_displayProfiles_ref))
-for k=1:length(intensityProfiles_displayProfiles_new)
-    assert(norm(intensityProfiles_displayProfiles_new{k} - refData_case.intensityProfiles_displayProfiles_ref{k}) < tol);
-end
-for k=1:length(skelSkelmms_displayProfiles_new)
-    assert(norm(skelSkelmms_displayProfiles_new{k} - refData_case.skelSkelmms_displayProfiles_ref{k}) < tol);
-end
-
-% if 'displayMPR' is true
-[elecModels_displayMPR_new, elecPointCloudsStruct_displayMPR_new, intensityProfiles_displayMPR_new, skelSkelmms_displayMPR_new] = PaCER(niiCT_brainMask_new,'displayMPR', true);
-
-% compare reference data and new outputs
-structureComparison(elecModels_displayMPR_new, refData_case.elecModels_displayMPR_ref)
-assert(isequal(elecPointCloudsStruct_displayMPR_new, refData_case.elecPointCloudsStruct_displayMPR_ref))
-for k=1:length(intensityProfiles_displayMPR_new)
-    assert(norm(intensityProfiles_displayMPR_new{k} - refData_case.intensityProfiles_displayMPR_ref{k}) < tol);
-end
-for k=1:length(skelSkelmms_displayMPR_new)
-    assert(norm(skelSkelmms_displayMPR_new{k} - refData_case.skelSkelmms_displayMPR_ref{k}) < tol);
-end
-
 % if final degree setup to 1 
-%[elecModels_degree_ref, elecPointCloudsStruct_degree_ref, intensityProfiles_degree_ref, skelSkelmms_degree_ref] = PaCER(niiCT_brainMask_new,'finalDegree', 1);
 [elecModels_degree_new, elecPointCloudsStruct_degree_new, intensityProfiles_degree_new, skelSkelmms_degree_new] = PaCER(niiCT_brainMask_new,'finalDegree', 1);
 
 % compare reference data and new outputs
@@ -186,14 +157,34 @@ for k=1:length(skelSkelmms_degree_new)
     assert(norm(skelSkelmms_degree_new{k} - refData_case.skelSkelmms_degree_ref{k}) < tol);
 end
 
-%% testing additional parameter
-%load the reference data generated with additional inputs: reverseDir,contactAreaCenter ,
-%peak, peakWaveCenter
+%% if 'displayProfiles and 'displayMPR' are true
+% load reference data (with displayMPR and displayProfiles) 
+refData_MPR = load([refDataPath filesep 'refData_PaCER_DisplayMPR.mat']);
+
+% generate new output
+[elecModels_displayProfiles_new, elecPointCloudsStruct_displayProfiles_new, intensityProfiles_displayProfiles_new, skelSkelmms_displayProfiles_new] = PaCER(niiCT_brainMask_new,'displayProfiles', true, 'displayMPR', true);
+
+% compare reference data and new data
+structureComparison(elecModels_displayProfiles_new, refData_MPR.elecModels_displayProfiles_ref)
+assert(isequal(elecPointCloudsStruct_displayProfiles_new, refData_MPR.elecPointCloudsStruct_displayProfiles_ref))
+for k=1:length(intensityProfiles_displayProfiles_new)
+    assert(norm(intensityProfiles_displayProfiles_new{k} - refData_MPR.intensityProfiles_displayProfiles_ref{k}) < tol);
+end
+for k=1:length(skelSkelmms_displayProfiles_new)
+    assert(norm(skelSkelmms_displayProfiles_new{k} - refData_MPR.skelSkelmms_displayProfiles_ref{k}) < tol);
+end
+
+%% testing additional parameters
+%load the reference data generated by using additional inputs in PaCER function: reverseDir,contactAreaCenter , peak, peakWaveCenter
 refData = load([refDataPath filesep 'refData_PaCER_additional_parameter.mat']);
 
-% generate different output by using different dataset
+%load a new CT input
 niiCT_PaCER_9 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_9.nii.gz']);
-[elecModels_new_9, elecPointCloudsStruct_new_9, intensityProfiles_new_9, skelSkelmms_new_9] = PaCER(niiCT_PaCER_9, 'reverseDir', true, 'contactAreaCenter','peak')
+
+% generate the new outputs with 'reverseDir', 'contactAreaCenter' and 'peak' 
+[elecModels_new_9, elecPointCloudsStruct_new_9, intensityProfiles_new_9, skelSkelmms_new_9] = PaCER(niiCT_PaCER_9, 'reverseDir', true, 'contactAreaCenter','peak');
+
+% compare the generated data against the ref data
 structureComparison(refData.elecModels_ref_9, elecModels_new_9)
 assert(isequal(elecPointCloudsStruct_new_9, refData.elecPointCloudsStruct_ref_9));
 for k=1:length(intensityProfiles_new_9)
@@ -203,10 +194,13 @@ for k=1:length(skelSkelmms_new_9)
     assert(norm(skelSkelmms_new_9{k} - refData.skelSkelmms_ref_9{k}) < tol);
 end
 
-
+% load a new CT input
 niiCT_PaCER_8 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_8.nii.gz']);
 
-[elecModels_new_8, elecPointCloudsStruct_new_8, intensityProfiles_new_8, skelSkelmms_new_8] = PaCER(niiCT_PaCER_8, 'reverseDir', true, 'contactAreaCenter','peakWaveCenter')
+% generate the new output with 'reverseDir', true, 'contactAreaCenter' and 'peakWaveCenter' additional inputs
+[elecModels_new_8, elecPointCloudsStruct_new_8, intensityProfiles_new_8, skelSkelmms_new_8] = PaCER(niiCT_PaCER_8, 'reverseDir', true, 'contactAreaCenter','peakWaveCenter');
+
+% compare the generated data against the ref data
 structureComparison(refData.elecModels_ref_8, elecModels_new_8)
 assert(isequal(elecPointCloudsStruct_new_8, refData.elecPointCloudsStruct_ref_8));
 for k=1:length(intensityProfiles_new_8)
@@ -216,10 +210,13 @@ for k=1:length(skelSkelmms_new_8)
     assert(norm(skelSkelmms_new_8{k} - refData.skelSkelmms_ref_8{k}) < tol);
 end
 
-
-
+% load a new CT input
 niiCT_PaCER_6 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_6.nii.gz']);
+
+% generate the new output with 'reverseDir', 'contactDetectionMethod' and 'peak' input arguments
 [elecModels_new_6, elecPointCloudsStruct_new_6, intensityProfiles_new_6, skelSkelmms_new_6] = PaCER(niiCT_PaCER_6, 'reverseDir', true, 'contactDetectionMethod','peak')
+
+% compare the new generated data against the ref data
 structureComparison(refData.elecModels_ref_6, elecModels_new_6)
 assert(isequal(elecPointCloudsStruct_new_6, refData.elecPointCloudsStruct_ref_6));
 for k=1:length(intensityProfiles_new_6)
@@ -229,8 +226,13 @@ for k=1:length(skelSkelmms_new_6)
     assert(norm(skelSkelmms_new_6{k} - refData.skelSkelmms_ref_6{k}) < tol);
 end
 
+% load a new CT input
 niiCT_PaCER_5 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_5.nii.gz']);
-[elecModels_new_5, elecPointCloudsStruct_new_5, intensityProfiles_new_5, skelSkelmms_new_5] = PaCER(niiCT_PaCER_5, 'reverseDir', true, 'contactDetectionMethod','contactAreaCenter')
+
+% generate the new output with 'reverseDir', 'contactDetectionMethod' and 'contactAreaCenter' input arguments 
+[elecModels_new_5, elecPointCloudsStruct_new_5, intensityProfiles_new_5, skelSkelmms_new_5] = PaCER(niiCT_PaCER_5, 'reverseDir', true, 'contactDetectionMethod','contactAreaCenter');
+
+% compare the new generated data against the ref data
 structureComparison(refData.elecModels_ref_5, elecModels_new_5)
 assert(isequal(elecPointCloudsStruct_new_5, refData.elecPointCloudsStruct_ref_5));
 for k=1:length(intensityProfiles_new_5)
@@ -251,11 +253,11 @@ catch ME
 end
 w = warning ('on','all');
 
-% catch error message if medtronicXMLPlan is used but no corresponding file provided
+% catch error message if medtronicXMLPlan is used but no corresponding file is provided
 w = warning ('off','all');
 niiCT_error_1 =  NiftiMod([inputDataPath filesep 'PaCER_postop_error_1.nii.gz']);
 try
-[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_error_1, 'medtronicXMLPlan')
+[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_error_1, 'medtronicXMLPlan');
 catch ME
     assert(length(ME.message) > 0)
 end
@@ -275,11 +277,12 @@ warningMessage = 'checkNifti: qform_code == sform_code, however the transformati
 assert(verifyFunctionWarning('checkNiftiHdr', warningMessage, 'inputs', {niiCT_error_2}))
 
 % test if CT planes in Z direction are not exactly aligned
-warningMessage = 'CT planes in Z direction are not exactly aligned. Trying with 0.1 mm tolerance'
+warningMessage = 'CT planes in Z direction are not exactly aligned. Trying with 0.1 mm tolerance';
 assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_error_2}))
 
-warningMessage_1 = 'determineElectrodeType: Could NOT detect electrode type! Electrode contact detection might by flawed. To low image resolution (to large slice thickness)!? Set electrode type manually if you want to continue with this data'
-warningMessage_2 = 'Could NOT detect independent electrode contacts. Check image quality. '
+% test if electrode type and contact between them are not detected
+warningMessage_1 = 'determineElectrodeType: Could NOT detect electrode type! Electrode contact detection might by flawed. To low image resolution (to large slice thickness)!? Set electrode type manually if you want to continue with this data';
+warningMessage_2 = 'Could NOT detect independent electrode contacts. Check image quality. ';
 assert(verifyFunctionWarning('PaCER', warningMessage_1, 'inputs', {niiCT_error_2}))
 assert(verifyFunctionWarning('PaCER', warningMessage_2, 'inputs', {niiCT_error_2}))
 
