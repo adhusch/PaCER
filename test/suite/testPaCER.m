@@ -265,7 +265,7 @@ w = warning ('on','all');
 
 % test the warning messages
 % test if PaCER thrown specific warning message depending on the dataset used
-warningMessage = 'invPolyArcLength3: given arcLength is negatie! Forcing t=0. This is wrong but might be approximatly okay for the use case! Check carefully!';
+warningMessage = ' invPolyArcLength3: given arcLength is negative! Forcing t=0. This is wrong but might be approximatly okay for the use case! Check carefully!';
 assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_error_1}))
 
 % use additional dataset to test warning messages
