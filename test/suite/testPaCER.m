@@ -79,7 +79,7 @@ for k=1:length(skelSkelmms_Mask_new)
     assert(norm(skelSkelmms_Mask_new{k} - refData_brainMask.skelSkelmms_Mask_Ref{k}) < tol);
 end
 
-%% test different electrode type:
+%% test different electrodes type:
 % load the reference data
 refData_electrodeType = load([refDataPath filesep 'refData_PaCER_electrodeType.mat']);
 % define the input argument
@@ -127,27 +127,6 @@ end
 for k=1:length(skelSkelmms_Boston_new)
     assert(norm(skelSkelmms_Boston_new{k} - refData_electrodeType.skelSkelmms_Boston_ref{k}) < tol);
 end
-
-%% test the warning messages
-% test if slice thickness is greater than 1 mm
-warningMessage = 'Slice thickness is greater than 1 mm! Independent contact detection is most likly not possible. Forcing contactAreaCenter based method.';
-assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
-
-% test if Uncommon fraction of CT data in threshold range
-warningMessage = 'Uncommon fraction of CT data in threshold range (15-60 HU). Trying to compensate. Make sure to use "soft tissue" reconstruction filters for the CT (e.g. J30 kernel) if this fails. ';
-assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
-
-% test if No electrode specification given
-warningMessage = 'No electrode specification given! Set electrodeType option! Trying to estimate type by contactAreaWidth only which might be wrong! ';
-assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
-
-% test if PaCER cannot detect independent electrode contacts
-warningMessage = 'Could NOT detect independent electrode contacts. Check image quality. ';
-assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
-
-% test if slice thickness is greater than 0.7 mm
-warningMessage = 'Slice thickness is greater than 0.7 mm! Independet contact detection might not work reliable in this case. However, for certain electrode types with large contacts spacings you might be lucky.';
-assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_brainMask_new}))
 
 %% test different case 
 % load reference data including the new condition for
@@ -207,56 +186,14 @@ for k=1:length(skelSkelmms_degree_new)
     assert(norm(skelSkelmms_degree_new{k} - refData_case.skelSkelmms_degree_ref{k}) < tol);
 end
 
-%% Use extra dataset to test error message 
-% test if PaCER thrown an error when No electrode artifact are found in the CT supplied
-w = warning ('off','all');
-niiCT_inputs = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_2.nii.gz']); 
-try
-[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_inputs,'noMask',false);
-catch ME
-    assert(length(ME.message) > 0)
-end
-w = warning ('on','all');
+%% testing additional parameter
+%load the reference data generated with additional inputs: reverseDir,contactAreaCenter ,
+%peak, peakWaveCenter
+refData = load([refDataPath filesep 'refData_PaCER_additional_parameter.mat']);
 
-%%
-niiCT_error_1 = NiftiMod([inputDataPath filesep 'PaCER_postop_error_1.nii.gz']);
-[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_error_1)
-
-warningMessage = 'invPolyArcLength3: given arcLength is negatie! Forcing t=0. This is wrong but might be approximatly okay for the use case! Check carefully!';
-assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_error_1}))
-
-% catch error message if 'finalDegree' is invalid
-w = warning ('off','all');
-niiCT_error_1;
-try
-[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_error_1,'medtronicXMLPlan')
-catch ME
-    assert(length(ME.message) > 0)
-end
-w = warning ('on','all');
-
-
-niiCT_error_2 = NiftiMod([inputDataPath filesep 'PaCER_postop_error_2.nii.gz']);
-warningMessage = 'checkNifti: qform_code == sform_code, however the transformation defined in the qform differes from the sform! This might indicate a serious flaw in the nifti header and lead to unexpected results as different tools/algorithms might deal differently with this situation. Fix the nifti header of your file before continuing.';
-assert(verifyFunctionWarning('checkNiftiHdr', warningMessage, 'inputs', {niiCT_error_2}))
-
-warningMessage = 'CT planes in Z direction are not exactly aligned. Trying with 0.1 mm tolerance'
-assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_error_2}))
-
-warningMessage_1 = 'determineElectrodeType: Could NOT detect electrode type! Electrode contact detection might by flawed. To low image resolution (to large slice thickness)!? Set electrode type manually if you want to continue with this data';
-warningMessage_2 = 'Could NOT detect independent electrode contacts. Check image quality. ';
-
-
-%for n = 1:2     
-%assert(verifyFunctionWarning('PaCER', sprintf('warningMessage_%d', n), 'inputs', {niiCT_error_2}))
-%end 
-assert(verifyFunctionWarning('PaCER', warningMessage_1, 'inputs', {niiCT_error_2}))
-assert(verifyFunctionWarning('PaCER', warningMessage_2, 'inputs', {niiCT_error_2}))
-
-%%testing additional parameter
+% generate different output by using different dataset
 niiCT_PaCER_9 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_9.nii.gz']);
 [elecModels_new_9, elecPointCloudsStruct_new_9, intensityProfiles_new_9, skelSkelmms_new_9] = PaCER(niiCT_PaCER_9, 'reverseDir', true, 'contactAreaCenter','peak')
-
 structureComparison(refData.elecModels_ref_9, elecModels_new_9)
 assert(isequal(elecPointCloudsStruct_new_9, refData.elecPointCloudsStruct_ref_9));
 for k=1:length(intensityProfiles_new_9)
@@ -268,14 +205,103 @@ end
 
 
 niiCT_PaCER_8 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_8.nii.gz']);
-[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PaCER_8, 'reverseDir', true, 'contactAreaCenter','peakWaveCenter')
+
+[elecModels_new_8, elecPointCloudsStruct_new_8, intensityProfiles_new_8, skelSkelmms_new_8] = PaCER(niiCT_PaCER_8, 'reverseDir', true, 'contactAreaCenter','peakWaveCenter')
+structureComparison(refData.elecModels_ref_8, elecModels_new_8)
+assert(isequal(elecPointCloudsStruct_new_8, refData.elecPointCloudsStruct_ref_8));
+for k=1:length(intensityProfiles_new_8)
+    assert(norm(intensityProfiles_new_8{k} - refData.intensityProfiles_ref_8{k}) < tol);
+end
+for k=1:length(skelSkelmms_new_8)
+    assert(norm(skelSkelmms_new_8{k} - refData.skelSkelmms_ref_8{k}) < tol);
+end
+
+
 
 niiCT_PaCER_6 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_6.nii.gz']);
-[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PaCER_6, 'reverseDir', true, 'contactDetectionMethod','peak')
+[elecModels_new_6, elecPointCloudsStruct_new_6, intensityProfiles_new_6, skelSkelmms_new_6] = PaCER(niiCT_PaCER_6, 'reverseDir', true, 'contactDetectionMethod','peak')
+structureComparison(refData.elecModels_ref_6, elecModels_new_6)
+assert(isequal(elecPointCloudsStruct_new_6, refData.elecPointCloudsStruct_ref_6));
+for k=1:length(intensityProfiles_new_6)
+    assert(norm(intensityProfiles_new_6{k} - refData.intensityProfiles_ref_6{k}) < tol);
+end
+for k=1:length(skelSkelmms_new_6)
+    assert(norm(skelSkelmms_new_6{k} - refData.skelSkelmms_ref_6{k}) < tol);
+end
 
 niiCT_PaCER_5 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_5.nii.gz']);
-[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PaCER_5, 'reverseDir', true, 'contactDetectionMethod','contactAreaCenter')
+[elecModels_new_5, elecPointCloudsStruct_new_5, intensityProfiles_new_5, skelSkelmms_new_5] = PaCER(niiCT_PaCER_5, 'reverseDir', true, 'contactDetectionMethod','contactAreaCenter')
+structureComparison(refData.elecModels_ref_5, elecModels_new_5)
+assert(isequal(elecPointCloudsStruct_new_5, refData.elecPointCloudsStruct_ref_5));
+for k=1:length(intensityProfiles_new_5)
+    assert(norm(intensityProfiles_new_5{k} - refData.intensityProfiles_ref_5{k}) < tol);
+end
+for k=1:length(skelSkelmms_new_5)
+    assert(norm(skelSkelmms_new_5{k} - refData.skelSkelmms_ref_5{k}) < tol);
+end
 
+%% Use extra dataset to test error message and warning message
+% test if PaCER thrown an error when no electrode artifact are found in the CT supplied
+w = warning ('off','all');
+niiCT_inputs = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_2.nii.gz']); 
+try
+[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_inputs,'noMask',false);
+catch ME
+    assert(length(ME.message) > 0)
+end
+w = warning ('on','all');
+
+% catch error message if medtronicXMLPlan is used but no corresponding file provided
+w = warning ('off','all');
+niiCT_error_1 =  NiftiMod([inputDataPath filesep 'PaCER_postop_error_1.nii.gz']);
+try
+[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_error_1, 'medtronicXMLPlan')
+catch ME
+    assert(length(ME.message) > 0)
+end
+w = warning ('on','all');
+
+% test the warning messages
+% test if PaCER thrown specific warning message depending on the dataset used
+warningMessage = 'invPolyArcLength3: given arcLength is negatie! Forcing t=0. This is wrong but might be approximatly okay for the use case! Check carefully!';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_error_1}))
+
+% use additional dataset to test warning messages
+% load a new CT data
+niiCT_error_2 = NiftiMod([inputDataPath filesep 'PaCER_postop_error_2.nii.gz']);
+
+% test if warning message appears when the model is loaded
+warningMessage = 'checkNifti: qform_code == sform_code, however the transformation defined in the qform differes from the sform! This might indicate a serious flaw in the nifti header and lead to unexpected results as different tools/algorithms might deal differently with this situation. Fix the nifti header of your file before continuing.';
+assert(verifyFunctionWarning('checkNiftiHdr', warningMessage, 'inputs', {niiCT_error_2}))
+
+% test if CT planes in Z direction are not exactly aligned
+warningMessage = 'CT planes in Z direction are not exactly aligned. Trying with 0.1 mm tolerance'
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_error_2}))
+
+warningMessage_1 = 'determineElectrodeType: Could NOT detect electrode type! Electrode contact detection might by flawed. To low image resolution (to large slice thickness)!? Set electrode type manually if you want to continue with this data'
+warningMessage_2 = 'Could NOT detect independent electrode contacts. Check image quality. '
+assert(verifyFunctionWarning('PaCER', warningMessage_1, 'inputs', {niiCT_error_2}))
+assert(verifyFunctionWarning('PaCER', warningMessage_2, 'inputs', {niiCT_error_2}))
+
+% test if slice thickness is greater than 1 mm
+warningMessage = 'Slice thickness is greater than 1 mm! Independent contact detection is most likly not possible. Forcing contactAreaCenter based method.';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
+
+% test if Uncommon fraction of CT data in threshold range
+warningMessage = 'Uncommon fraction of CT data in threshold range (15-60 HU). Trying to compensate. Make sure to use "soft tissue" reconstruction filters for the CT (e.g. J30 kernel) if this fails. ';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
+
+% test if No electrode specification given
+warningMessage = 'No electrode specification given! Set electrodeType option! Trying to estimate type by contactAreaWidth only which might be wrong! ';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
+
+% test if PaCER cannot detect independent electrode contacts
+warningMessage = 'Could NOT detect independent electrode contacts. Check image quality. ';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
+
+% test if slice thickness is greater than 0.7 mm
+warningMessage = 'Slice thickness is greater than 0.7 mm! Independet contact detection might not work reliable in this case. However, for certain electrode types with large contacts spacings you might be lucky.';
+assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_brainMask_new}))
 
 %% change back to the current directory
 cd(currentDir);
