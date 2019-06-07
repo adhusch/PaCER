@@ -253,6 +253,29 @@ warningMessage_2 = 'Could NOT detect independent electrode contacts. Check image
 assert(verifyFunctionWarning('PaCER', warningMessage_1, 'inputs', {niiCT_error_2}))
 assert(verifyFunctionWarning('PaCER', warningMessage_2, 'inputs', {niiCT_error_2}))
 
+%%testing additional parameter
+niiCT_PaCER_9 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_9.nii.gz']);
+[elecModels_new_9, elecPointCloudsStruct_new_9, intensityProfiles_new_9, skelSkelmms_new_9] = PaCER(niiCT_PaCER_9, 'reverseDir', true, 'contactAreaCenter','peak')
+
+structureComparison(refData.elecModels_ref_9, elecModels_new_9)
+assert(isequal(elecPointCloudsStruct_new_9, refData.elecPointCloudsStruct_ref_9));
+for k=1:length(intensityProfiles_new_9)
+    assert(norm(intensityProfiles_new_9{k} - refData.intensityProfiles_ref_9{k}) < tol);
+end
+for k=1:length(skelSkelmms_new_9)
+    assert(norm(skelSkelmms_new_9{k} - refData.skelSkelmms_ref_9{k}) < tol);
+end
+
+
+niiCT_PaCER_8 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_8.nii.gz']);
+[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PaCER_8, 'reverseDir', true, 'contactAreaCenter','peakWaveCenter')
+
+niiCT_PaCER_6 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_6.nii.gz']);
+[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PaCER_6, 'reverseDir', true, 'contactDetectionMethod','peak')
+
+niiCT_PaCER_5 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_5.nii.gz']);
+[elecModels_new, elecPointCloudsStruct_new, intensityProfiles_new, skelSkelmms_new] = PaCER(niiCT_PaCER_5, 'reverseDir', true, 'contactDetectionMethod','contactAreaCenter')
+
 
 %% change back to the current directory
 cd(currentDir);
