@@ -214,7 +214,7 @@ end
 niiCT_PaCER_6 = NiftiMod([inputDataPath filesep 'PaCER_ct_post_OK_6.nii.gz']);
 
 % generate the new output with 'reverseDir', 'contactDetectionMethod' and 'peak' input arguments
-[elecModels_new_6, elecPointCloudsStruct_new_6, intensityProfiles_new_6, skelSkelmms_new_6] = PaCER(niiCT_PaCER_6, 'reverseDir', true, 'contactDetectionMethod','peak')
+[elecModels_new_6, elecPointCloudsStruct_new_6, intensityProfiles_new_6, skelSkelmms_new_6] = PaCER(niiCT_PaCER_6, 'reverseDir', true, 'contactDetectionMethod','peak');
 
 % compare the new generated data against the ref data
 structureComparison(refData.elecModels_ref_6, elecModels_new_6)
