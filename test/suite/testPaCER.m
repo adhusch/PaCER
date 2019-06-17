@@ -292,10 +292,10 @@ assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_ne
 
 % test if Uncommon fraction of CT data in threshold range
 warningMessage = 'Uncommon fraction of CT data in threshold range (15-60 HU). Trying to compensate. Make sure to use "soft tissue" reconstruction filters for the CT (e.g. J30 kernel) if this fails. ';
-assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
+assert(verifyFunctionWarning('extractBrainConvHull', warningMessage, 'inputs', {niiCT_PostOP_new}))
 
 % test if No electrode specification given
-warningMessage = 'No electrode specification given! Set electrodeType option! Trying to estimate type by contactAreaWidth only which might be wrong! ';
+warningMessage = 'No electrode specification given! Set electrodeType option! Trying to estimate type by contactAreaWidth only which might be wrong!';
 assert(verifyFunctionWarning('PaCER', warningMessage, 'inputs', {niiCT_PostOP_new}))
 
 % test if PaCER cannot detect independent electrode contacts
