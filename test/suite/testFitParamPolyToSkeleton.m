@@ -6,6 +6,9 @@
 % Author:
 %     - Loic Marx, June 2019
 
+global refDataPath
+global inputDataPath
+
 % save the current path
 currentDir = pwd;
 
