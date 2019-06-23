@@ -29,8 +29,8 @@ refData = load([refDataPath filesep 'refData_fitParamPolyToSkeleton.mat']);
 [r3polynomial_new, avgTperMm_new] = fitParamPolyToSkeleton(fitParamPolyToSkeleton_inputs.skeleton, fitParamPolyToSkeleton_inputs.degree);
 
 % compare the new output with the ref data 
-assert(isequal(refData.r3polynomial, r3polynomial_new))
-assert(isequal(refData.avgTperMm, avgTperMm_new))
+assert(norm(refData.r3polynomial - r3polynomial_new)< tol);
+assert(norm(refData.avgTperMm - avgTperMm_new)< tol);
 
 % test if degree is setup to 3 when only the input argument skeleton is provided
 [r3polynomial_skel_new, avgTperMm_skel_new] = fitParamPolyToSkeleton(fitParamPolyToSkeleton_inputs.skeleton)
