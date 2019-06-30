@@ -58,7 +58,16 @@ assert(norm(totalLengthMm_var2_new - totalLengthMm_var2_ref) < tol)
 warningMessage = 'No Reference image for intensity weighting given! Accuracy is thus limited to voxel size!';
 assert(verifyFunctionWarning('electrodePointCloudModelEstimate', warningMessage, 'inputs', {electrodePointCloudModelEstimate_inputs.elecPointCloudMm}));
 
+% use another input argument to test error message 
+[r3polynomial_error_new, tPerMm_error_new, skeleton_error_new, totalLengthMm_error_new] = electrodePointCloudModelEstimate(elecPointCloudMm_error);
+
+% compare the reference data and the new outputs
+assert(norm(r3polynomial_error_new - r3polynomial_error_ref) < tol)
+assert(norm(tPerMm_error_new - tPerMm_error_ref) < tol)
+assert(norm(skeleton_error_new - skeleton_error_ref) < tol)
+assert(norm(totalLengthMm_error_new - totalLengthMm_error_ref) < tol)
 
 % capture the warning message if ~(length(zPlanes) < length(elecPointCloudMm))
 warningMessage = 'CT planes in Z direction are not exactly aligned. Trying with 0.1 mm tolerance';
-assert(verifyFunctionWarning('electrodePointCloudModelEstimate', warningMessage, 'inputs', {electrodePointCloudModelEstimate_inputs.elecPointCloudMm}));
+assert(verifyFunctionWarning('electrodePointCloudModelEstimate', warningMessage, 'inputs', {elecPointCloudMm_error}));
+
