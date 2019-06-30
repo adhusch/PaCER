@@ -45,3 +45,11 @@ assert(norm(tPerMm_var1_new - tPerMm_var1_ref) < tol)
 assert(norm(skeleton_var1_new - skeleton_var1_ref) < tol)
 assert(norm(totalLengthMm_var1_new - totalLengthMm_var1_ref) < tol)
 
+% generate the new output if nargin = 3
+[r3polynomial_var2_new, tPerMm_var2_new, skeleton_var2_new, totalLengthMm_var2_new] = electrodePointCloudModelEstimate(electrodePointCloudModelEstimate_inputs.elecPointCloudMm, electrodePointCloudModelEstimate_inputs.varargin{1, 1}, electrodePointCloudModelEstimate_inputs.varargin{1, 2});
+
+% compare the reference data and the new outputs
+assert(norm(r3polynomial_var2_new - r3polynomial_var2_ref) < tol)
+assert(norm(tPerMm_var2_new - tPerMm_var2_ref) < tol)
+assert(norm(skeleton_var2_new - skeleton_var2_ref) < tol)
+assert(norm(totalLengthMm_var2_new - totalLengthMm_var2_ref) < tol)
