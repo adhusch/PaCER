@@ -18,7 +18,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
     
     methods
        function str = toString(this)
-        % Function that sets the info message for the feedback
+        % Function that sets the info message for feedback
         %
         % Parameters:
         %
@@ -37,7 +37,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function setEntryPoint3D(this, point3DObj)
-        % Function that sets the 3D entry point of the trajectory
+        %
         %
         % Parameters:
         %
@@ -55,7 +55,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function setTargetPoint3D(this, point3DObj)
-        % Function that sets the 3D target point of the trajectory
+        %
         %
         % Parameters:
         %
@@ -73,7 +73,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function value = getEntryPoint(this)
-        % Function that gets the coordinates of the entry point
+        %
         %
         % Parameters:
         %
@@ -87,7 +87,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function value = getTargetPoint(this)
-        % Function that gets the coordinates of the target point
+        %
         %
         % Parameters:
         %
@@ -101,7 +101,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function setEntryPoint(this, point)
-        % Function that sets the 3D entry point of the trajectory
+        %
         %
         % Parameters:
         %
@@ -120,7 +120,7 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         end
         
         function setTargetPoint(this, point)
-        % Function that sets the 3D target point of the trajectory
+        %
         %
         % Parameters:
         %
