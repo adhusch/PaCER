@@ -12,8 +12,8 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
     end
 
     properties (SetAccess = public, GetAccess = public, SetObservable=true)
-        impedance = 800;    % Resistance given in [Ohm]
-        voltage = 1.0;      % Voltage given in [V]
+        impedance = 800;    % [Ohm]
+        voltage = 1.0;      % [V]
     end
 
     properties (Access = protected)
@@ -24,7 +24,7 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
     
     methods
         function this = SimpleFieldSim3D(trajectoryObject)
-        % Function that serves to initialize a normalized sphere
+        % The constructor of the simulation.
         %
         % Parameters:
         %
@@ -132,8 +132,8 @@ classdef SimpleFieldSim3D < plotable3D & configurable & handle
         %
         % Parameters:
         %
-        %    impedance:     Resistance of the electrodes.
-        %    voltage:       Voltage between the electrodes.
+        %    impedance:     Assumed electrical impedance of the tissue.
+        %    voltage:       Monopolar stimulation voltage
         %
         % Returns:
         %
