@@ -38,15 +38,6 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         
         function setEntryPoint3D(this, point3DObj)
         %
-        %
-        % Parameters:
-        %
-        %    this:          Self-Reference
-        %    point3DObj:    3D point coordinates to set the entry point to.
-        %
-        % Returns:
-        %
-        %     :              Returns a feedback message to confirm the settings.
 
             if(isa(point3DObj, 'Point3D'))
                 this.entryPoint3D = point3DObj;
@@ -56,15 +47,6 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         
         function setTargetPoint3D(this, point3DObj)
         %
-        %
-        % Parameters:
-        %
-        %    this:          Self-Reference
-        %    point3DObj:    3D point coordinates to set the target point to.
-        %
-        % Returns:
-        %
-        %     :             Returns a feedback message to confirm the settings.
 
             if(isa(point3DObj, 'Point3D'))
                 this.targetPoint3D = point3DObj;
@@ -74,43 +56,18 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         
         function value = getEntryPoint(this)
         %
-        %
-        % Parameters:
-        %
-        %    this:      Self-Reference
-        %
-        % Returns:
-        %
-        %    value:     Entry point coordinates. 
 
             value = this.entryPoint3D.point;
         end
         
         function value = getTargetPoint(this)
         %
-        %
-        % Parameters:
-        %
-        %    this:      Self-Reference
-        %
-        % Returns:
-        %
-        %    value:     Target point coordinates.
 
             value = this.targetPoint3D.point;
         end
         
         function setEntryPoint(this, point)
         %
-        %
-        % Parameters:
-        %
-        %    this:      Self-Reference
-        %    point:     Point coordinates to set the entry point to.
-        %
-        % Returns:
-        %
-        %     :         Returns a feedback message to confirm the settings.
 
             if(isempty(this.entryPoint3D))
                 this.entryPoint3D = Point3D();
@@ -121,15 +78,6 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         
         function setTargetPoint(this, point)
         %
-        %
-        % Parameters:
-        %
-        %    this:      Self-Reference
-        %    point:     Point coordinates to set the target point to.
-        %
-        % Returns:
-        %
-        %     :         Returns a feedback message to confirm the settings.
 
             if(isempty(this.targetPoint3D))
                 this.targetPoint3D = Point3D();
@@ -140,15 +88,6 @@ classdef Trajectory < handle & matlab.mixin.Copyable & MetaTrajectory
         
         function direction = getDirection(this)
         % Function to give a normalized vector from entry to destination
-        %
-        % Parameters:
-        %
-        %    this:          Self-Reference
-        %
-        % Returns:
-        %
-        %    direction:     the direction of the 3D vector betwen the entry
-        %                   and the target point
         
             direction = -((this.entryPoint3D.point - this.targetPoint3D.point) / norm(this.entryPoint3D.point - this.targetPoint3D.point));
         end
