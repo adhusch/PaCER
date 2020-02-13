@@ -12,7 +12,7 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
 
    <br>
    <a href="https://adhusch.github.io/PaCER/"><img src="https://img.shields.io/badge/PaCER-docs-blue.svg?maxAge=0"></a>
-   &nbsp;&nbsp;&nbsp;<a href="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/"><img src="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/badge/icon"></a>
+   &nbsp;&nbsp;&nbsp;<a href="https://prince.lcsb.uni.lu/jenkins/job/PaCER-branches-auto-linux/"><img src="https://prince.lcsb.uni.lu/jenkins/buildStatus/icon?job=PaCER-pr-auto-linux"></a>
    <br><br>
 
 ..
@@ -31,7 +31,7 @@ PaCER |br| Precise and Convenient Electrode Reconstruction for DBS
 .. raw:: html
 
    <p align="center">
-     <img alt="Image of a PaCER electrode reconstruction at two different time points of resolving brain shift." class="readme_main" src="https://prince.lcsb.uni.lu/userContent/mainPacer.png" height="400px"/>
+     <img alt="Image of a PaCER electrode reconstruction at two different time points of resolving brain shift." class="readme_main" src="https://prince.lcsb.uni.lu/PaCER/img/mainPacer.png" height="400px"/>
    </p>
 
 

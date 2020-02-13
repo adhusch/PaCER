@@ -6,6 +6,7 @@ PaCER
 
    Home <index>
    gettingStarted
+   modules/index
    literature
    help
    acknowledgments
